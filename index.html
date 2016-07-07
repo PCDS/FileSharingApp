@@ -10,6 +10,13 @@
   <link rel="stylesheet" href="stylesheets/github-dark.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/script.js"></script>
+    <script type="text/javascript" src="javascripts/script.js"></script>
+    <script src="jquery.js"></script> 
+    <script> 
+    $(function(){
+      $("#versioninfo").load("versioninfo.html").css({"color": "white", "font-size": "150%","padding-left": "2%","padding-top": "2%"}); 
+    });
+    </script> 
 
   <title>Filesharingapp</title>
   <meta name="description" content="Version">
@@ -25,7 +32,7 @@
       <h1 class="title">Filesharingapp</h1>
     </header>
     <div id="container">
-      <p class="tagline">Version</p>
+      <div class="tagline" id="versioninfo"> </div>
       <div id="main" role="main">
         <div class="download-bar">
         <div class="inner">
