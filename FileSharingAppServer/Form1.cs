@@ -21,7 +21,8 @@ namespace FileSharingAppServer
         public Form1()
         {
 
-            string path = @"C:\Received";
+            string path = AppDomain.CurrentDomain.BaseDirectory+@"ReceivedFiles";
+            MessageBox.Show(path);
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -52,7 +53,7 @@ namespace FileSharingAppServer
             delegate()
             {
                 MessageBox.Show("New File Recieved\n" + fileName);
-                System.Diagnostics.Process.Start("explorer", @"C:\Received");
+                System.Diagnostics.Process.Start("explorer", AppDomain.CurrentDomain.BaseDirectory + @"ReceivedFiles");
             }));
         }
 
@@ -117,7 +118,7 @@ namespace FileSharingAppServer
                         Byte[] dataByte = new Byte[blockSize];
                         lock (this)
                         {
-                            string folderPath = @"C:\Received\";
+                            string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"ReceivedFiles\";
                             handlerSocket.Receive(dataByte);
                             int fileNameLen = BitConverter.ToInt32(dataByte, 0);
                             fileName = Encoding.ASCII.GetString(dataByte, 4, fileNameLen);

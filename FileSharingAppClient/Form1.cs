@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyProgFileSharingAppClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -43,6 +44,12 @@ namespace FileSharingAppClient
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            configLoad("Client.ini");
+            updateCheck();
+        }
+
         public void OnApplicationExit(object sender, EventArgs e)
         {
             if (Connected == true)
@@ -53,11 +60,6 @@ namespace FileSharingAppClient
                 srReceiver.Close();
                 tcpServer.Close();
             }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         /*---------------------------------------CHAT APP--------------------------------------------*/
@@ -259,7 +261,6 @@ namespace FileSharingAppClient
         private void onlineResourseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://pcds.github.io/FileSharingApp/");
-
         }
 
         private void reportAnIssueToolStripMenuItem_Click(object sender, EventArgs e)
@@ -269,7 +270,21 @@ namespace FileSharingAppClient
 
         }
 
+
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AboutBox1 a = new AboutBox1();
+            a.Show();
+        }
+
+
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            updateCheck();
+        }
+
+        private void updateCheck()
         {
             String versioninfo;
             WebClient web = new WebClient();
@@ -285,14 +300,53 @@ namespace FileSharingAppClient
             string result = Convert.ToString(test);
             if (test == 1)
             {
-                MessageBox.Show("Your software needs to be updated");
-                var path = AppDomain.CurrentDomain.BaseDirectory+"Updater.exe";
-                Process.Start(path);
+                DialogResult dialogResult = MessageBox.Show("Your software needs to be updated.\nWould you like to restart the application and update now?", "", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    var path = AppDomain.CurrentDomain.BaseDirectory + "Updater.bat";
+                    Process.Start(path);
+                }
+
             }
             else
             {
-                MessageBox.Show("You are up to date\n Version: "+ myversion);
-            }   
+                MessageBox.Show("You are up to date\nVersion: " + myversion);
+            }
+
+        }
+
+        private void saveConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var myIni = new IniFile("Client.ini");
+            myIni.Write("Username", txtUser.Text);
+            myIni.Write("ServerIP", txtIp.Text);
+            MessageBox.Show("Configuration Saved");
+        }
+
+        private void configLoad(string iniFile)
+        {
+
+            var myIni = new IniFile(iniFile);
+            if (!myIni.KeyExists("Username"))
+            {
+                myIni.Write("Username", "New User");
+            }
+            else
+            {
+                txtUser.Text = myIni.Read("Username");
+            }
+            if (!myIni.KeyExists("ServerIP"))
+            {
+                myIni.Write("ServerIP", "0.0.0.0");
+            }
+            else
+            {
+                txtIp.Text = myIni.Read("ServerIP");
+            }
+
+
+
+
 
         }
 
