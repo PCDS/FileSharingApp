@@ -1,5 +1,4 @@
-﻿using MyProgFileSharingAppClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -46,7 +45,7 @@ namespace FileSharingAppClient
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            configLoad("Client.ini");
+            configLoad("FileSharingAppClient.exe.config");
             updateCheck();
         }
 
@@ -79,7 +78,7 @@ namespace FileSharingAppClient
         private void InitializeConnection()
         {
             // Parse the IP address from the TextBox into an IPAddress object
-            ipAddr = IPAddress.Parse(txtIp.Text);
+            ipAddr = IPAddress.Parse(txtHost.Text);
             // Start a new TCP connections to the chat server
             tcpServer = new TcpClient();
             tcpServer.Connect(ipAddr, 1986);
@@ -90,7 +89,7 @@ namespace FileSharingAppClient
             UserName = txtUser.Text;
 
             // Disable and enable the appropriate fields
-            txtIp.Enabled = false;
+            txtHost.Enabled = false;
             txtUser.Enabled = false;
             txtMessage.Enabled = true;
             btnSend.Enabled = true;
@@ -148,7 +147,7 @@ namespace FileSharingAppClient
             // Show the reason why the connection is ending
             txtLog.AppendText(Reason + "\r\n");
             // Enable and disable the appropriate controls on the form
-            txtIp.Enabled = true;
+            txtHost.Enabled = true;
             txtUser.Enabled = true;
             txtMessage.Enabled = false;
             btnSend.Enabled = false;
@@ -207,10 +206,10 @@ namespace FileSharingAppClient
 
         private void btnSendFile_Click(object sender, EventArgs e)
         {
-            if (txtIp.Text != "0.0.0.0")
+            if (txtHost.Text != "0.0.0.0")
             {
-                string ipAddress = txtIp.Text;
-                int port = int.Parse(txtPort.Text);
+                string ipAddress = txtHost.Text;
+                int port = int.Parse(txtChatport.Text);
                 string fileName = txtFile.Text;
                 Task.Factory.StartNew(() => SendFile(ipAddress, port, fileName, shortFileName));
                 MessageBox.Show("File Sent");
@@ -317,38 +316,34 @@ namespace FileSharingAppClient
 
         private void saveConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var myIni = new IniFile("Client.ini");
-            myIni.Write("Username", txtUser.Text);
-            myIni.Write("ServerIP", txtIp.Text);
-            MessageBox.Show("Configuration Saved");
+            Properties.Settings.Default["Username"] = txtUser.Text;
+            Properties.Settings.Default["Host"] = txtHost.Text;
+            Properties.Settings.Default["Chatport"] = int.Parse(txtChatport.Text);
+            Properties.Settings.Default["Fileport"] = int.Parse(txtFileport.Text);
+            Properties.Settings.Default.Save();
         }
 
-        private void configLoad(string iniFile)
+        private void configLoad(string configFile)
+        {
+            txtUser.Text = Properties.Settings.Default.Username;
+            txtHost.Text = Properties.Settings.Default.Host;
+            txtChatport.Text = Convert.ToString(Properties.Settings.Default.Chatport);
+            txtFileport.Text = Convert.ToString(Properties.Settings.Default.Fileport);
+        }
+
+        private void lblServer_Click(object sender, EventArgs e)
         {
 
-            var myIni = new IniFile(iniFile);
-            if (!myIni.KeyExists("Username"))
-            {
-                myIni.Write("Username", "New User");
-            }
-            else
-            {
-                txtUser.Text = myIni.Read("Username");
-            }
-            if (!myIni.KeyExists("ServerIP"))
-            {
-                myIni.Write("ServerIP", "0.0.0.0");
-            }
-            else
-            {
-                txtIp.Text = myIni.Read("ServerIP");
-            }
+        }
 
-
-
-
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
 
+        private void txtPort_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
