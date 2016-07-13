@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace FileSharingAppClient
 {
-    public partial class Form1 : Form
+    public partial class ClientOLD : Form
     {
         private static string shortFileName = "";
         private static string fileName = "";
@@ -32,7 +32,7 @@ namespace FileSharingAppClient
 
 
 
-        public Form1()
+        public ClientOLD()
         {
             // On application exit, don't forget to disconnect first
             Application.ApplicationExit += new EventHandler(OnApplicationExit);
@@ -43,11 +43,10 @@ namespace FileSharingAppClient
         {
 
 
-            Basemenu test = new Basemenu();
-            this.Menu=test.Menu;
-
+           // global::Basemenu test = new global::Basemenu();
+           // this.Menu= test.Menu;
             configLoad("Client.ini");
-            updateCheck();
+           // test.updateCheck();
         }
 
 
@@ -328,7 +327,7 @@ namespace FileSharingAppClient
 
         }
 
-        private void configLoad(string iniFile)
+        public void configLoad(string iniFile)
         {
             var myIni = new IniFile(iniFile);
             if (!myIni.KeyExists("Username"))

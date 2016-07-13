@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileSharingAppClient
+namespace WindowsFormsApplication1
 {
     static class Program
     {
@@ -15,8 +16,7 @@ namespace FileSharingAppClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ClientForm());
-            
+            Application.Run(new Form2());
         }
     }
 }

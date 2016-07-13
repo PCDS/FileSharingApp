@@ -1,6 +1,6 @@
 ﻿namespace FileSharingAppClient
 {
-    partial class Form1
+    partial class ClientOLD
     {
         /// <summary>
         /// Required designer variable.
