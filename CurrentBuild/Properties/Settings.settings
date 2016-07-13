@@ -1,18 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FileSharingAppClient.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
   <Profiles />
-  <Settings>
-    <Setting Name="Username" Type="System.String" Scope="User">
-      <Value Profile="(Default)">New User</Value>
-    </Setting>
-    <Setting Name="Host" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="Chatport" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1986</Value>
-    </Setting>
-    <Setting Name="Fileport" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2255</Value>
-    </Setting>
-  </Settings>
+  <Settings />
 </SettingsFile>

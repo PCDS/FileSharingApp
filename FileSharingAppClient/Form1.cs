@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.CompilerServices;
+using MyProgFileSharingAppClient;
+using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -45,9 +41,16 @@ namespace FileSharingAppClient
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            configLoad("FileSharingAppClient.exe.config");
+
+
+            Basemenu test = new Basemenu();
+            this.Menu=test.Menu;
+
+            configLoad("Client.ini");
             updateCheck();
         }
+
+
 
         public void OnApplicationExit(object sender, EventArgs e)
         {
@@ -316,19 +319,53 @@ namespace FileSharingAppClient
 
         private void saveConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default["Username"] = txtUser.Text;
-            Properties.Settings.Default["Host"] = txtHost.Text;
-            Properties.Settings.Default["Chatport"] = int.Parse(txtChatport.Text);
-            Properties.Settings.Default["Fileport"] = int.Parse(txtFileport.Text);
-            Properties.Settings.Default.Save();
+            var myIni = new IniFile("Client.ini");
+            myIni.Write("Username", txtUser.Text);
+            myIni.Write("Host", txtHost.Text);
+            myIni.Write("Chatport", txtChatport.Text);
+            myIni.Write("Fileport", txtFileport.Text);
+            MessageBox.Show("Configuration Saved");
+
         }
 
-        private void configLoad(string configFile)
+        private void configLoad(string iniFile)
         {
-            txtUser.Text = Properties.Settings.Default.Username;
-            txtHost.Text = Properties.Settings.Default.Host;
-            txtChatport.Text = Convert.ToString(Properties.Settings.Default.Chatport);
-            txtFileport.Text = Convert.ToString(Properties.Settings.Default.Fileport);
+            var myIni = new IniFile(iniFile);
+            if (!myIni.KeyExists("Username"))
+            {
+                myIni.Write("Username", "New User");
+            }
+            else
+            {
+                txtUser.Text = myIni.Read("Username");
+            }
+            if (!myIni.KeyExists("Host"))
+            {
+                myIni.Write("Host", "");
+            }
+            else
+            {
+                txtHost.Text = myIni.Read("Host");
+            }
+
+            if (!myIni.KeyExists("Chatport"))
+            {
+                myIni.Write("Chatport", "1986");
+            }
+            else
+            {
+                txtChatport.Text = myIni.Read("Chatport");
+            }
+
+            if (!myIni.KeyExists("Fileport"))
+            {
+                myIni.Write("Fileport", "2225");
+            }
+            else
+            {
+                txtChatport.Text = myIni.Read("Fileport");
+            }
+
         }
 
         private void lblServer_Click(object sender, EventArgs e)
@@ -345,5 +382,25 @@ namespace FileSharingAppClient
         {
 
         }
+
+
+        private void loadConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = "Load Configuration";
+            dlg.ShowDialog();
+            fileName = dlg.FileName;
+            shortFileName = dlg.SafeFileName;
+            if (Operators.LikeString(fileName, "*.ini", CompareMethod.Text))
+            {
+                configLoad(fileName);
+            }
+            else
+            {
+                MessageBox.Show("Please select a .ini file");
+            }
+        
+        } 
     }
 }

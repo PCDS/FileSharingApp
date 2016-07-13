@@ -43,18 +43,19 @@
             this.txtHost = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.flieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportAnIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onlineResourseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tESTBUTTINToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFileport = new System.Windows.Forms.TextBox();
-            this.loadConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,7 +76,7 @@
             this.txtChatport.Name = "txtChatport";
             this.txtChatport.Size = new System.Drawing.Size(62, 20);
             this.txtChatport.TabIndex = 20;
-            this.txtChatport.Text = "2255";
+            this.txtChatport.Text = "1986";
             this.txtChatport.TextChanged += new System.EventHandler(this.txtPort_TextChanged);
             // 
             // label4
@@ -184,7 +185,6 @@
             this.txtHost.Name = "txtHost";
             this.txtHost.Size = new System.Drawing.Size(128, 20);
             this.txtHost.TabIndex = 26;
-            this.txtHost.Text = "0.0.0.0";
             // 
             // btnConnect
             // 
@@ -200,37 +200,45 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.flieToolStripMenuItem,
+            this.fileToolStripMenuItem,
             this.helpToolStripMenuItem,
-            this.aboutToolStripMenuItem1});
+            this.aboutToolStripMenuItem1,
+            this.toolStripMenuItem1,
+            this.tESTBUTTINToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(605, 24);
             this.menuStrip1.TabIndex = 33;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // flieToolStripMenuItem
+            // fileToolStripMenuItem
             // 
-            this.flieToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveConfigurationToolStripMenuItem,
-            this.exportConfigurationToolStripMenuItem,
             this.loadConfigurationToolStripMenuItem,
             this.exitToolStripMenuItem});
-            this.flieToolStripMenuItem.Name = "flieToolStripMenuItem";
-            this.flieToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.flieToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
             // 
             // saveConfigurationToolStripMenuItem
             // 
             this.saveConfigurationToolStripMenuItem.Name = "saveConfigurationToolStripMenuItem";
-            this.saveConfigurationToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.saveConfigurationToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.saveConfigurationToolStripMenuItem.Text = "Save Configuration";
             this.saveConfigurationToolStripMenuItem.Click += new System.EventHandler(this.saveConfigurationToolStripMenuItem_Click);
+            // 
+            // loadConfigurationToolStripMenuItem
+            // 
+            this.loadConfigurationToolStripMenuItem.Name = "loadConfigurationToolStripMenuItem";
+            this.loadConfigurationToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.loadConfigurationToolStripMenuItem.Text = "Load Configuration";
+            this.loadConfigurationToolStripMenuItem.Click += new System.EventHandler(this.loadConfigurationToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // helpToolStripMenuItem
@@ -271,6 +279,17 @@
             this.aboutToolStripMenuItem1.Text = "About";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 20);
+            // 
+            // tESTBUTTINToolStripMenuItem
+            // 
+            this.tESTBUTTINToolStripMenuItem.Name = "tESTBUTTINToolStripMenuItem";
+            this.tESTBUTTINToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.tESTBUTTINToolStripMenuItem.Text = "IM COOL";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -287,19 +306,7 @@
             this.txtFileport.Name = "txtFileport";
             this.txtFileport.Size = new System.Drawing.Size(62, 20);
             this.txtFileport.TabIndex = 38;
-            this.txtFileport.Text = "1986";
-            // 
-            // loadConfigurationToolStripMenuItem
-            // 
-            this.loadConfigurationToolStripMenuItem.Name = "loadConfigurationToolStripMenuItem";
-            this.loadConfigurationToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.loadConfigurationToolStripMenuItem.Text = "Load Configuration";
-            // 
-            // exportConfigurationToolStripMenuItem
-            // 
-            this.exportConfigurationToolStripMenuItem.Name = "exportConfigurationToolStripMenuItem";
-            this.exportConfigurationToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.exportConfigurationToolStripMenuItem.Text = "Export Configuration";
+            this.txtFileport.Text = "2225";
             // 
             // Form1
             // 
@@ -353,7 +360,7 @@
         private System.Windows.Forms.TextBox txtHost;
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem flieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
@@ -363,8 +370,9 @@
         private System.Windows.Forms.ToolStripMenuItem saveConfigurationToolStripMenuItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtFileport;
-        private System.Windows.Forms.ToolStripMenuItem exportConfigurationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tESTBUTTINToolStripMenuItem;
     }
 }
 
