@@ -1,27 +1,19 @@
-C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\Properties\Settings.Designer.cs
-C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\Properties\Settings.settings
-C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\FileSharingAppClient.exe.config
+C:\Users\bjw\Github\FileSharingApp-DEV\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.exe
+C:\Users\bjw\Github\FileSharingApp-DEV\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.pdb
+C:\Users\bjw\Github\FileSharingApp-DEV\CurrentBuild\FileSharingAppClient.exe
+C:\Users\bjw\Github\FileSharingApp-DEV\CurrentBuild\FileSharingAppClient.pdb
+C:\Users\bjw\Github\FileSharingApp-DEV\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.csprojResolveAssemblyReference.cache
+C:\Users\bjw\Github\FileSharingApp-DEV\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.Properties.Resources.resources
+C:\Users\bjw\Github\FileSharingApp-DEV\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.csproj.GenerateResource.Cache
+C:\Users\bjw\Github\FileSharingApp-DEV\FileSharingAppClient\obj\x86\Debug\FileSharingApp.About.resources
+C:\Users\bjw\Github\FileSharingApp-DEV\FileSharingAppClient\obj\x86\Debug\FileSharingApp.Base.resources
+C:\Users\bjw\Github\FileSharingApp-DEV\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.ClientForm.resources
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\FileSharingAppClient.exe
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\FileSharingAppClient.pdb
-C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.AboutBox1.resources
-C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.Base.resources
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingApp.About.resources
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingApp.Base.resources
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.ClientForm.resources
-C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.ClientOLD.resources
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.Properties.Resources.resources
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.csproj.GenerateResource.Cache
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.exe
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.pdb
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\FileSharingAppClient.exe.config
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.exe
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.pdb
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\Properties\Settings.Designer.cs
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\Properties\Settings.settings
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\FileSharingAppClient.exe
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\FileSharingAppClient.pdb
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.Properties.Resources.resources
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.csproj.GenerateResource.Cache
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingApp.About.resources
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingApp.ClientForm.resources
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingApp.ClientOLD.resources
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingApp.Base.resources
-C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.csprojResolveAssemblyReference.cache
