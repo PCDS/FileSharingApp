@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Windows.Forms;
 
-namespace FileSharingAppClient
+namespace FileSharingApp
 {
     public partial class Base : Form
     {
@@ -23,10 +17,6 @@ namespace FileSharingAppClient
 
         }
 
-        private void Update_Click(object sender, EventArgs e)
-        {
-            updateCheck();
-        }
 
         public void updateCheck()
         {
@@ -59,9 +49,31 @@ namespace FileSharingAppClient
 
         }
 
-        private void menuItem5_Click(object sender, EventArgs e)
-        {
+ 
 
+        private void Update_Click(object sender, EventArgs e)
+        {
+            updateCheck();
+        }
+
+
+        private void Online_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://pcds.github.io/FileSharingApp/");
+        }
+
+
+        private void Report_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Please send details of the error and a screenshot to blake.j.wrege@wmich.edu");
+            System.Diagnostics.Process.Start("mailto:blake.j.wrege@wmich.edu@gmail.com");
+
+        }
+
+        private void About_Click(object sender, EventArgs e)
+        {
+            About a = new About();
+            a.Show();
         }
     }
 }

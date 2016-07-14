@@ -1,4 +1,4 @@
-﻿namespace FileSharingAppClient
+﻿namespace FileSharingApp
 {
     partial class ClientForm
     {
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientForm));
             this.txtFileport = new System.Windows.Forms.TextBox();
             this.txtUser = new System.Windows.Forms.TextBox();
@@ -46,21 +45,17 @@
             this.btnSend = new System.Windows.Forms.Button();
             this.txtFile = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.mainMenu2 = new System.Windows.Forms.MainMenu(this.components);
-            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.crapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.menuStrip2.SuspendLayout();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.saveConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtFileport
             // 
-            this.txtFileport.Location = new System.Drawing.Point(67, 33);
+            this.txtFileport.Location = new System.Drawing.Point(67, 57);
             this.txtFileport.Name = "txtFileport";
             this.txtFileport.Size = new System.Drawing.Size(62, 20);
             this.txtFileport.TabIndex = 71;
@@ -68,7 +63,7 @@
             // 
             // txtUser
             // 
-            this.txtUser.Location = new System.Drawing.Point(391, 3);
+            this.txtUser.Location = new System.Drawing.Point(391, 27);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(128, 20);
             this.txtUser.TabIndex = 69;
@@ -78,7 +73,7 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(318, 6);
+            this.lblName.Location = new System.Drawing.Point(318, 30);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(67, 13);
             this.lblName.TabIndex = 68;
@@ -88,7 +83,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(180, 6);
+            this.label2.Location = new System.Drawing.Point(180, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 13);
             this.label2.TabIndex = 70;
@@ -97,14 +92,14 @@
             // txtMessage
             // 
             this.txtMessage.Enabled = false;
-            this.txtMessage.Location = new System.Drawing.Point(12, 362);
+            this.txtMessage.Location = new System.Drawing.Point(12, 386);
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(491, 20);
             this.txtMessage.TabIndex = 66;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(509, 359);
+            this.button1.Location = new System.Drawing.Point(509, 383);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 65;
@@ -115,7 +110,7 @@
             // 
             this.lblServer.AutoSize = true;
             this.lblServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblServer.Location = new System.Drawing.Point(3, 7);
+            this.lblServer.Location = new System.Drawing.Point(3, 31);
             this.lblServer.Name = "lblServer";
             this.lblServer.Size = new System.Drawing.Size(37, 13);
             this.lblServer.TabIndex = 64;
@@ -123,7 +118,7 @@
             // 
             // txtHost
             // 
-            this.txtHost.Location = new System.Drawing.Point(46, 4);
+            this.txtHost.Location = new System.Drawing.Point(46, 28);
             this.txtHost.Name = "txtHost";
             this.txtHost.Size = new System.Drawing.Size(128, 20);
             this.txtHost.TabIndex = 63;
@@ -131,7 +126,7 @@
             // txtLog
             // 
             this.txtLog.BackColor = System.Drawing.SystemColors.Window;
-            this.txtLog.Location = new System.Drawing.Point(12, 72);
+            this.txtLog.Location = new System.Drawing.Point(12, 96);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
@@ -142,7 +137,7 @@
             // btnConnect
             // 
             this.btnConnect.BackColor = System.Drawing.Color.White;
-            this.btnConnect.Location = new System.Drawing.Point(525, 1);
+            this.btnConnect.Location = new System.Drawing.Point(525, 25);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(73, 26);
             this.btnConnect.TabIndex = 62;
@@ -152,7 +147,7 @@
             // btnBrowse
             // 
             this.btnBrowse.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnBrowse.Location = new System.Drawing.Point(310, 31);
+            this.btnBrowse.Location = new System.Drawing.Point(310, 55);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(63, 22);
             this.btnBrowse.TabIndex = 61;
@@ -161,7 +156,7 @@
             // 
             // txtChatport
             // 
-            this.txtChatport.Location = new System.Drawing.Point(250, 3);
+            this.txtChatport.Location = new System.Drawing.Point(250, 27);
             this.txtChatport.Name = "txtChatport";
             this.txtChatport.Size = new System.Drawing.Size(62, 20);
             this.txtChatport.TabIndex = 59;
@@ -171,7 +166,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(133, 36);
+            this.label4.Location = new System.Drawing.Point(133, 60);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 13);
             this.label4.TabIndex = 58;
@@ -180,7 +175,7 @@
             // btnSend
             // 
             this.btnSend.BackColor = System.Drawing.Color.White;
-            this.btnSend.Location = new System.Drawing.Point(379, 29);
+            this.btnSend.Location = new System.Drawing.Point(379, 53);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(73, 26);
             this.btnSend.TabIndex = 57;
@@ -189,7 +184,7 @@
             // 
             // txtFile
             // 
-            this.txtFile.Location = new System.Drawing.Point(204, 33);
+            this.txtFile.Location = new System.Drawing.Point(204, 57);
             this.txtFile.Name = "txtFile";
             this.txtFile.ReadOnly = true;
             this.txtFile.Size = new System.Drawing.Size(116, 20);
@@ -199,77 +194,62 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 36);
+            this.label1.Location = new System.Drawing.Point(3, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 60;
             this.label1.Text = "File Port:";
             // 
-            // menuStrip2
-            // 
-            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.crapToolStripMenuItem,
-            this.aboutToolStripMenuItem});
-            this.menuStrip2.Location = new System.Drawing.Point(0, 24);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(1152, 24);
-            this.menuStrip2.TabIndex = 72;
-            this.menuStrip2.Text = "menuStrip2";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // crapToolStripMenuItem
-            // 
-            this.crapToolStripMenuItem.Name = "crapToolStripMenuItem";
-            this.crapToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.crapToolStripMenuItem.Text = "Crap";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.aboutToolStripMenuItem.Text = "About";
-            // 
             // toolStrip2
             // 
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
             this.toolStripButton2});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 48);
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1152, 25);
+            this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.toolStrip2.Size = new System.Drawing.Size(604, 25);
             this.toolStrip2.TabIndex = 73;
             this.toolStrip2.Text = "toolStrip2";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // toolStripButton2
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveConfigurationToolStripMenuItem,
+            this.loadConfigurationToolStripMenuItem,
+            this.exitToolStripMenuItem});
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(57, 22);
-            this.toolStripButton2.Text = "MERGED";
+            this.toolStripButton2.Size = new System.Drawing.Size(38, 22);
+            this.toolStripButton2.Text = "File";
+            // 
+            // saveConfigurationToolStripMenuItem
+            // 
+            this.saveConfigurationToolStripMenuItem.Name = "saveConfigurationToolStripMenuItem";
+            this.saveConfigurationToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveConfigurationToolStripMenuItem.Text = "Save Configuration";
+            this.saveConfigurationToolStripMenuItem.Click += new System.EventHandler(this.Save_Click);
+            // 
+            // loadConfigurationToolStripMenuItem
+            // 
+            this.loadConfigurationToolStripMenuItem.Name = "loadConfigurationToolStripMenuItem";
+            this.loadConfigurationToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.loadConfigurationToolStripMenuItem.Text = "Load Configuration";
+            this.loadConfigurationToolStripMenuItem.Click += new System.EventHandler(this.Load_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
             // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1152, 524);
+            this.ClientSize = new System.Drawing.Size(604, 411);
             this.Controls.Add(this.toolStrip2);
-            this.Controls.Add(this.menuStrip2);
             this.Controls.Add(this.txtFileport);
             this.Controls.Add(this.txtUser);
             this.Controls.Add(this.lblName);
@@ -286,8 +266,9 @@
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtFile);
             this.Controls.Add(this.label1);
-            this.Menu = this.mainMenu2;
             this.Name = "ClientForm";
+            this.Text = "File Sharing and Chat App";
+            this.Load += new System.EventHandler(this.ClientForm_Load);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.txtFile, 0);
             this.Controls.SetChildIndex(this.btnSend, 0);
@@ -304,10 +285,7 @@
             this.Controls.SetChildIndex(this.lblName, 0);
             this.Controls.SetChildIndex(this.txtUser, 0);
             this.Controls.SetChildIndex(this.txtFileport, 0);
-            this.Controls.SetChildIndex(this.menuStrip2, 0);
             this.Controls.SetChildIndex(this.toolStrip2, 0);
-            this.menuStrip2.ResumeLayout(false);
-            this.menuStrip2.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
@@ -333,13 +311,10 @@
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox txtFile;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MainMenu mainMenu2;
-        private System.Windows.Forms.MenuStrip menuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem crapToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripButton2;
+        private System.Windows.Forms.ToolStripMenuItem saveConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }

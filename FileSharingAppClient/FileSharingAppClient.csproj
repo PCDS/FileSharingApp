@@ -64,17 +64,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutBox1.cs">
+    <Compile Include="..\SharedClasses\About.cs">
+      <Link>About.cs</Link>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutBox1.Designer.cs">
-      <DependentUpon>AboutBox1.cs</DependentUpon>
+    <Compile Include="..\SharedClasses\About.designer.cs">
+      <Link>About.designer.cs</Link>
+      <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Base.cs">
+    <Compile Include="..\SharedClasses\Base.cs">
+      <Link>Base.cs</Link>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Base.Designer.cs">
+    <Compile Include="..\SharedClasses\Base.designer.cs">
+      <Link>Base.designer.cs</Link>
       <DependentUpon>Base.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\SharedClasses\IniFile.cs">
+      <Link>IniFile.cs</Link>
     </Compile>
     <Compile Include="ClientForm.cs">
       <SubType>Form</SubType>
@@ -82,7 +89,6 @@
     <Compile Include="ClientForm.Designer.cs">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="IniFile.cs" />
     <Compile Include="ClientOLD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,10 +97,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AboutBox1.resx">
-      <DependentUpon>AboutBox1.cs</DependentUpon>
+    <EmbeddedResource Include="..\SharedClasses\About.resx">
+      <Link>About.resx</Link>
+      <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Base.resx">
+    <EmbeddedResource Include="..\SharedClasses\Base.resx">
+      <Link>Base.resx</Link>
       <DependentUpon>Base.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientForm.resx">

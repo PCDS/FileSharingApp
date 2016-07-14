@@ -8,11 +8,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSharingAppServer", "FileSharingAppServer\FileSharingAppServer.csproj", "{3BEE6C6F-010E-4D83-B1DC-5EE8F9EE9692}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4911C5A8-C65B-4651-A0C6-B32E0BCFBDAB}"
-	ProjectSection(SolutionItems) = preProject
-		Basemenu.cs = Basemenu.cs
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{67668FBD-D501-4DFD-92B3-5749AEB80BD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedClasses", "SharedClasses", "{EA570389-22DB-4CCC-BD71-DC9EB531CE28}"
+	ProjectSection(SolutionItems) = preProject
+		SharedClasses\About.cs = SharedClasses\About.cs
+		SharedClasses\About.Designer.cs = SharedClasses\About.Designer.cs
+		SharedClasses\Basemenu.cs = SharedClasses\Basemenu.cs
+		SharedClasses\IniFile.cs = SharedClasses\IniFile.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,5 +50,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EA570389-22DB-4CCC-BD71-DC9EB531CE28} = {4911C5A8-C65B-4651-A0C6-B32E0BCFBDAB}
 	EndGlobalSection
 EndGlobal

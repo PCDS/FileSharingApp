@@ -1,4 +1,4 @@
-﻿namespace FileSharingAppClient
+﻿namespace FileSharingApp
 {
     partial class ClientOLD
     {
@@ -53,7 +53,6 @@
             this.onlineResourseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tESTBUTTINToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFileport = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
@@ -203,8 +202,7 @@
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem,
             this.aboutToolStripMenuItem1,
-            this.toolStripMenuItem1,
-            this.tESTBUTTINToolStripMenuItem});
+            this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(605, 24);
@@ -284,12 +282,6 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 20);
             // 
-            // tESTBUTTINToolStripMenuItem
-            // 
-            this.tESTBUTTINToolStripMenuItem.Name = "tESTBUTTINToolStripMenuItem";
-            this.tESTBUTTINToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-            this.tESTBUTTINToolStripMenuItem.Text = "IM COOL";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -308,7 +300,7 @@
             this.txtFileport.TabIndex = 38;
             this.txtFileport.Text = "2225";
             // 
-            // Form1
+            // ClientOLD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -333,7 +325,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "ClientOLD";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "File Sharing and Chat App";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -372,7 +364,6 @@
         private System.Windows.Forms.TextBox txtFileport;
         private System.Windows.Forms.ToolStripMenuItem loadConfigurationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem tESTBUTTINToolStripMenuItem;
     }
 }
 

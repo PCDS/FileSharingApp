@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileSharingAppClient
+namespace FileSharingApp
 {
     public partial class ClientOLD : Form
     {
@@ -275,8 +275,7 @@ namespace FileSharingAppClient
 
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AboutBox1 a = new AboutBox1();
-            a.Show();
+
         }
 
 
