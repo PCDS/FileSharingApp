@@ -1,6 +1,9 @@
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\FileSharingAppServer.exe.config
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\FileSharingAppServer.exe
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\FileSharingAppServer.pdb
-C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppServer\obj\x86\Debug\FileSharingAppServer.Form1.resources
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppServer\obj\x86\Debug\FileSharingApp.About.resources
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppServer\obj\x86\Debug\FileSharingApp.Base.resources
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppServer\obj\x86\Debug\FileSharingAppServer.ServerForm.resources
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppServer\obj\x86\Debug\FileSharingAppServer.Properties.Resources.resources
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppServer\obj\x86\Debug\FileSharingAppServer.csproj.GenerateResource.Cache
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppServer\obj\x86\Debug\FileSharingAppServer.exe

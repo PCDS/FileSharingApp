@@ -15,7 +15,8 @@ namespace ChatServer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FileSharingAppServer.Form1());
+            
+            Application.Run(new FileSharingAppServer.ServerForm());
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using FileSharingApp;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.CompilerServices;
-using MyProgFileSharingAppClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -142,11 +141,11 @@ namespace FileSharingAppClient
 
             if (!myIni.KeyExists("FilePort"))
             {
-                myIni.Write("FilePort", "2225");
+                myIni.Write("FilePort", "2255");
             }
             else
             {
-              //  txtFilePort.Text = myIni.Read("FilePort");
+                txtFilePort.Text = myIni.Read("FilePort");
             }
 
         }
@@ -194,6 +193,10 @@ namespace FileSharingAppClient
             // Send the desired username to the server
             swSender = new StreamWriter(tcpServer.GetStream());
             swSender.WriteLine(txtUser.Text);
+            swSender.Flush();
+
+            swSender = new StreamWriter(tcpServer.GetStream());
+            swSender.WriteLine(txtPass.Text);
             swSender.Flush();
 
             // Start the thread for receiving messages and further communication
@@ -341,15 +344,6 @@ namespace FileSharingAppClient
             }
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtUser_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
     }
 }

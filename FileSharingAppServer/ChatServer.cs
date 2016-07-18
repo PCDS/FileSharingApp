@@ -6,6 +6,8 @@ using System.Net.Sockets;
 using System.IO;
 using System.Threading;
 using System.Collections;
+using System.Diagnostics;
+using System.Data.SQLite;
 
 namespace mainServer
 {
@@ -217,6 +219,7 @@ namespace mainServer
             private StreamReader srReceiver;
             private StreamWriter swSender;
             private string currUser;
+            private string currPass;
             private string strResponse;
 
             // The constructor of the class takes in a TCP connection
@@ -246,9 +249,24 @@ namespace mainServer
                 // Read the account information from the client
                 currUser = srReceiver.ReadLine();
 
+
                 // We got a response from the client
                 if (currUser != "")
                 {
+                    bool myPass = false;
+                    currPass = srReceiver.ReadLine();
+                    if (currPass != "")
+                    {
+                       myPass = CheckPass(currUser, currPass);
+                    }
+                    else
+                    {
+                        // 0 means not connected
+                        swSender.WriteLine("0|Please enter a password.");
+                        swSender.Flush();
+                        CloseConnection();
+                        return;
+                    }
                     // Store the user name in the hash table
                     if (ChatServer.htUsers.Contains(currUser) == true)
                     {
@@ -262,6 +280,14 @@ namespace mainServer
                     {
                         // 0 means not connected
                         swSender.WriteLine("0|This username is reserved.");
+                        swSender.Flush();
+                        CloseConnection();
+                        return;
+                    }
+                    else if (myPass == false)
+                    {
+                        // 0 means not connected
+                        swSender.WriteLine("0|Incorrect password.");
                         swSender.Flush();
                         CloseConnection();
                         return;
@@ -305,7 +331,28 @@ namespace mainServer
                     ChatServer.RemoveUser(tcpClient);
                 }
             }
+
+            private bool CheckPass(string currUser, string currPass)
+            {
+                SQLiteConnection m_dbConnection;
+                m_dbConnection = new SQLiteConnection("Data Source=Users.sqlite;Version=3;");
+                m_dbConnection.Open();
+                string sql = "select * from Users";
+                SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    if ((string)reader["name"] == currUser)
+                    {
+                        Debug.WriteLine("Name: " + reader["name"] + "\tPassword: " + reader["password"]);
+                        if ((string)reader["password"] == currPass)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
         }
     }
-
 }
