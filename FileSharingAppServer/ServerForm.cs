@@ -7,8 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SQLite;
-using mainServer;
+using FileSharingAppServer;
 
 
 namespace FileSharingAppServer
@@ -20,29 +19,11 @@ namespace FileSharingAppServer
         private delegate void UpdateStatusCallback(string strMessage);
 
         public event FileRecievedEventHandler NewFileRecieved;
+        DatabaseCon UserDB = new DatabaseCon();
 
         public ServerForm()
         {
-
-            string database = AppDomain.CurrentDomain.BaseDirectory + @"Users.sqlite";
-            if (!File.Exists(database))
-            {
-                SQLiteConnection.CreateFile("Users.sqlite");
-                SQLiteConnection m_dbConnection;
-                m_dbConnection = new SQLiteConnection("Data Source=Users.sqlite;Version=3;");
-                m_dbConnection.Open();
-
-                string sql = "create table Users (name varchar(20),password varchar(20))";
-                SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
-                command.ExecuteNonQuery();
-                sql = "insert into Users (name, password) values ('giggles', 'monkey')";
-                command = new SQLiteCommand(sql, m_dbConnection);
-                command.ExecuteNonQuery();
-                m_dbConnection.Close();
-            }
-
-
-
+            UserDB.CreateDB();
             string path = AppDomain.CurrentDomain.BaseDirectory+@"ReceivedFiles";
             MessageBox.Show(path);
             if (!Directory.Exists(path))
@@ -52,36 +33,6 @@ namespace FileSharingAppServer
             InitializeComponent();
             ToolStripManager.Merge(toolStrip1, toolStrip2);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -113,9 +64,6 @@ namespace FileSharingAppServer
             MessageBox.Show("Configuration Saved");
 
         }
-
-
-
 
 
 
@@ -154,9 +102,9 @@ namespace FileSharingAppServer
 
             Debug.WriteLine(localIP);
 
-            mainServer.ChatServer mainServer = new mainServer.ChatServer(ipAddr);
+            FileSharingAppServer.ChatServer mainServer = new FileSharingAppServer.ChatServer(ipAddr);
             // Hook the StatusChanged event handler to mainServer_StatusChanged
-            global::mainServer.ChatServer.StatusChanged += new StatusChangedEventHandler(mainServer_StatusChanged);
+            global::FileSharingAppServer.ChatServer.StatusChanged += new StatusChangedEventHandler(mainServer_StatusChanged);
             // Start listening for connections
             mainServer.StartListening(txtChatPort.Text);
             // Show that we started to listen for connections
@@ -222,11 +170,6 @@ namespace FileSharingAppServer
             catch
             {
             }
-        }
-
-        private void ipAddress_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
     }

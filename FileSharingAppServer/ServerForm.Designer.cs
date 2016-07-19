@@ -87,7 +87,6 @@
             this.ipAddress.TabIndex = 28;
             this.ipAddress.Text = "0.0.0.0";
             this.ipAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ipAddress.TextChanged += new System.EventHandler(this.ipAddress_TextChanged);
             // 
             // txtLog
             // 
@@ -171,7 +170,7 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
-            // Form1
+            // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -187,7 +186,7 @@
             this.Controls.Add(this.btnListen);
             this.Controls.Add(this.txtFilePort);
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "ServerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "File Sharing App";
             this.Load += new System.EventHandler(this.Form1_Load);

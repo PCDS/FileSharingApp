@@ -1,15 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using System.Threading;
 using System.Collections;
-using System.Diagnostics;
-using System.Data.SQLite;
 
-namespace mainServer
+namespace FileSharingAppServer
 {
     // Holds the arguments for the StatusChanged event
     public class StatusChangedEventArgs : EventArgs
@@ -41,6 +37,7 @@ namespace mainServer
     public delegate void StatusChangedEventHandler(object sender, StatusChangedEventArgs e);
     class ChatServer
     {
+
         // This hash table stores users and connections (browsable by user)
         public static Hashtable htUsers = new Hashtable(30); // 30 users at one time limit
         // This hash table stores connections and users (browsable by connection)
@@ -51,7 +48,6 @@ namespace mainServer
         // The event and its argument will notify the form when a user has connected, disconnected, send message, etc.
         public static event StatusChangedEventHandler StatusChanged;
         private static StatusChangedEventArgs e;
-
         // The constructor sets the IP address to the one retrieved by the instantiating object
         public ChatServer(IPAddress address)
         {
@@ -245,7 +241,7 @@ namespace mainServer
             {
                 srReceiver = new System.IO.StreamReader(tcpClient.GetStream());
                 swSender = new System.IO.StreamWriter(tcpClient.GetStream());
-
+                DatabaseCon UserDB = new DatabaseCon();
                 // Read the account information from the client
                 currUser = srReceiver.ReadLine();
 
@@ -257,7 +253,8 @@ namespace mainServer
                     currPass = srReceiver.ReadLine();
                     if (currPass != "")
                     {
-                       myPass = CheckPass(currUser, currPass);
+                        
+                       myPass =  UserDB.CheckPass(currUser, currPass);
                     }
                     else
                     {
@@ -271,7 +268,7 @@ namespace mainServer
                     if (ChatServer.htUsers.Contains(currUser) == true)
                     {
                         // 0 means not connected
-                        swSender.WriteLine("0|This username already exists.");
+                        swSender.WriteLine("0|This user is already logged in.");
                         swSender.Flush();
                         CloseConnection();
                         return;
@@ -330,28 +327,6 @@ namespace mainServer
                     // If anything went wrong with this user, disconnect him
                     ChatServer.RemoveUser(tcpClient);
                 }
-            }
-
-            private bool CheckPass(string currUser, string currPass)
-            {
-                SQLiteConnection m_dbConnection;
-                m_dbConnection = new SQLiteConnection("Data Source=Users.sqlite;Version=3;");
-                m_dbConnection.Open();
-                string sql = "select * from Users";
-                SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
-                SQLiteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    if ((string)reader["name"] == currUser)
-                    {
-                        Debug.WriteLine("Name: " + reader["name"] + "\tPassword: " + reader["password"]);
-                        if ((string)reader["password"] == currPass)
-                        {
-                            return true;
-                        }
-                    }
-                }
-                return false;
             }
         }
     }
