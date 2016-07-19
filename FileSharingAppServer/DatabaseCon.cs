@@ -6,6 +6,7 @@ using System.Data;
 using System.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace FileSharingAppServer
 {
@@ -13,6 +14,14 @@ namespace FileSharingAppServer
     class DatabaseCon
     {
         private Dictionary<Type, DbType> typeMap;
+
+
+        public struct UserData
+        {
+            public bool Exists;
+            public string Username;
+            public string Password;
+        }
 
         public DatabaseCon()
         {
@@ -63,12 +72,11 @@ namespace FileSharingAppServer
                 SQLiteConnection.CreateFile("Users.sqlite");
                 SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=Users.sqlite;Version=3;");
                 m_dbConnection.Open();
-                string sql = "create table Users (name varchar(20),password varchar(100))";
+                string sql = "create table Users (name varchar(20) PRIMARY KEY,password varchar(100))";
                 SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
                 command.ExecuteNonQuery();
 
                 m_dbConnection.Close();
-                CreateUser("giggles", "monkey");
             }
 
 
@@ -76,57 +84,115 @@ namespace FileSharingAppServer
 
         public void CreateUser(string user, string pass)
         {
-            string hashPass = HashPassword(pass);
-            File.WriteAllText("salt.txt", hashPass);
+
+             UserData userInfo =  GetUserInfo(user);
+
+            if (userInfo.Exists == true)
+            {
+                MessageBox.Show("That username already exists");
+            }
+            else if(user == "")
+            {
+                MessageBox.Show("Please input a username");
+            }
+            else
+            {
+                  string hashPass = HashPassword(pass);
+                  using (var cn = new SQLiteConnection("Data Source=Users.sqlite;Version=3;"))
+                  using (var cmd = new SQLiteCommand())
+                  {
+                      cn.Open();
+                      cmd.Connection = cn;
+                      cmd.CommandType = CommandType.Text;
+                      cmd.CommandText = "insert into Users (name, password) values (@username , @password)";
+                      cmd.Parameters.Add(new SQLiteParameter("@username", user));
+                      cmd.Parameters.Add(new SQLiteParameter("@password", hashPass));
+                      cmd.ExecuteNonQuery();
+                      cn.Close();
+                    MessageBox.Show("Successfully added the user");
+
+                }
+            }
+        }
+
+        public void DeleteUser(string user)
+        {
+
+            UserData userInfo = GetUserInfo(user);
+
+            if (userInfo.Exists == false)
+            {
+                MessageBox.Show("That username doesn't exists");
+            }
+            else
+            {
+                using (var cn = new SQLiteConnection("Data Source=Users.sqlite;Version=3;"))
+                using (var cmd = new SQLiteCommand())
+                {
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "DELETE from Users WHERE name=@username";
+                    cmd.Parameters.Add(new SQLiteParameter("@username", user));
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+                    MessageBox.Show("Successfully deleted the user");
+
+                }
+            }
+        }
+
+        public bool CheckPass(string currUser, string currPass)          
+        {
+            UserData userInfo = GetUserInfo(currUser);
+            if (userInfo.Exists == true)
+            {
+                byte[] hashBytes = Convert.FromBase64String(userInfo.Password);
+                byte[] salt = new byte[16];
+                Array.Copy(hashBytes, 0, salt, 0, 16);
+                var pbkdf2 = new Rfc2898DeriveBytes(currPass, salt, 10000);
+                byte[] hash = pbkdf2.GetBytes(20);
+                for (int i = 0; i < 20; i++)
+                {
+                    if (hashBytes[i + 16] != hash[i])
+                        return false;
+                }
+                return true;
+            }
+
+            return false;
+
+        }
+
+        public UserData GetUserInfo(string currUser)
+        {
+            UserData userInfo = new UserData();
+
             using (var cn = new SQLiteConnection("Data Source=Users.sqlite;Version=3;"))
             using (var cmd = new SQLiteCommand())
             {
                 cn.Open();
                 cmd.Connection = cn;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "insert into Users (name, password) values (@username , @password)";
-                cmd.Parameters.Add(new SQLiteParameter("@username", user));
-                cmd.Parameters.Add(new SQLiteParameter("@password", hashPass));
-                cmd.ExecuteNonQuery();
-                cn.Close();
-
-            }
-
-        }
-
-        public bool CheckPass(string currUser, string currPass)          
-        {
-            SQLiteConnection m_dbConnection;
-            m_dbConnection = new SQLiteConnection("Data Source=Users.sqlite;Version=3;");
-            m_dbConnection.Open();
-            string sql = "select * from Users";
-            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
-            SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                if ((string)reader["name"] == currUser)
+                cmd.CommandText = "select * from Users WHERE name=@username";
+                cmd.Parameters.Add(new SQLiteParameter("@username", currUser));
+                SQLiteDataReader reader = cmd.ExecuteReader();
+                if (!reader.Read())
                 {
-
-                    byte[] hashBytes = Convert.FromBase64String((string)reader["password"]);
-                    byte[] salt = new byte[16];
-                    Array.Copy(hashBytes, 0, salt, 0, 16);
-                    var pbkdf2 = new Rfc2898DeriveBytes(currPass, salt, 10000);
-                    byte[] hash = pbkdf2.GetBytes(20);
-                    Debug.WriteLine("Name: " + reader["name"] + "\tPassword: " + reader["password"]);
-                    for (int i = 0; i < 20; i++)
-                    {
-                        if (hashBytes[i + 16] != hash[i])
-                            return false;
-                    }
-                     return true;
+                    userInfo.Exists = false;
+                }else
+                {
+                    userInfo.Exists = true;
+                    int ordUser = reader.GetOrdinal("name");
+                    int ordPass = reader.GetOrdinal("password");
+                    userInfo.Username = reader.GetString(ordUser);
+                    userInfo.Password = reader.GetString(ordPass);
                 }
+                reader.Close();
+                cn.Close();
+                return userInfo;
             }
-            return false;
         }
-   
-
-
-        
 
         public static string HashPassword(string password)
         {
@@ -140,33 +206,10 @@ namespace FileSharingAppServer
             Array.Copy(salt, 0, hashBytes, 0, 16);
             Array.Copy(hash, 0, hashBytes, 16, 20);
             return Convert.ToBase64String(hashBytes);
-
-            //  // Generate the hash, with an automatic 32 byte salt
-            //  Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, 32);
-            //  rfc2898DeriveBytes.IterationCount = 1000;
-            //  byte[] hash = rfc2898DeriveBytes.GetBytes(20);
-            //  byte[] salt = rfc2898DeriveBytes.Salt;
-            //  //Return the salt and the hash
-            //  return Convert.ToBase64String(salt) + "|" + Convert.ToBase64String(hash);
         }
-
-
-
-
-        public class Users
-        {
-            [MaxLength(100)]
-            public string name { get; set; }
-            public string password { get; set; }
-        }
-
-
-
 
     
     }
-                    
-
 
 
 }

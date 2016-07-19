@@ -54,7 +54,54 @@ namespace FileSharingAppServer
 
         }
 
+        private void Create_Click(object sender, EventArgs e)
+        {
+            Form CreateUser = new Form();
+            CreateUser.StartPosition = FormStartPosition.CenterScreen;
+            CreateUser.FormBorderStyle = FormBorderStyle.FixedDialog;
+            CreateUser.Width = 400;
+            CreateUser.Height = 200;
+            CreateUser.Text = "Create User";
+            Label userLabel = new Label() { Left = 50, Top = 15, Text = "Username:" };
+            Label passLabel = new Label() { Left = 50, Top = 70, Text = "Password:"};
 
+            TextBox username = new TextBox { Left = 50, Top = 40, Width = 300 };
+            TextBox password = new TextBox { Left = 50, Top = 95, Width = 300 };
+            Button confirmation = new Button() { Text = "Ok", Left = 250, Width = 100, Top = 130 };
+            confirmation.Click += (sender2, d) => {
+                UserDB.CreateUser(username.Text, password.Text);
+                CreateUser.Close(); };
+            CreateUser.Controls.Add(username);
+            CreateUser.Controls.Add(password);
+            CreateUser.Controls.Add(confirmation);
+            CreateUser.Controls.Add(userLabel);
+            CreateUser.Controls.Add(passLabel);
+            CreateUser.ShowDialog();
+
+        }
+
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            Form CreateUser = new Form();
+            CreateUser.StartPosition = FormStartPosition.CenterScreen;
+            CreateUser.FormBorderStyle = FormBorderStyle.FixedDialog;
+            CreateUser.Width = 400;
+            CreateUser.Height = 150;
+            CreateUser.Text = "Delete User";
+            Label userLabel = new Label() { Left = 50, Top = 15, Text = "Username:" };
+
+            TextBox username = new TextBox { Left = 50, Top = 40, Width = 300 };
+            Button confirmation = new Button() { Text = "Ok", Left = 250, Width = 100, Top = 70 };
+            confirmation.Click += (sender2, d) => {
+                UserDB.DeleteUser(username.Text);
+                CreateUser.Close();
+            };
+            CreateUser.Controls.Add(username);
+            CreateUser.Controls.Add(confirmation);
+            CreateUser.Controls.Add(userLabel);
+            CreateUser.ShowDialog();
+        }
 
         private void Save_Click(object sender, EventArgs e)
         {

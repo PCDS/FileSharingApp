@@ -50,7 +50,6 @@ namespace FileSharingAppClient
         private void Form1_Load(object sender, EventArgs e)
         {
             configLoad("Client.ini");
-            updateCheck();
         }
 
         public void OnApplicationExit(object sender, EventArgs e)
@@ -229,7 +228,15 @@ namespace FileSharingAppClient
             while (Connected)
             {
                 // Show the messages in the log TextBox
-                this.Invoke(new UpdateLogCallback(this.UpdateLog), new object[] { srReceiver.ReadLine() });
+                try
+                {
+                    this.Invoke(new UpdateLogCallback(this.UpdateLog), new object[] { srReceiver.ReadLine() });
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("ArgumentException ");
+                }
+
             }
         }
 
@@ -257,6 +264,7 @@ namespace FileSharingAppClient
             swSender.Close();
             srReceiver.Close();
             tcpServer.Close();
+            swSender.Abort();
         }
 
         // Sends the message typed in to the server
