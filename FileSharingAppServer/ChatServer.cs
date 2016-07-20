@@ -83,8 +83,6 @@ namespace FileSharingAppServer
             {
                 // First show the information and tell the other users about the disconnection
                 SendAdminMessage(htConnections[tcpUser] + " has left us");
-
-
                 // Remove the user from the hash table
                 ChatServer.htUsers.Remove(ChatServer.htConnections[tcpUser]);
                 ChatServer.htConnections.Remove(tcpUser);

@@ -65,8 +65,8 @@ namespace FileSharingApp
 
         private void Report_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Please send details of the error and a screenshot to blake.j.wrege@wmich.edu");
-            System.Diagnostics.Process.Start("mailto:blake.j.wrege@wmich.edu@gmail.com");
+            MessageBox.Show("Please create details of the error and a screenshot to blake.j.wrege@wmich.edu");
+            System.Diagnostics.Process.Start("mailto:blake.j.wrege@wmich.edu");
 
         }
 

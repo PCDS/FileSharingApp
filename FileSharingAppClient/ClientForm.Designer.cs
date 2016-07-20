@@ -29,31 +29,82 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientForm));
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtFilePort = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnSend = new System.Windows.Forms.Button();
-            this.txtFile = new System.Windows.Forms.TextBox();
-            this.btnBrowse = new System.Windows.Forms.Button();
+            this.txtHost = new System.Windows.Forms.TextBox();
             this.txtUser = new System.Windows.Forms.TextBox();
+            this.txtPass = new System.Windows.Forms.TextBox();
+            this.btnConnect = new System.Windows.Forms.Button();
+            this.txtChatPort = new System.Windows.Forms.TextBox();
+            this.txtFilePort = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnFileSend = new System.Windows.Forms.Button();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.txtFile = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.txtMessage = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnChatSend = new System.Windows.Forms.Button();
             this.lblServer = new System.Windows.Forms.Label();
-            this.txtHost = new System.Windows.Forms.TextBox();
-            this.btnConnect = new System.Windows.Forms.Button();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.saveConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtPass = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtChatPort = new System.Windows.Forms.TextBox();
             this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // txtHost
+            // 
+            this.txtHost.Location = new System.Drawing.Point(67, 31);
+            this.txtHost.Name = "txtHost";
+            this.txtHost.Size = new System.Drawing.Size(128, 20);
+            this.txtHost.TabIndex = 0;
+            this.txtHost.Text = "0.0.0.0";
+            // 
+            // txtUser
+            // 
+            this.txtUser.Location = new System.Drawing.Point(279, 31);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(128, 20);
+            this.txtUser.TabIndex = 1;
+            this.txtUser.Text = "New User";
+            // 
+            // txtPass
+            // 
+            this.txtPass.Location = new System.Drawing.Point(484, 31);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '●';
+            this.txtPass.Size = new System.Drawing.Size(128, 20);
+            this.txtPass.TabIndex = 2;
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnConnect.Location = new System.Drawing.Point(618, 28);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(73, 23);
+            this.btnConnect.TabIndex = 3;
+            this.btnConnect.Text = "Connect";
+            this.btnConnect.UseVisualStyleBackColor = false;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            // 
+            // txtChatPort
+            // 
+            this.txtChatPort.Location = new System.Drawing.Point(67, 57);
+            this.txtChatPort.Name = "txtChatPort";
+            this.txtChatPort.Size = new System.Drawing.Size(62, 20);
+            this.txtChatPort.TabIndex = 5;
+            this.txtChatPort.Text = "1986";
+            // 
+            // txtFilePort
+            // 
+            this.txtFilePort.Location = new System.Drawing.Point(200, 57);
+            this.txtFilePort.Name = "txtFilePort";
+            this.txtFilePort.Size = new System.Drawing.Size(62, 20);
+            this.txtFilePort.TabIndex = 6;
+            this.txtFilePort.Text = "2255";
             // 
             // label1
             // 
@@ -65,14 +116,6 @@
             this.label1.TabIndex = 22;
             this.label1.Text = "File Port:";
             // 
-            // txtFilePort
-            // 
-            this.txtFilePort.Location = new System.Drawing.Point(200, 57);
-            this.txtFilePort.Name = "txtFilePort";
-            this.txtFilePort.Size = new System.Drawing.Size(62, 20);
-            this.txtFilePort.TabIndex = 20;
-            this.txtFilePort.Text = "2255";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -83,17 +126,28 @@
             this.label4.TabIndex = 18;
             this.label4.Text = "Select File:";
             // 
-            // btnSend
+            // btnFileSend
             // 
-            this.btnSend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnSend.Enabled = false;
-            this.btnSend.Location = new System.Drawing.Point(534, 55);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(73, 23);
-            this.btnSend.TabIndex = 17;
-            this.btnSend.Text = "Send File";
-            this.btnSend.UseVisualStyleBackColor = false;
-            this.btnSend.Click += new System.EventHandler(this.btnSendFile_Click);
+            this.btnFileSend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnFileSend.Enabled = false;
+            this.btnFileSend.Location = new System.Drawing.Point(534, 55);
+            this.btnFileSend.Name = "btnFileSend";
+            this.btnFileSend.Size = new System.Drawing.Size(73, 23);
+            this.btnFileSend.TabIndex = 8;
+            this.btnFileSend.Text = "Send File";
+            this.btnFileSend.UseVisualStyleBackColor = false;
+            this.btnFileSend.Click += new System.EventHandler(this.btnSendFile_Click);
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.BackColor = System.Drawing.Color.White;
+            this.btnBrowse.Location = new System.Drawing.Point(453, 55);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(63, 22);
+            this.btnBrowse.TabIndex = 7;
+            this.btnBrowse.Text = "Browse...";
+            this.btnBrowse.UseVisualStyleBackColor = false;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // txtFile
             // 
@@ -102,25 +156,6 @@
             this.txtFile.ReadOnly = true;
             this.txtFile.Size = new System.Drawing.Size(116, 20);
             this.txtFile.TabIndex = 16;
-            // 
-            // btnBrowse
-            // 
-            this.btnBrowse.BackColor = System.Drawing.Color.White;
-            this.btnBrowse.Location = new System.Drawing.Point(453, 55);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(63, 22);
-            this.btnBrowse.TabIndex = 23;
-            this.btnBrowse.Text = "Browse...";
-            this.btnBrowse.UseVisualStyleBackColor = false;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
-            // 
-            // txtUser
-            // 
-            this.txtUser.Location = new System.Drawing.Point(279, 31);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(128, 20);
-            this.txtUser.TabIndex = 32;
-            this.txtUser.Text = "New User";
             // 
             // lblName
             // 
@@ -149,18 +184,18 @@
             this.txtMessage.Location = new System.Drawing.Point(12, 385);
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(585, 20);
-            this.txtMessage.TabIndex = 29;
+            this.txtMessage.TabIndex = 4;
             this.txtMessage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMessage_KeyPress);
             // 
-            // button1
+            // btnChatSend
             // 
-            this.button1.Location = new System.Drawing.Point(603, 382);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "Send";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnSend_Click);
+            this.btnChatSend.Location = new System.Drawing.Point(603, 382);
+            this.btnChatSend.Name = "btnChatSend";
+            this.btnChatSend.Size = new System.Drawing.Size(75, 23);
+            this.btnChatSend.TabIndex = 28;
+            this.btnChatSend.Text = "Send";
+            this.btnChatSend.UseVisualStyleBackColor = true;
+            this.btnChatSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // lblServer
             // 
@@ -171,25 +206,6 @@
             this.lblServer.Size = new System.Drawing.Size(64, 13);
             this.lblServer.TabIndex = 27;
             this.lblServer.Text = "Server IP:";
-            // 
-            // txtHost
-            // 
-            this.txtHost.Location = new System.Drawing.Point(67, 31);
-            this.txtHost.Name = "txtHost";
-            this.txtHost.Size = new System.Drawing.Size(128, 20);
-            this.txtHost.TabIndex = 26;
-            this.txtHost.Text = "0.0.0.0";
-            // 
-            // btnConnect
-            // 
-            this.btnConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnConnect.Location = new System.Drawing.Point(618, 28);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(73, 23);
-            this.btnConnect.TabIndex = 25;
-            this.btnConnect.Text = "Connect";
-            this.btnConnect.UseVisualStyleBackColor = false;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // toolStrip2
             // 
@@ -237,14 +253,6 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.Exit_Click);
             // 
-            // txtPass
-            // 
-            this.txtPass.Location = new System.Drawing.Point(484, 31);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.PasswordChar = '\u25CF';
-            this.txtPass.Size = new System.Drawing.Size(128, 20);
-            this.txtPass.TabIndex = 76;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -261,17 +269,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(3, 60);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.Size = new System.Drawing.Size(64, 13);
             this.label3.TabIndex = 78;
-            this.label3.Text = "File Port:";
-            // 
-            // txtChatPort
-            // 
-            this.txtChatPort.Location = new System.Drawing.Point(67, 57);
-            this.txtChatPort.Name = "txtChatPort";
-            this.txtChatPort.Size = new System.Drawing.Size(62, 20);
-            this.txtChatPort.TabIndex = 77;
-            this.txtChatPort.Text = "1986";
+            this.label3.Text = "Chat Port:";
             // 
             // ClientForm
             // 
@@ -288,7 +288,7 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.txtMessage);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnChatSend);
             this.Controls.Add(this.lblServer);
             this.Controls.Add(this.txtHost);
             this.Controls.Add(this.btnConnect);
@@ -296,7 +296,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtFilePort);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnSend);
+            this.Controls.Add(this.btnFileSend);
             this.Controls.Add(this.txtFile);
             this.MaximizeBox = false;
             this.Name = "ClientForm";
@@ -304,7 +304,7 @@
             this.Text = "File Sharing and Chat App";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Controls.SetChildIndex(this.txtFile, 0);
-            this.Controls.SetChildIndex(this.btnSend, 0);
+            this.Controls.SetChildIndex(this.btnFileSend, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.txtFilePort, 0);
             this.Controls.SetChildIndex(this.label1, 0);
@@ -312,7 +312,7 @@
             this.Controls.SetChildIndex(this.btnConnect, 0);
             this.Controls.SetChildIndex(this.txtHost, 0);
             this.Controls.SetChildIndex(this.lblServer, 0);
-            this.Controls.SetChildIndex(this.button1, 0);
+            this.Controls.SetChildIndex(this.btnChatSend, 0);
             this.Controls.SetChildIndex(this.txtMessage, 0);
             this.Controls.SetChildIndex(this.txtLog, 0);
             this.Controls.SetChildIndex(this.lblName, 0);
@@ -333,14 +333,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtFilePort;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.Button btnFileSend;
         private System.Windows.Forms.TextBox txtFile;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.TextBox txtMessage;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnChatSend;
         private System.Windows.Forms.Label lblServer;
         private System.Windows.Forms.TextBox txtHost;
         private System.Windows.Forms.Button btnConnect;

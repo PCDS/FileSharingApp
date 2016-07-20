@@ -65,7 +65,7 @@ namespace FileSharingAppClient
             var myIni = new IniFile("Client.ini");
             myIni.Write("Username", txtUser.Text);
             myIni.Write("Host", txtHost.Text);
-           // myIni.Write("Chatport", txtChatport.Text);
+           myIni.Write("Chatport", txtChatPort.Text);
             myIni.Write("FilePort", txtFilePort.Text);
             MessageBox.Show("Configuration Saved");
 
@@ -112,13 +112,13 @@ namespace FileSharingAppClient
                 txtHost.Text = myIni.Read("Host");
             }
 
-            if (!myIni.KeyExists("Chatport"))
+            if (!myIni.KeyExists("ChatPort"))
             {
-                myIni.Write("Chatport", "1986");
+                myIni.Write("ChatPort", "1986");
             }
             else
             {
-               // txtChatport.Text = myIni.Read("Chatport");
+                txtChatPort.Text = myIni.Read("ChatPort");
             }
 
             if (!myIni.KeyExists("FilePort"))
@@ -133,8 +133,6 @@ namespace FileSharingAppClient
         }
 
 
-
-
         /*---------------------------------------CHAT APP--------------------------------------------*/
         private void btnConnect_Click(object sender, EventArgs e)
         {
@@ -143,12 +141,12 @@ namespace FileSharingAppClient
             {
                 // Initialize the connection
                 InitializeConnection();
-                btnSend.Enabled = true;
+                btnFileSend.Enabled = true;
             }
             else // We are connected, thus disconnect
             {
                 CloseConnection("Disconnected at user's request.");
-                btnSend.Enabled = false;
+                btnFileSend.Enabled = false;
             }
 
         }
@@ -158,20 +156,20 @@ namespace FileSharingAppClient
             ipAddr = IPAddress.Parse(txtHost.Text);
             // Start a new TCP connections to the chat server
             tcpServer = new TcpClient();
-            tcpServer.Connect(ipAddr, 1986);
+            tcpServer.Connect(ipAddr, int.Parse(txtChatPort.Text));
 
             // Helps us track whether we're connected or not
             Connected = true;
             // Prepare the form
             UserName = txtUser.Text;
-
             // Disable and enable the appropriate fields
             txtHost.Enabled = false;
             txtUser.Enabled = false;
+            txtChatPort.Enabled = false;
+            txtFilePort.Enabled = false;
             txtMessage.Enabled = true;
-            btnSend.Enabled = true;
+            btnFileSend.Enabled = true;
             btnConnect.Text = "Disconnect";
-
             // Send the desired username to the server
             swSender = new StreamWriter(tcpServer.GetStream());
             swSender.WriteLine(txtUser.Text);
@@ -244,7 +242,9 @@ namespace FileSharingAppClient
             txtHost.Enabled = true;
             txtUser.Enabled = true;
             txtMessage.Enabled = false;
-            btnSend.Enabled = false;
+            txtChatPort.Enabled = true;
+            txtFilePort.Enabled = true;
+            btnFileSend.Enabled = false;
             btnConnect.Text = "Connect";
 
             Disconnect();
@@ -316,7 +316,6 @@ namespace FileSharingAppClient
                 int port = int.Parse(txtFilePort.Text);
                 string fileName = txtFile.Text;
                 Task.Factory.StartNew(() => SendFile(ipAddress, port, fileName, shortFileName));
-                MessageBox.Show("File Sent");
             }
             else
             {
@@ -341,11 +340,12 @@ namespace FileSharingAppClient
                     NetworkStream networkStream = clientSocket.GetStream();
                     networkStream.Write(clientData, 0, clientData.GetLength(0));
                     networkStream.Close();
+                    MessageBox.Show("File sent");
                 }
             }
             catch
             {
-                MessageBox.Show("unable to send");
+                MessageBox.Show("Unable to send");
             }
         }
 
