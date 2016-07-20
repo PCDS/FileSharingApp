@@ -42,7 +42,7 @@ namespace FileSharingAppClient
         public ClientForm()
         {
             // On application exit, don't forget to disconnect first
-            Application.ApplicationExit += new EventHandler(OnApplicationExit);
+            Application.ApplicationExit += new EventHandler(Exit_Click);
             InitializeComponent();
             ToolStripManager.Merge(toolStrip1, toolStrip2);
         }
@@ -52,30 +52,13 @@ namespace FileSharingAppClient
             configLoad("Client.ini");
         }
 
-        public void OnApplicationExit(object sender, EventArgs e)
-        {
-            if (Connected == true)
-            {
-                // Closes the connections, streams, etc.
-                Connected = false;
-                swSender.Close();
-                srReceiver.Close();
-                tcpServer.Close();
-            }
-        }
-
         private void Exit_Click(object sender, EventArgs e)
         {
-            if (Connected == true)
-            {
-                // Closes the connections, streams, etc.
-                Connected = false;
-                swSender.Close();
-                srReceiver.Close();
-                tcpServer.Close();
-            }
+            Disconnect();
             Application.Exit();
         }
+
+
 
         private void Save_Click(object sender, EventArgs e)
         {
@@ -201,6 +184,7 @@ namespace FileSharingAppClient
             // Start the thread for receiving messages and further communication
             thrMessaging = new Thread(new ThreadStart(ReceiveMessages));
             thrMessaging.Start();
+            
         }
         private void ReceiveMessages()
         {
@@ -209,6 +193,7 @@ namespace FileSharingAppClient
             // If the first character of the response is 1, connection was successful
             string ConResponse = srReceiver.ReadLine();
             // If the first character is a 1, connection was successful
+
             if (ConResponse[0] == '1')
             {
                 // Update the form to tell it we are now connected
@@ -227,16 +212,19 @@ namespace FileSharingAppClient
             // While we are successfully connected, read incoming lines from the server
             while (Connected)
             {
-                // Show the messages in the log TextBox
                 try
                 {
-                    this.Invoke(new UpdateLogCallback(this.UpdateLog), new object[] { srReceiver.ReadLine() });
+                    if (!srReceiver.EndOfStream && Connected)
+                    {
+                        ConResponse = srReceiver.ReadLine();
+                        // Show the messages in the log TextBox
+                        this.Invoke(new UpdateLogCallback(this.UpdateLog), new object[] { ConResponse });
+                    }
                 }
-                catch (IOException)
-                {
-                    MessageBox.Show("ArgumentException ");
+                catch (System.IO.IOException)
+                {                    
+                    this.Invoke(new CloseConnectionCallback(this.CloseConnection), new object[] { "Lost connection to server"});
                 }
-
             }
         }
 
@@ -244,7 +232,7 @@ namespace FileSharingAppClient
         private void UpdateLog(string strMessage)
         {
             // Append text also scrolls the TextBox to the bottom each time
-            txtLog.AppendText(strMessage + "\r\n");
+                txtLog.AppendText(strMessage + "\r\n");
         }
 
         // Closes a current connection
@@ -259,12 +247,21 @@ namespace FileSharingAppClient
             btnSend.Enabled = false;
             btnConnect.Text = "Connect";
 
-            // Close the objects
-            Connected = false;
-            swSender.Close();
-            srReceiver.Close();
-            tcpServer.Close();
-            swSender.Abort();
+            Disconnect();
+
+        }
+
+        private void Disconnect()
+        {
+            if (Connected == true)
+            {
+                // Closes the connections, streams, etc.
+                Connected = false;
+                swSender.Close();
+                srReceiver.Close();
+                tcpServer.Close();
+                thrMessaging.Abort();
+            }
         }
 
         // Sends the message typed in to the server

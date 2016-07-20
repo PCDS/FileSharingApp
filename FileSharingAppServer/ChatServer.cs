@@ -67,12 +67,13 @@ namespace FileSharingAppServer
         public static void AddUser(TcpClient tcpUser, string strUsername)
         {
             // First add the username and associated connection to both hash tables
-            ChatServer.htUsers.Add(strUsername, tcpUser);
-            ChatServer.htConnections.Add(tcpUser, strUsername);
+            htUsers.Add(strUsername, tcpUser);
+            htConnections.Add(tcpUser, strUsername);
 
             // Tell of the new connection to all other users and to the server form
             SendAdminMessage(htConnections[tcpUser] + " has joined us");
         }
+
 
         // Remove the user from the hash tables
         public static void RemoveUser(TcpClient tcpUser)
@@ -82,6 +83,7 @@ namespace FileSharingAppServer
             {
                 // First show the information and tell the other users about the disconnection
                 SendAdminMessage(htConnections[tcpUser] + " has left us");
+
 
                 // Remove the user from the hash table
                 ChatServer.htUsers.Remove(ChatServer.htConnections[tcpUser]);
@@ -130,9 +132,9 @@ namespace FileSharingAppServer
                     swSenderSender.Flush();
                     swSenderSender = null;
                 }
-                catch // If there was a problem, the user is not there anymore, remove him
+                catch(Exception)  // If there was a problem, the user is not there anymore, remove him
                 {
-                    RemoveUser(tcpClients[i]);
+                  //  RemoveUser(tcpClients[i]);
                 }
             }
         }
