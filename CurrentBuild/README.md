@@ -9,6 +9,3 @@ File Sharing App for GTTP
  - Run the FileSharingAppClient.exe on the machine you wish to send files.
  - Type in the IP Address for the server in the client and click "connect".
 
-## Setup Up Development Branch(Requires [**Git**](https://git-scm.com/download/win))
- - git clone https://github.com/PCDS/FileSharingApp.git
- - git checkout development
