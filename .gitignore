@@ -3,3 +3,10 @@ Client.ini
 Server.ini
 ReceivedFiles
 Users.sqlite
+FileSharingAppClient.pdb
+FileSharingAppClient.vshost.exe*
+FileSharingAppClient.vshost.exe.manifest
+FileSharingAppServer.exe.config
+FileSharingAppServer.pdb
+FileSharingAppServer.vshost.exe*
+FileSharingAppServer.vshost.exe.config
