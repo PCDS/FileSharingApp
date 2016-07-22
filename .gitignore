@@ -10,3 +10,6 @@ FileSharingAppServer.exe.config
 FileSharingAppServer.pdb
 FileSharingAppServer.vshost.exe*
 FileSharingAppServer.vshost.exe.config
+System.Data.SQLite.xml
+EntityFramework.xml
+EntityFramework.SqlServer.xml
