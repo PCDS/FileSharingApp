@@ -68,7 +68,7 @@ namespace ClientRaw
             txtServerAddress.Text = "localhost";
             this.txtDataSize = new NumericTextBox();
             this.txtDataSize.AllowSpace = false;
-            this.txtDataSize.Location = new System.Drawing.Point(325, 561);
+            this.txtDataSize.Location = new Point(323, 569);
             this.txtDataSize.Name = "txtDataSize";
             this.txtDataSize.Size = new System.Drawing.Size(161, 20);
             this.txtDataSize.TabIndex = 5;
@@ -169,6 +169,8 @@ namespace ClientRaw
                 txtMessage.Enabled = true;
                 //btnFileSend.Enabled = true;
                 btnConnect.Text = "logout";
+                txtPass.Enabled = false;
+                btnConnect.BackColor = Color.LightSalmon;
                 // Send the desired username to the server
                 swSender = new StreamWriter(tcpServer.GetStream());
                 swSender.WriteLine(txtUser.Text);
@@ -249,10 +251,11 @@ namespace ClientRaw
             txtUser.Enabled = true;
             txtMessage.Enabled = false;
             txtChatPort.Enabled = true;
+            txtPass.Enabled = true;
             //txtFilePort.Enabled = true;
             //btnFileSend.Enabled = false;
             btnConnect.Text = "Login";
-
+            btnConnect.BackColor = Color.GreenYellow;
             Disconnect();
 
         }

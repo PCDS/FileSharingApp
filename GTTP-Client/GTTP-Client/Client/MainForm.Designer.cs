@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint9 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 8D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint10 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 5D);
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint11 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 10D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint12 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 12D);
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Series series28 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint37 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 8D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint38 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 5D);
+            System.Windows.Forms.DataVisualization.Charting.Series series29 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series30 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint39 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 10D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint40 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 12D);
+            System.Windows.Forms.DataVisualization.Charting.Title title10 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnGetFile = new System.Windows.Forms.Button();
             this.txtServerAddress = new System.Windows.Forms.TextBox();
@@ -92,38 +92,38 @@
             this.chart1.BorderSkin.SkinStyle = System.Windows.Forms.DataVisualization.Charting.BorderSkinStyle.FrameThin1;
             this.chart1.Location = new System.Drawing.Point(6, 14);
             this.chart1.Name = "chart1";
-            series7.Name = "Series1";
-            dataPoint9.AxisLabel = "Original Data";
-            dataPoint9.IsValueShownAsLabel = true;
-            dataPoint9.Label = "";
-            dataPoint10.AxisLabel = "";
-            dataPoint10.Label = "5";
-            series7.Points.Add(dataPoint9);
-            series7.Points.Add(dataPoint10);
-            series8.IsValueShownAsLabel = true;
-            series8.LabelAngle = 90;
-            series8.Name = "Series3";
-            series9.Name = "Series4";
-            dataPoint11.AxisLabel = "Coded";
-            dataPoint11.Label = "10";
-            dataPoint12.AxisLabel = "Encoded Data";
-            dataPoint12.Label = "Compressed";
-            series9.Points.Add(dataPoint11);
-            series9.Points.Add(dataPoint12);
-            this.chart1.Series.Add(series7);
-            this.chart1.Series.Add(series8);
-            this.chart1.Series.Add(series9);
+            series28.Name = "Series1";
+            dataPoint37.AxisLabel = "Original Data";
+            dataPoint37.IsValueShownAsLabel = true;
+            dataPoint37.Label = "";
+            dataPoint38.AxisLabel = "";
+            dataPoint38.Label = "5";
+            series28.Points.Add(dataPoint37);
+            series28.Points.Add(dataPoint38);
+            series29.IsValueShownAsLabel = true;
+            series29.LabelAngle = 90;
+            series29.Name = "Series3";
+            series30.Name = "Series4";
+            dataPoint39.AxisLabel = "Coded";
+            dataPoint39.Label = "10";
+            dataPoint40.AxisLabel = "Encoded Data";
+            dataPoint40.Label = "Compressed";
+            series30.Points.Add(dataPoint39);
+            series30.Points.Add(dataPoint40);
+            this.chart1.Series.Add(series28);
+            this.chart1.Series.Add(series29);
+            this.chart1.Series.Add(series30);
             this.chart1.Size = new System.Drawing.Size(517, 411);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
-            title3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            title3.Name = "Title1";
-            title3.Text = "Diagram to show file before and after coding and compression";
-            this.chart1.Titles.Add(title3);
+            title10.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            title10.Name = "Title1";
+            title10.Text = "Diagram to show file before and after coding and compression";
+            this.chart1.Titles.Add(title10);
             // 
             // btnGetFile
             // 
-            this.btnGetFile.Location = new System.Drawing.Point(376, 648);
+            this.btnGetFile.Location = new System.Drawing.Point(370, 685);
             this.btnGetFile.Name = "btnGetFile";
             this.btnGetFile.Size = new System.Drawing.Size(166, 44);
             this.btnGetFile.TabIndex = 2;
@@ -133,7 +133,7 @@
             // 
             // txtServerAddress
             // 
-            this.txtServerAddress.Location = new System.Drawing.Point(329, 494);
+            this.txtServerAddress.Location = new System.Drawing.Point(323, 531);
             this.txtServerAddress.Name = "txtServerAddress";
             this.txtServerAddress.Size = new System.Drawing.Size(442, 20);
             this.txtServerAddress.TabIndex = 4;
@@ -141,7 +141,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(210, 494);
+            this.label1.Location = new System.Drawing.Point(204, 531);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 5;
@@ -150,7 +150,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(211, 535);
+            this.label2.Location = new System.Drawing.Point(205, 572);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 13);
             this.label2.TabIndex = 7;
@@ -158,7 +158,7 @@
             // 
             // txtFileName
             // 
-            this.txtFileName.Location = new System.Drawing.Point(329, 535);
+            this.txtFileName.Location = new System.Drawing.Point(323, 569);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(442, 20);
             this.txtFileName.TabIndex = 6;
@@ -168,7 +168,7 @@
             // 
             this.groupBox2.Controls.Add(this.rdTransferTime);
             this.groupBox2.Controls.Add(this.rdTotalTime);
-            this.groupBox2.Location = new System.Drawing.Point(25, 494);
+            this.groupBox2.Location = new System.Drawing.Point(19, 531);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(130, 77);
             this.groupBox2.TabIndex = 4;
@@ -206,7 +206,7 @@
             // ckboxAutoGenerate
             // 
             this.ckboxAutoGenerate.AutoSize = true;
-            this.ckboxAutoGenerate.Location = new System.Drawing.Point(213, 599);
+            this.ckboxAutoGenerate.Location = new System.Drawing.Point(207, 636);
             this.ckboxAutoGenerate.Name = "ckboxAutoGenerate";
             this.ckboxAutoGenerate.Size = new System.Drawing.Size(210, 17);
             this.ckboxAutoGenerate.TabIndex = 8;
@@ -217,7 +217,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(210, 625);
+            this.label3.Location = new System.Drawing.Point(204, 662);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 10;
@@ -230,7 +230,7 @@
             this.comBoxDataSize.Items.AddRange(new object[] {
             "MB",
             "GB"});
-            this.comBoxDataSize.Location = new System.Drawing.Point(263, 622);
+            this.comBoxDataSize.Location = new System.Drawing.Point(257, 659);
             this.comBoxDataSize.Name = "comBoxDataSize";
             this.comBoxDataSize.Size = new System.Drawing.Size(38, 21);
             this.comBoxDataSize.TabIndex = 12;
@@ -254,7 +254,7 @@
             // btnRatio
             // 
             this.btnRatio.Enabled = false;
-            this.btnRatio.Location = new System.Drawing.Point(598, 599);
+            this.btnRatio.Location = new System.Drawing.Point(592, 636);
             this.btnRatio.Name = "btnRatio";
             this.btnRatio.Size = new System.Drawing.Size(97, 29);
             this.btnRatio.TabIndex = 15;
@@ -355,7 +355,7 @@
             // 
             this.groupBox1.Controls.Add(this.btnCompressed);
             this.groupBox1.Controls.Add(this.btnNotCompressed);
-            this.groupBox1.Location = new System.Drawing.Point(25, 599);
+            this.groupBox1.Location = new System.Drawing.Point(19, 636);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(130, 81);
             this.groupBox1.TabIndex = 19;
@@ -390,7 +390,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(73, 728);
+            this.label8.Location = new System.Drawing.Point(73, 488);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(34, 13);
             this.label8.TabIndex = 87;
@@ -398,7 +398,7 @@
             // 
             // txtChatPort
             // 
-            this.txtChatPort.Location = new System.Drawing.Point(113, 725);
+            this.txtChatPort.Location = new System.Drawing.Point(113, 485);
             this.txtChatPort.Name = "txtChatPort";
             this.txtChatPort.Size = new System.Drawing.Size(62, 20);
             this.txtChatPort.TabIndex = 83;
@@ -406,7 +406,7 @@
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(476, 725);
+            this.txtPass.Location = new System.Drawing.Point(476, 485);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '●';
             this.txtPass.Size = new System.Drawing.Size(128, 20);
@@ -416,7 +416,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(405, 728);
+            this.label9.Location = new System.Drawing.Point(405, 488);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(65, 13);
             this.label9.TabIndex = 86;
@@ -424,7 +424,7 @@
             // 
             // txtUser
             // 
-            this.txtUser.Location = new System.Drawing.Point(271, 725);
+            this.txtUser.Location = new System.Drawing.Point(271, 485);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(128, 20);
             this.txtUser.TabIndex = 80;
@@ -434,7 +434,7 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(198, 728);
+            this.lblName.Location = new System.Drawing.Point(198, 488);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(67, 13);
             this.lblName.TabIndex = 85;
@@ -442,8 +442,8 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnConnect.Location = new System.Drawing.Point(610, 722);
+            this.btnConnect.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnConnect.Location = new System.Drawing.Point(610, 483);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(73, 23);
             this.btnConnect.TabIndex = 82;

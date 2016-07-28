@@ -189,14 +189,14 @@
             // createUserToolStripMenuItem
             // 
             this.createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
-            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.createUserToolStripMenuItem.Text = "Create User";
             this.createUserToolStripMenuItem.Click += new System.EventHandler(this.Create_Click);
             // 
             // deleteUserToolStripMenuItem
             // 
             this.deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
-            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.deleteUserToolStripMenuItem.Text = "Delete User";
             this.deleteUserToolStripMenuItem.Click += new System.EventHandler(this.Delete_Click);
             // 
@@ -218,7 +218,7 @@
             this.MaximizeBox = false;
             this.Name = "ServerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "File Sharing App";
+            this.Text = "File Sharing Server";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Controls.SetChildIndex(this.txtFilePort, 0);
             this.Controls.SetChildIndex(this.btnListen, 0);

@@ -25,3 +25,12 @@ C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\GTTP-Client\Client\obj\Debug\ClientRaw.Properties.Resources.resources
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\GTTP-Client\Client\obj\Debug\ClientRaw.RatioForm.resources
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\GTTP-Client\Client\obj\Debug\Client-Raw.csproj.GenerateResource.Cache
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\GTTP-Client\Client\obj\Debug\ClientRaw.exe
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\GTTP-Client\Client\obj\Debug\ClientRaw.pdb
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\GTTP-Client\Client\bin\Debug\ClientRaw.exe
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\GTTP-Client\Client\bin\Debug\ClientRaw.pdb
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\GTTP-Client\Client\obj\Debug\Client-Raw.csprojResolveAssemblyReference.cache
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\GTTP-Client\Client\obj\Debug\ClientRaw.MainForm.resources
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\GTTP-Client\Client\obj\Debug\ClientRaw.Properties.Resources.resources
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\GTTP-Client\Client\obj\Debug\ClientRaw.RatioForm.resources
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\GTTP-Client\GTTP-Client\Client\obj\Debug\Client-Raw.csproj.GenerateResource.Cache
