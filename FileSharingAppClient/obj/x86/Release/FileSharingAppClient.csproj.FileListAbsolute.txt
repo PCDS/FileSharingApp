@@ -9,3 +9,5 @@ C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingApp
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Release\FileSharingAppClient.pdb
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentRelease\FileSharingAppClient.exe
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentRelease\FileSharingAppClient.pdb
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Release\FileSharingAppClient.exe
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Release\FileSharingAppClient.pdb
