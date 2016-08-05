@@ -1,6 +1,14 @@
 # FileSharingApp - Development Branch
 
-## Changes
+## Changes 8-5
+- multiple chat rooms
+- view users logged in
+- show user list
+- email integration for users
+- possible google authentication
+
+
+## Changes 7-14
 - configuration tab
 - chat window
 - file window
