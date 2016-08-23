@@ -12,3 +12,6 @@ C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingApp
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\FileSharingAppServer.exe.config
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppServer\obj\x86\Debug\FileSharingAppServer.exe
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppServer\obj\x86\Debug\FileSharingAppServer.pdb
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\OldBuild\FileSharingAppServer.exe.config
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\OldBuild\FileSharingAppServer.exe
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\OldBuild\FileSharingAppServer.pdb

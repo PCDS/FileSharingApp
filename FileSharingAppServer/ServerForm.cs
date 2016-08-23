@@ -129,7 +129,7 @@ namespace FileSharingAppServer
                 System.Diagnostics.Process.Start("explorer", AppDomain.CurrentDomain.BaseDirectory + @"ReceivedFiles");
             }));
         }
-
+        /*---------------------------------------CHAT APP--------------------------------------------*/
         private void btnListen_Click(object sender, EventArgs e)
         {
             int port = int.Parse(txtFilePort.Text);
@@ -172,7 +172,7 @@ namespace FileSharingAppServer
             // Updates the log with the message
             txtLog.AppendText(strMessage + "\r\n");
         }
-
+        /*---------------------------------------File APP--------------------------------------------*/
         public void HandleIncomingFile(int port)
         {
             try

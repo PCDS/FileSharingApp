@@ -27,3 +27,5 @@ C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingA
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.exe
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.pdb
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppClient\obj\x86\Debug\FileSharingAppClient.csprojResolveAssemblyReference.cache
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\OldBuild\FileSharingAppClient.exe
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\OldBuild\FileSharingAppClient.pdb
