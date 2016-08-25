@@ -11,3 +11,4 @@ C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\Debug\Genome-Server-Normal.pdb
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\Debug\FileSharingApp.About.resources
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\Debug\FileSharingApp.Base.resources
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\Debug\Genome-Server-Normal.csprojResolveAssemblyReference.cache

@@ -44,3 +44,4 @@ C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Deb
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\Client-Raw.csproj.GenerateResource.Cache
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\ClientRaw.exe
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\ClientRaw.pdb
+C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\Client-Raw.csprojResolveAssemblyReference.cache

@@ -28,18 +28,10 @@ namespace httpMethodsApp
         private delegate void UpdateStatusCallback(string strMessage);
         DatabaseCon UserDB = new DatabaseCon();
 
-
         public MainForm()
         {
             UserDB.CreateDB();
-            string path = AppDomain.CurrentDomain.BaseDirectory + @"ReceivedFiles";
-            MessageBox.Show(path);
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
             InitializeComponent();
-            
         }
 
 
@@ -71,8 +63,6 @@ namespace httpMethodsApp
 
 
 
-
-
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
@@ -88,6 +78,13 @@ namespace httpMethodsApp
             Application.Exit();
             Process.GetCurrentProcess().Kill();
 
+        }
+
+
+        public void Show_Click(object sender, EventArgs e)
+        {
+            string names = UserDB.ListUsers();
+            MessageBox.Show(names);
         }
 
         private void Create_Click(object sender, EventArgs e)
@@ -155,10 +152,8 @@ namespace httpMethodsApp
             ipAddress.Text = localIP;
             // Parse the server's IP address out of the TextBox
             IPAddress ipAddr = IPAddress.Parse(localIP);
+
             // Create a new instance of the ChatServer object
-
-            Debug.WriteLine(localIP);
-
             FileSharingAppServer.ChatServer mainServer = new FileSharingAppServer.ChatServer(ipAddr);
             // Hook the StatusChanged event handler to mainServer_StatusChanged
             global::FileSharingAppServer.ChatServer.StatusChanged += new StatusChangedEventHandler(mainServer_StatusChanged);
@@ -220,7 +215,6 @@ namespace httpMethodsApp
                 btnStartServer.Text = "Start Server";
 
                 MessageBox.Show("The Server has stopped");
-
 
             }
 

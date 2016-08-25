@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace FileSharingAppServer
 {
@@ -85,30 +86,34 @@ namespace FileSharingAppServer
         public void CreateUser(string user, string pass)
         {
 
-             UserData userInfo =  GetUserInfo(user);
+            UserData userInfo = GetUserInfo(user);
+            Regex r = new Regex("^[a-zA-Z0-9]*$");
 
             if (userInfo.Exists == true)
             {
                 MessageBox.Show("That username already exists");
             }
-            else if(user == "")
+            else if (user == "")
             {
                 MessageBox.Show("Please input a username");
             }
+            else if (!r.IsMatch(user)){
+                MessageBox.Show("Please only user letters and numbers for username");
+            }
             else
             {
-                  string hashPass = HashPassword(pass);
-                  using (var cn = new SQLiteConnection("Data Source=Users.sqlite;Version=3;"))
-                  using (var cmd = new SQLiteCommand())
-                  {
-                      cn.Open();
-                      cmd.Connection = cn;
-                      cmd.CommandType = CommandType.Text;
-                      cmd.CommandText = "insert into Users (name, password) values (@username , @password)";
-                      cmd.Parameters.Add(new SQLiteParameter("@username", user));
-                      cmd.Parameters.Add(new SQLiteParameter("@password", hashPass));
-                      cmd.ExecuteNonQuery();
-                      cn.Close();
+                string hashPass = HashPassword(pass);
+                using (var cn = new SQLiteConnection("Data Source=Users.sqlite;Version=3;"))
+                using (var cmd = new SQLiteCommand())
+                {
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "insert into Users (name, password) values (@username , @password)";
+                    cmd.Parameters.Add(new SQLiteParameter("@username", user));
+                    cmd.Parameters.Add(new SQLiteParameter("@password", hashPass));
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
                     MessageBox.Show("Successfully added the user");
 
                 }
@@ -142,7 +147,7 @@ namespace FileSharingAppServer
             }
         }
 
-        public bool CheckPass(string currUser, string currPass)          
+        public bool CheckPass(string currUser, string currPass)
         {
             UserData userInfo = GetUserInfo(currUser);
             if (userInfo.Exists == true)
@@ -163,6 +168,33 @@ namespace FileSharingAppServer
             return false;
 
         }
+
+        public string ListUsers()
+        {
+            string names = "";
+            int count = 0;
+            SQLiteConnection sqConnection = new SQLiteConnection("Data Source=Users.sqlite;Version=3;");
+            SQLiteCommand sqCommand = new SQLiteCommand("select name from Users", sqConnection);
+            sqConnection.Open();
+            try
+            {
+                
+                SQLiteDataReader sqReader = sqCommand.ExecuteReader();
+                while (sqReader.Read())
+                {
+                    names = names + sqReader.GetString(sqReader.GetOrdinal("name")) + "\n";
+                    count = count + 1;
+                }
+                sqReader.Close();
+            }
+            finally
+            {
+                sqConnection.Close();
+            }
+
+            return names;
+        }
+
 
         public UserData GetUserInfo(string currUser)
         {

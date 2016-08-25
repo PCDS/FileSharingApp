@@ -140,13 +140,11 @@ namespace ClientRaw
                 // Initialize the connection
                 InitializeConnection();
                 btnGetFile.Enabled = true;
-                //btnFileSend.Enabled = true;
             }
             else // We are connected, thus disconnect
             {
                 CloseConnection("Disconnected at user's request.");
                 btnGetFile.Enabled = false;
-                //btnFileSend.Enabled = false;
             }
 
         }
@@ -157,6 +155,33 @@ namespace ClientRaw
             {
 
                 ipAddr = IPAddress.Parse(txtServerAddress.Text);
+
+            }
+            catch (FormatException)
+            {
+                // Attempting to pull the IP address from the DNS name
+                IPAddress a = Dns.GetHostAddresses(txtServerAddress.Text)[0];
+                IPAddress b = Dns.GetHostAddresses(txtServerAddress.Text)[1];
+                if (IPAddress.Parse(a.ToString()).AddressFamily == AddressFamily.InterNetwork)
+                    ipAddr = Dns.GetHostAddresses(txtServerAddress.Text)[0];
+                if (IPAddress.Parse(b.ToString()).AddressFamily == AddressFamily.InterNetwork)
+                    ipAddr = Dns.GetHostAddresses(txtServerAddress.Text)[1];
+
+                // If the IP is localhost then gets the external IP address
+                if (ipAddr.ToString() == "127.0.0.1")
+                {
+                    string localIP = "";
+                    using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+                    {
+                        socket.Connect("10.0.2.4", 65530);
+                        IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                        localIP = endPoint.Address.ToString();
+                    }
+                    ipAddr = IPAddress.Parse(localIP);
+                }
+            }
+            try
+            {
                 // Start a new TCP connections to the chat server
                 tcpServer = new TcpClient();
                 tcpServer.Connect(ipAddr, int.Parse(txtChatPort.Text));
@@ -170,9 +195,7 @@ namespace ClientRaw
                 txtUser.Enabled = false;
                 txtChatPort.Enabled = false;
                 txtLog.Enabled = true;
-                //txtFilePort.Enabled = false;
                 txtMessage.Enabled = true;
-                //btnFileSend.Enabled = true;
                 btnConnect.Text = "logout";
                 txtPass.Enabled = false;
                 btnConnect.BackColor = Color.LightSalmon;
@@ -189,10 +212,7 @@ namespace ClientRaw
                 thrMessaging = new Thread(new ThreadStart(ReceiveMessages));
                 thrMessaging.Start();
             }
-            catch(FormatException){
-                MessageBox.Show("Please connect with a valid IP address");
-            }
-            catch(SocketException)
+            catch (SocketException)
             {
                 MessageBox.Show("Port is in use or unavailable");
             }
@@ -235,6 +255,7 @@ namespace ClientRaw
                 catch (System.IO.IOException)
                 {
                     this.Invoke(new CloseConnectionCallback(this.CloseConnection), new object[] { "Lost connection to server" });
+                    btnGetFile.Enabled = false;
                 }
             }
         }
@@ -258,8 +279,6 @@ namespace ClientRaw
             txtChatPort.Enabled = true;
             txtPass.Enabled = true;
             btnGetFile.Enabled = false;
-            //txtFilePort.Enabled = true;
-            //btnFileSend.Enabled = false;
             btnConnect.Text = "Login";
             btnConnect.BackColor = Color.GreenYellow;
             Disconnect();
@@ -331,7 +350,7 @@ namespace ClientRaw
 
             chart1.Series["downloadingdataTime"].LegendText = "Time for downloading Raw File";
             chart1.Series["totaldataTime"].LegendText = "Time for downloading , (decompressing) Raw File";
-           
+
 
             if (timingType == Timing.transferTimeOnly)
             {
@@ -348,8 +367,8 @@ namespace ClientRaw
                 chart1.Series["totaldataTime"].LegendText = "Time for downloading and decompressing Raw Data";
             }
 
-          this.stopwatch = Stopwatch.StartNew();
-          this.webClient.startDownloadingFile(serverAddress + "/" + getFileName);
+            this.stopwatch = Stopwatch.StartNew();
+            this.webClient.startDownloadingFile(serverAddress + "/" + getFileName);
 
         }
 
@@ -370,22 +389,22 @@ namespace ClientRaw
                 return;
             }
             this.serverAddress = "http://" + txtServerAddress.Text + ":" + port.ToString();
-            this.autoDataSize = this.txtDataSize.LongValue * 1024; 
+            this.autoDataSize = this.txtDataSize.LongValue * 1024;
 
             // we dont need to ask for a file name , just ask for data auto generated 
             if (ckboxAutoGenerate.Checked)
             {
                 if (comBoxDataSize.Text.ToUpper() == "MB")
                 {
-                    this.autoDataSize = this.txtDataSize.LongValue * 1024 * 1024 ;
+                    this.autoDataSize = this.txtDataSize.LongValue * 1024 * 1024;
 
                 }
                 else if ((comBoxDataSize.Text.ToUpper() == "GB"))
                 {
-                    this.autoDataSize = this.txtDataSize.LongValue * 1024 * 1024 * 1024 ;
+                    this.autoDataSize = this.txtDataSize.LongValue * 1024 * 1024 * 1024;
 
                 }
-                RawFormatFileName = "Auto" + RawFormatOutputFileName ; 
+                RawFormatFileName = "Auto" + RawFormatOutputFileName;
                 fileNameToDownload = "Auto.txt";
                 formatHeader(autoDataSize);
 
@@ -411,7 +430,7 @@ namespace ClientRaw
             {
                 string fileNameWithoutExt = Path.GetFileNameWithoutExtension(filePath);
                 fileNameToDownload = fileNameWithoutExt + ".txt";
-                RawFormatFileName = fileNameWithoutExt + RawFormatOutputFileName + ".txt" ;
+                RawFormatFileName = fileNameWithoutExt + RawFormatOutputFileName + ".txt";
                 formatHeader(0);
 
                 showRawDataEncodingInfo();
@@ -426,9 +445,6 @@ namespace ClientRaw
                 MessageBox.Show(ex.Message);
             }
 
-
-
-
         }
 
         private void webClient_DownloadFileProgress(object sender, DownloadProgressChangedEventArgs e)
@@ -437,7 +453,7 @@ namespace ClientRaw
 
 
             lbDownloading.Text = "Total downloaded bytes : " + e.BytesReceived.ToString();
-            
+
             lbProgress.Text = "Downloading in progress";
             ExtendedWebClient webClient = (ExtendedWebClient)sender;
         }
@@ -449,12 +465,12 @@ namespace ClientRaw
 
                 var message = e.Error.Message;
                 chart1.Series.Clear();
-                lbDownloading.Text = "" ;
+                lbDownloading.Text = "";
                 lbProgress.Text = "";
                 if (e.Cancelled)
                 {
-                    if (webClient.stoppedByUser )
-                        return ;
+                    if (webClient.stoppedByUser)
+                        return;
                     message = "The connection with the server has been disconnected";
                 }
 
@@ -484,7 +500,7 @@ namespace ClientRaw
 
             }
             btnGetFile.Text = "Get Data";
-            
+
         }
 
         private void RawFormatShowResults(bool compressedData)
@@ -500,7 +516,7 @@ namespace ClientRaw
 
                 if (downloadedFileName.Contains("compressed.txt"))
                     fileNameToDownload = fileNameToDownload.Replace("compressed", "");
-                
+
             }
             fileInfo = new FileInfo(downloadedFileName);
             chart1.Series["dataSize"].Points.AddY(fileInfo.Length);
@@ -528,8 +544,8 @@ namespace ClientRaw
                     chart1.Series["DecompressedDataSize"].IsVisibleInLegend = false;
                 }
 
-               
-               
+
+
             }
 
             if (compressedData)
@@ -558,7 +574,7 @@ namespace ClientRaw
 
         private void rdTransferTime_CheckedChanged(object sender, EventArgs e)
         {
-            ckboxAutoGenerate.Enabled = !rdTransferTime.Checked ;
+            ckboxAutoGenerate.Enabled = !rdTransferTime.Checked;
             enableAutoData(false);
             if (rdTransferTime.Checked)
             {
@@ -626,7 +642,7 @@ namespace ClientRaw
                 webClient.Headers.Add("G", autoDataElementsRatios[2].ToString());
                 webClient.Headers.Add("T", autoDataElementsRatios[3].ToString());
 
-               
+
             }
 
             webClient.Headers.Add("DataSize", dataSize.ToString());
