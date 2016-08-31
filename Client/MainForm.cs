@@ -72,10 +72,7 @@ namespace ClientRaw
             this.txtDataSize.Name = "txtDataSize";
             this.txtDataSize.Size = new System.Drawing.Size(161, 20);
             this.txtDataSize.TabIndex = 5;
-            this.Controls.Add(txtDataSize);
             this.txtDataSize.Enabled = false;
-            this.comBoxDataSize.SelectedIndex = 0;
-            this.comBoxDataSize.Enabled = false;
             autoDataElementsRatios = FormatData.randomRatios(FormatData.specialChars.Length);
         }
 
@@ -289,54 +286,54 @@ namespace ClientRaw
 
         /*---------------------------------------GTTP CODE--------------------------------------------*/
 
-        private void configChartToDefault()
-        {
-            chart1.Legends.Clear();
-            chart1.Series.Clear();
-            chart1.ChartAreas.Clear();
-
-            var area1 = chart1.ChartAreas.Add("filesize");
-            var area2 = chart1.ChartAreas.Add("time");
-            area1.AxisY.Title = "File Size (bytes)";
-            area2.AxisY.Title = "Time (milliseconds)";
-
-            var legend1 = chart1.Legends.Add("Legend1");
-            var legend2 = chart1.Legends.Add("Legend2");
-            legend1.DockedToChartArea = "filesize";
-            legend1.IsDockedInsideChartArea = false;
-            legend2.DockedToChartArea = "time";
-            legend2.IsDockedInsideChartArea = false;
-
-
-            var series1 = chart1.Series.Add("dataSize");
-            series1.LegendText = "Received Compressed Data";
-            var series2 = chart1.Series.Add("DecompressedDataSize");
-            series2.LegendText = "Original data";
-
-            var series3 = chart1.Series.Add("downloadingdataTime");
-            series3.ChartArea = "time";
-            series3.Legend = "Legend2";
-
-            var series4 = chart1.Series.Add("totaldataTime");
-            series4.ChartArea = "time";
-            series4.Legend = "Legend2";
-
-            series1.Color = chartColors[1]; // red color
-            series2.Color = chartColors[0]; // blue color
-            series3.Color = chartColors[2]; // green color
-
-            foreach (var series in chart1.Series)
-            {
-                series.IsValueShownAsLabel = true;
-            }
-        }
+        //private void configChartToDefault()
+        //{
+        //    chart1.Legends.Clear();
+        //    chart1.Series.Clear();
+        //    chart1.ChartAreas.Clear();
+        //
+        //    var area1 = chart1.ChartAreas.Add("filesize");
+        //    var area2 = chart1.ChartAreas.Add("time");
+        //    area1.AxisY.Title = "File Size (bytes)";
+        //    area2.AxisY.Title = "Time (milliseconds)";
+        //
+        //    var legend1 = chart1.Legends.Add("Legend1");
+        //    var legend2 = chart1.Legends.Add("Legend2");
+        //    legend1.DockedToChartArea = "filesize";
+        //    legend1.IsDockedInsideChartArea = false;
+        //    legend2.DockedToChartArea = "time";
+        //    legend2.IsDockedInsideChartArea = false;
+        //
+        //
+        //    var series1 = chart1.Series.Add("dataSize");
+        //    series1.LegendText = "Received Compressed Data";
+        //    var series2 = chart1.Series.Add("DecompressedDataSize");
+        //    series2.LegendText = "Original data";
+        //
+        //    var series3 = chart1.Series.Add("downloadingdataTime");
+        //    series3.ChartArea = "time";
+        //    series3.Legend = "Legend2";
+        //
+        //    var series4 = chart1.Series.Add("totaldataTime");
+        //    series4.ChartArea = "time";
+        //    series4.Legend = "Legend2";
+        //
+        //    series1.Color = chartColors[1]; // red color
+        //    series2.Color = chartColors[0]; // blue color
+        //    series3.Color = chartColors[2]; // green color
+        //
+        //    foreach (var series in chart1.Series)
+        //    {
+        //        series.IsValueShownAsLabel = true;
+        //    }
+        //}
 
         private void showRawDataEncodingInfo()
         {
             this.btnGetFile.Text = "Stop";
 
-            configChartToDefault();
-            showStatistic(null);
+        //    configChartToDefault();
+        //    showStatistic(null);
 
             // download file with gzip compression
             getRawFormatFile();
@@ -348,24 +345,24 @@ namespace ClientRaw
             // decoding char to 2bits
             string getFileName = RawFormatFileName;
 
-            chart1.Series["downloadingdataTime"].LegendText = "Time for downloading Raw File";
-            chart1.Series["totaldataTime"].LegendText = "Time for downloading , (decompressing) Raw File";
-
-
-            if (timingType == Timing.transferTimeOnly)
-            {
-                if (!getFileName.Contains("Auto"))
-                    getFileName = "Preconfig" + getFileName;
-                chart1.Series["dataTime"].LegendText = "Time for downloading Raw File";
-
-
-            }
-
-            if (getFileName.Contains("Auto"))
-            {
-                chart1.Series["downloadingdataTime"].LegendText = "Time for downloading Raw Data";
-                chart1.Series["totaldataTime"].LegendText = "Time for downloading and decompressing Raw Data";
-            }
+         //   chart1.Series["downloadingdataTime"].LegendText = "Time for downloading Raw File";
+         //   chart1.Series["totaldataTime"].LegendText = "Time for downloading , (decompressing) Raw File";
+         //
+         //
+         //   if (timingType == Timing.transferTimeOnly)
+         //   {
+         //       if (!getFileName.Contains("Auto"))
+         //           getFileName = "Preconfig" + getFileName;
+         //       chart1.Series["dataTime"].LegendText = "Time for downloading Raw File";
+         //
+         //
+         //   }
+         //
+         //   if (getFileName.Contains("Auto"))
+         //   {
+         //       chart1.Series["downloadingdataTime"].LegendText = "Time for downloading Raw Data";
+         //       chart1.Series["totaldataTime"].LegendText = "Time for downloading and decompressing Raw Data";
+         //   }
 
             this.stopwatch = Stopwatch.StartNew();
             this.webClient.startDownloadingFile(serverAddress + "/" + getFileName);
@@ -391,39 +388,12 @@ namespace ClientRaw
             this.serverAddress = "http://" + txtServerAddress.Text + ":" + port.ToString();
             this.autoDataSize = this.txtDataSize.LongValue * 1024;
 
-            // we dont need to ask for a file name , just ask for data auto generated 
-            if (ckboxAutoGenerate.Checked)
-            {
-                if (comBoxDataSize.Text.ToUpper() == "MB")
-                {
-                    this.autoDataSize = this.txtDataSize.LongValue * 1024 * 1024;
-
-                }
-                else if ((comBoxDataSize.Text.ToUpper() == "GB"))
-                {
-                    this.autoDataSize = this.txtDataSize.LongValue * 1024 * 1024 * 1024;
-
-                }
-                RawFormatFileName = "Auto" + RawFormatOutputFileName;
-                fileNameToDownload = "Auto.txt";
-                formatHeader(autoDataSize);
-
-                showRawDataEncodingInfo();
-
-                return;
-
-            }
-
-            else
-            {
-
                 if (txtFileName.Text == "")
                 {
                     MessageBox.Show("Please write the textfile name to be downloaded, for example mydata.txt");
                     return;
 
                 }
-            }
 
             string filePath = txtFileName.Text;
             try
@@ -464,7 +434,7 @@ namespace ClientRaw
             {
 
                 var message = e.Error.Message;
-                chart1.Series.Clear();
+                //chart1.Series.Clear();
                 lbDownloading.Text = "";
                 lbProgress.Text = "";
                 if (e.Cancelled)
@@ -508,18 +478,18 @@ namespace ClientRaw
             FileInfo fileInfo;
             FileInfo decompressedFileInfo;
             string downloadedFileName = this.webClient.downloadedFileName;
-            chart1.Series["downloadingdataTime"].Points.AddY(fileDownloadingTime);
-
-            if (fileNameToDownload == "Auto.txt")
-            {
-                fileNameToDownload = downloadedFileName.Replace("AutoData", "AutoData" + RawFormatOutputFileName);
-
-                if (downloadedFileName.Contains("compressed.txt"))
-                    fileNameToDownload = fileNameToDownload.Replace("compressed", "");
-
-            }
+            // chart1.Series["downloadingdataTime"].Points.AddY(fileDownloadingTime);
+            //
+            // if (fileNameToDownload == "Auto.txt")
+            // {
+            //     fileNameToDownload = downloadedFileName.Replace("AutoData", "AutoData" + RawFormatOutputFileName);
+            //
+            //     if (downloadedFileName.Contains("compressed.txt"))
+            //         fileNameToDownload = fileNameToDownload.Replace("compressed", "");
+            //     
+            // }
             fileInfo = new FileInfo(downloadedFileName);
-            chart1.Series["dataSize"].Points.AddY(fileInfo.Length);
+            // chart1.Series["dataSize"].Points.AddY(fileInfo.Length);
             string decompressedFile = downloadedFileName;
 
             if (timingType == Timing.totalTime)
@@ -535,92 +505,32 @@ namespace ClientRaw
                     fileDownloadingTime += stopwatch.ElapsedMilliseconds;
 
                     decompressedFileInfo = new FileInfo(decompressedFile);
-                    chart1.Series["DecompressedDataSize"].Points.AddY(decompressedFileInfo.Length);
+                    //chart1.Series["DecompressedDataSize"].Points.AddY(decompressedFileInfo.Length);
                 }
                 else
                 {
-                    var series1 = chart1.Series["dataSize"];
-                    series1.LegendText = "Received Data";
-                    chart1.Series["DecompressedDataSize"].IsVisibleInLegend = false;
+                    // var series1 = chart1.Series["dataSize"];
+                    //series1.LegendText = "Received Data";
+                    //chart1.Series["DecompressedDataSize"].IsVisibleInLegend = false;
                 }
 
 
 
             }
 
-            if (compressedData)
-            {
-                chart1.Series["totaldataTime"].Points.AddY(fileDownloadingTime);
-            }
-            else
-            {
-                chart1.Series["totaldataTime"].IsVisibleInLegend = false;
-            }
-
-            Dictionary<char, long> itemCounts = FormatData.getStatisticFromGenomeFile(decompressedFile);
-            showStatistic(itemCounts);
-
-        }
-
-
-
-        private void rdTotalTime_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdTotalTime.Checked)
-            {
-                timingType = Timing.totalTime;
-            }
-        }
-
-        private void rdTransferTime_CheckedChanged(object sender, EventArgs e)
-        {
-            ckboxAutoGenerate.Enabled = !rdTransferTime.Checked;
-            enableAutoData(false);
-            if (rdTransferTime.Checked)
-            {
-                timingType = Timing.transferTimeOnly;
-            }
-        }
-
-        private void enableComparisionRadioButton(bool enable)
-        {
-
-
-            this.txtFileName.Enabled = enable;
-            this.enableAutoData(!enable);
+            //if (compressedData)
+            //{
+            //    chart1.Series["totaldataTime"].Points.AddY(fileDownloadingTime);
+            //}
+            //else
+            //{
+            //    chart1.Series["totaldataTime"].IsVisibleInLegend = false;
+            //}
+            //
+            //Dictionary<char, long> itemCounts = FormatData.getStatisticFromGenomeFile(decompressedFile);
+            //showStatistic(itemCounts);
 
         }
-
-        private void enableAutoData(bool enable)
-        {
-
-            this.txtDataSize.Enabled = enable;
-            this.comBoxDataSize.Enabled = enable;
-        }
-        private void ckboxAutoGenerate_CheckedChanged(object sender, EventArgs e)
-        {
-            enableComparisionRadioButton(!ckboxAutoGenerate.Checked);
-            rdTransferTime.Enabled = !ckboxAutoGenerate.Checked;
-            btnRatio.Enabled = ckboxAutoGenerate.Checked;
-        }
-
-        private void btnRatio_Click(object sender, EventArgs e)
-        {
-            RatioForm form = new RatioForm();
-            form.RatioType = ratioType;
-            if (ratioType == RatioTypeEnum.Manual)
-            {
-                form.ratios = autoDataElementsRatios;
-            }
-
-            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                autoDataElementsRatios = form.ratios;
-                ratioType = form.RatioType;
-
-            }
-        }
-
 
         private void formatHeader(long dataSize)
         {
@@ -650,25 +560,25 @@ namespace ClientRaw
 
         }
 
-        private void showStatistic(Dictionary<char, long> counts)
-        {
-            if (counts != null && counts.Count >= 4)
-            {
-                lbACount.Text = counts['A'].ToString();
-                lbCCount.Text = counts['C'].ToString();
-                lbGCount.Text = counts['G'].ToString();
-                lbTCount.Text = counts['T'].ToString();
-            }
-
-            else
-            {
-                lbACount.Text = "0";
-                lbCCount.Text = "0";
-                lbGCount.Text = "0";
-                lbTCount.Text = "0";
-            }
-
-        }
+       // private void showStatistic(Dictionary<char, long> counts)
+       // {
+       //     if (counts != null && counts.Count >= 4)
+       //     {
+       //         lbACount.Text = counts['A'].ToString();
+       //         lbCCount.Text = counts['C'].ToString();
+       //         lbGCount.Text = counts['G'].ToString();
+       //         lbTCount.Text = counts['T'].ToString();
+       //     }
+       //
+       //     else
+       //     {
+       //         lbACount.Text = "0";
+       //         lbCCount.Text = "0";
+       //         lbGCount.Text = "0";
+       //         lbTCount.Text = "0";
+       //     }
+       //
+       // }
 
         private void btnNotCompressed_CheckedChanged(object sender, EventArgs e)
         {
@@ -684,13 +594,13 @@ namespace ClientRaw
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            showStatistic(null);
+      //      showStatistic(null);
 
         }
 
         private void MainForm_Load_1(object sender, EventArgs e)
         {
-            showStatistic(null);
+     //       showStatistic(null);
 
         }
 
