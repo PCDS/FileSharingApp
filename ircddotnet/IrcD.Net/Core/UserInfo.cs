@@ -39,7 +39,7 @@ namespace IrcD
         {
             IsService = false;
             Registered = false;
-            PassAccepted = passAccepted;
+            PassAccepted = true;
             Host = host;
             Created = DateTime.Now;
 
@@ -58,6 +58,7 @@ namespace IrcD
 
         public string User { get; private set; }
         public string Nick { get; private set; }
+        public string MyPass { get; set; }
         public string RealName { get; private set; }
         public string Host { get; private set; }
         public string AwayMessage { get; set; }

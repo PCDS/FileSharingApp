@@ -20,6 +20,7 @@
 
 using System.Collections.Generic;
 using IrcD.Commands.Arguments;
+using System;
 
 namespace IrcD.Commands
 {
@@ -31,6 +32,7 @@ namespace IrcD.Commands
 
         protected override void PrivateHandle(UserInfo info, List<string> args)
         {
+           // Console.WriteLine("HELLO WORLD   "+ info.MyPass);
             if (!info.PassAccepted)
             {
                 IrcDaemon.Replies.SendPasswordMismatch(info);
@@ -51,6 +53,12 @@ namespace IrcD.Commands
                 IrcDaemon.Replies.SendErroneousNickname(info, args[0]);
                 return;
             }
+            if (!IrcDaemon.ValidPass(args[0], info.MyPass))
+            {
+                IrcDaemon.Replies.SendPasswordMismatch(info);
+                return;
+            }
+
 
             // *** NICK command valid after this point ***
 

@@ -34,6 +34,8 @@ namespace IrcD.Commands
         [CheckParamCount(1)]
         protected override void PrivateHandle(UserInfo info, List<string> args)
         {
+            info.MyPass = args[0];
+            //Console.WriteLine("args[0]");
             if (info.PassAccepted)
             {
                 IrcDaemon.Replies.SendAlreadyRegistered(info);

@@ -35,6 +35,7 @@ using IrcD.Utils;
 using Mode = IrcD.Commands.Mode;
 using Version = IrcD.Commands.Version;
 using IrcD.Commands.Arguments;
+using DatabaseConnector;
 
 namespace IrcD
 {
@@ -491,6 +492,35 @@ namespace IrcD
                                     || c == '[' || c == ']' || c == '\\' || c == '`' || c == '_' || c == '^' || c == '{' || c == '|' || c == '}'))
                     return false;
             }
+
+            return true;
+
+        }
+        public bool ValidPass(string nick, string pass)
+        {
+            DatabaseCon UserDB = new DatabaseCon();
+            if (nick != "")
+            {
+                bool myPass = false;
+                string currPass = pass;
+                if (currPass != "")
+                {
+
+                    myPass = UserDB.CheckPass(nick, currPass);
+                }
+                else
+                {
+                    // 0 means not connected
+                    Console.WriteLine("Please enter a password.");
+                    return false;
+                }
+                if (myPass == false)
+                {
+
+                    return false;
+                }
+            }
+            Console.WriteLine("HELLO WORLD   " + pass);
 
             return true;
         }

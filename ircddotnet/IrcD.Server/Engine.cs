@@ -23,6 +23,7 @@ using System.Reflection;
 using System.ServiceProcess;
 using System.Threading;
 using IrcD;
+using System.Windows.Forms;
 
 namespace IrcD.Server
 {
@@ -32,56 +33,58 @@ namespace IrcD.Server
 
         public static void Main(string[] args)
         {
-            switch (Environment.OSVersion.Platform)
-            {
-                case PlatformID.MacOSX:
-                    Start();
-                    break;
-                case PlatformID.Unix:
-                    Start();
-                    break;
-                case PlatformID.Win32NT:
-                    if (Environment.UserInteractive)
-                    {
-                        var parameter = string.Concat(args);
-                        switch (parameter)
-                        {
-                            case "--install":
-                                ManagedInstallerClass.InstallHelper(new[] { Assembly.GetExecutingAssembly().Location });
-                                return;
-                            case "--uninstall":
-                                ManagedInstallerClass.InstallHelper(new[] { "/u", Assembly.GetExecutingAssembly().Location });
-                                return;
-                        }
-                        /* blocking */
-                        Start();
-                    }
-                    try
-                    {
-                        var servicesToRun = new ServiceBase[] { new ServiceEngine() };
-                        ServiceBase.Run(servicesToRun);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Exception: {0} \n\nStack: {1}", ex.Message, ex.StackTrace);
-                    }
-                    break;
-                case PlatformID.Win32S:
-                    Console.WriteLine("16bit OS not supported... (STOP)");
-                    break;
-                case PlatformID.Win32Windows:
-                    Start();
-                    break;
-                case PlatformID.WinCE:
-                    Start();
-                    break;
-                case PlatformID.Xbox:
-                    Start();
-                    break;
-                default:
-                    Console.WriteLine("What kind of Platform are you? (STOP)");
-                    break;
-            }
+            // switch (Environment.OSVersion.Platform)
+            // {
+            //     case PlatformID.MacOSX:
+            //         Start();
+            //         break;
+            //     case PlatformID.Unix:
+            //         Start();
+            //         break;
+            //     case PlatformID.Win32NT:
+            //         if (Environment.UserInteractive)
+            //         {
+            //             var parameter = string.Concat(args);
+            //             switch (parameter)
+            //             {
+            //                 case "--install":
+            //                     ManagedInstallerClass.InstallHelper(new[] { Assembly.GetExecutingAssembly().Location });
+            //                     return;
+            //                 case "--uninstall":
+            //                     ManagedInstallerClass.InstallHelper(new[] { "/u", Assembly.GetExecutingAssembly().Location });
+            //                     return;
+            //             }
+            //             /* blocking */
+            //            // Start();
+            //         }
+            //         try
+            //         {
+            //             //Start();
+            //             //var servicesToRun = new ServiceBase[] { new ServiceEngine() };
+            //             //ServiceBase.Run(servicesToRun);
+            //         }
+            //         catch (Exception ex)
+            //         {
+            //             Console.WriteLine("Exception: {0} \n\nStack: {1}", ex.Message, ex.StackTrace);
+            //         }
+            //         break;
+            //     case PlatformID.Win32S:
+            //         Console.WriteLine("16bit OS not supported... (STOP)");
+            //         break;
+            //     case PlatformID.Win32Windows:
+            //         Start();
+            //         break;
+            //     case PlatformID.WinCE:
+            //         Start();
+            //         break;
+            //     case PlatformID.Xbox:
+            //         Start();
+            //         break;
+            //     default:
+            //         Console.WriteLine("What kind of Platform are you? (STOP)");
+            //         break;
+            // }
+            Start();
         }
 
         public static void Start()

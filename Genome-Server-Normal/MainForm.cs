@@ -15,12 +15,17 @@ using ServerClient;
 using FileSharingAppServer;
 using FileSharingApp;
 using System.Net.Sockets;
+using IrcD.Server;
+using IrcD;
+using System.Threading;
 
 namespace httpMethodsApp
 {
+   
     public enum encodingType { Origin, TwoBitEncoding, HuffmanWithSampling, HuffmanWithoutSampling, Huffman };
     public partial class MainForm : Base
     {
+        private static bool blocking = false;
         private string filesDirectory = "";
         private HttpServerController httpServerController;
         private bool useStandardHeaders = true;
@@ -60,7 +65,37 @@ namespace httpMethodsApp
 
         /*---------------------------------------CHAT APP--------------------------------------------*/
 
+        public static void Start()
+        {
+            var settings = new Settings();
+            var ircDaemon = new IrcDaemon(settings.GetIrcMode());
+            settings.SetDaemon(ircDaemon);
+            settings.LoadSettings();
 
+            if (blocking)
+            {
+                ircDaemon.Start();
+            }
+            else
+            {
+                ircDaemon.ServerRehash += ServerRehash;
+
+                var serverThread = new Thread(ircDaemon.Start)
+                {
+                    IsBackground = false,
+                    Name = "serverThread-1"
+                };
+
+                serverThread.Start();
+            }
+        }
+
+        static void ServerRehash(object sender, RehashEventArgs e)
+        {
+            var settings = new Settings();
+            settings.SetDaemon(e.IrcDaemon);
+            settings.LoadSettings();
+        }
 
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -140,27 +175,27 @@ namespace httpMethodsApp
 
         private void btnListen_Click()
         {
+            Start();
             //int port = int.Parse(txtFilePort.Text);
-
-            string localIP;
-            using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
-            {
-                socket.Connect("10.0.2.4", 65530);
-                IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
-                localIP = endPoint.Address.ToString();
-            }
-            ipAddress.Text = localIP;
-            // Parse the server's IP address out of the TextBox
-            IPAddress ipAddr = IPAddress.Parse(localIP);
-
-            // Create a new instance of the ChatServer object
-            FileSharingAppServer.ChatServer mainServer = new FileSharingAppServer.ChatServer(ipAddr);
-            // Hook the StatusChanged event handler to mainServer_StatusChanged
-            global::FileSharingAppServer.ChatServer.StatusChanged += new StatusChangedEventHandler(mainServer_StatusChanged);
-            // Start listening for connections
-            mainServer.StartListening(txtChatPort.Text);
-            // Show that we started to listen for connections
-            txtLog.AppendText("Monitoring for connections...\r\n");
+            //string localIP;
+            //using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+            //{
+            //    socket.Connect("10.0.2.4", 65530);
+            //    IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+            //    localIP = endPoint.Address.ToString();
+            //}
+            //ipAddress.Text = localIP;
+            //// Parse the server's IP address out of the TextBox
+            //IPAddress ipAddr = IPAddress.Parse(localIP);
+            //
+            //// Create a new instance of the ChatServer object
+            //FileSharingAppServer.ChatServer mainServer = new FileSharingAppServer.ChatServer(ipAddr);
+            //// Hook the StatusChanged event handler to mainServer_StatusChanged
+            //global::FileSharingAppServer.ChatServer.StatusChanged += new StatusChangedEventHandler(mainServer_StatusChanged);
+            //// Start listening for connections
+            //mainServer.StartListening(txtChatPort.Text);
+            //// Show that we started to listen for connections
+            //txtLog.AppendText("Monitoring for connections...\r\n");
 
         }
 

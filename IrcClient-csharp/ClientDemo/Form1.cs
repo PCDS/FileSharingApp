@@ -63,6 +63,11 @@ namespace ClientDemo
                 MessageBox.Show("Please specify a nick");
                 return;
             }
+            if (String.IsNullOrEmpty(txtPass.Text.Trim()))
+            {
+                MessageBox.Show("Please use a password");
+                return;
+            }
 
             int port;
             if (Int32.TryParse(txtPort.Text, out port))
@@ -72,12 +77,13 @@ namespace ClientDemo
 
             AddEvents();
             client.Nick = txtNick.Text.Trim();
-
+            client.ServerPass = txtPass.Text.Trim();
             btnConnect.Enabled = false;
             txtChannel.Enabled = false;
             txtPort.Enabled = false;
             txtServer.Enabled = false;
             txtNick.Enabled = false;
+            txtPass.Enabled = false;
             rtbOutput.Clear(); // in case they reconnect and have old stuff there
 
 
@@ -187,5 +193,9 @@ namespace ClientDemo
 
         #endregion
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

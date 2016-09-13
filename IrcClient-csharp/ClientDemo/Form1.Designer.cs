@@ -41,6 +41,8 @@
             this.txtChannel = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNick = new System.Windows.Forms.TextBox();
+            this.txtPass = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtServer
@@ -49,7 +51,7 @@
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(100, 20);
             this.txtServer.TabIndex = 0;
-            this.txtServer.Text = "irc.voltirc.com";
+            this.txtServer.Text = "localhost";
             // 
             // txtPort
             // 
@@ -141,7 +143,7 @@
             this.txtChannel.Name = "txtChannel";
             this.txtChannel.Size = new System.Drawing.Size(93, 20);
             this.txtChannel.TabIndex = 10;
-            this.txtChannel.Text = "#TechLifeForum";
+            this.txtChannel.Text = "#chat";
             // 
             // label2
             // 
@@ -160,11 +162,31 @@
             this.txtNick.TabIndex = 12;
             this.txtNick.Text = "Guest";
             // 
+            // txtPass
+            // 
+            this.txtPass.Location = new System.Drawing.Point(248, 6);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
+            this.txtPass.Size = new System.Drawing.Size(100, 20);
+            this.txtPass.TabIndex = 14;
+            this.txtPass.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(188, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Password:";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 383);
+            this.Controls.Add(this.txtPass);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.txtNick);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtChannel);
@@ -201,6 +223,8 @@
         private System.Windows.Forms.TextBox txtChannel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNick;
+        private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.Label label3;
     }
 }
 
