@@ -177,38 +177,23 @@ namespace httpMethodsApp
         {
             Start();
             //int port = int.Parse(txtFilePort.Text);
-            //string localIP;
-            //using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
-            //{
-            //    socket.Connect("10.0.2.4", 65530);
-            //    IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
-            //    localIP = endPoint.Address.ToString();
-            //}
-            //ipAddress.Text = localIP;
-            //// Parse the server's IP address out of the TextBox
-            //IPAddress ipAddr = IPAddress.Parse(localIP);
-            //
-            //// Create a new instance of the ChatServer object
-            //FileSharingAppServer.ChatServer mainServer = new FileSharingAppServer.ChatServer(ipAddr);
-            //// Hook the StatusChanged event handler to mainServer_StatusChanged
-            //global::FileSharingAppServer.ChatServer.StatusChanged += new StatusChangedEventHandler(mainServer_StatusChanged);
-            //// Start listening for connections
-            //mainServer.StartListening(txtChatPort.Text);
-            //// Show that we started to listen for connections
-            //txtLog.AppendText("Monitoring for connections...\r\n");
+            string localIP;
+            using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+            {
+                socket.Connect("10.0.2.4", 65530);
+                IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                localIP = endPoint.Address.ToString();
+            }
+            ipAddress.Text = localIP;
 
         }
 
-        public void mainServer_StatusChanged(object sender, StatusChangedEventArgs e)
-        {
-            // Call the method that updates the form
-            this.Invoke(new UpdateStatusCallback(this.UpdateStatus), new object[] { e.EventMessage });
-        }
+
 
         private void UpdateStatus(string strMessage)
         {
             // Updates the log with the message
-            txtLog.AppendText(strMessage + "\r\n");
+           // txtLog.AppendText(strMessage + "\r\n");
         }
 
 

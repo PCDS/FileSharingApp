@@ -114,7 +114,6 @@
     <Compile Include="AppSettingsForm.Designer.cs">
       <DependentUpon>AppSettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChatServer.cs" />
     <Compile Include="DatabaseCon.cs" />
     <Compile Include="FormatData.cs" />
     <Compile Include="httpServer.cs" />

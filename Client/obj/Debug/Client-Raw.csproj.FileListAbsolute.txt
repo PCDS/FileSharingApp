@@ -47,3 +47,12 @@ C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Deb
 C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\Client-Raw.csprojResolveAssemblyReference.cache
 C:\Users\brp9209\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\ClientRaw.exe
 C:\Users\brp9209\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\ClientRaw.pdb
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\ClientRaw.exe
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\CurrentBuild\ClientRaw.pdb
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\ClientRaw.MainForm.resources
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\ClientRaw.Properties.Resources.resources
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\ClientRaw.RatioForm.resources
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\Client-Raw.csproj.GenerateResource.Cache
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\ClientRaw.exe
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\ClientRaw.pdb
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Client\obj\Debug\Client-Raw.csprojResolveAssemblyReference.cache

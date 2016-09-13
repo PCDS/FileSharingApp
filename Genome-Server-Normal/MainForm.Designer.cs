@@ -37,7 +37,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtChatPort = new System.Windows.Forms.TextBox();
             this.ipAddress = new System.Windows.Forms.TextBox();
-            this.txtLog = new System.Windows.Forms.TextBox();
             this.lbIp = new System.Windows.Forms.Label();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -140,15 +139,6 @@
             this.ipAddress.Text = "0.0.0.0";
             this.ipAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtLog
-            // 
-            this.txtLog.Location = new System.Drawing.Point(45, 196);
-            this.txtLog.Multiline = true;
-            this.txtLog.Name = "txtLog";
-            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(481, 178);
-            this.txtLog.TabIndex = 33;
-            // 
             // lbIp
             // 
             this.lbIp.AutoSize = true;
@@ -228,21 +218,21 @@
             // showUsersToolStripMenuItem
             // 
             this.showUsersToolStripMenuItem.Name = "showUsersToolStripMenuItem";
-            this.showUsersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showUsersToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.showUsersToolStripMenuItem.Text = "Show Users";
             this.showUsersToolStripMenuItem.Click += new System.EventHandler(this.Show_Click);
             // 
             // createUserToolStripMenuItem
             // 
             this.createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
-            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.createUserToolStripMenuItem.Text = "Create User";
             this.createUserToolStripMenuItem.Click += new System.EventHandler(this.Create_Click);
             // 
             // deleteUserToolStripMenuItem
             // 
             this.deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
-            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.deleteUserToolStripMenuItem.Text = "Delete User";
             this.deleteUserToolStripMenuItem.Click += new System.EventHandler(this.Delete_Click);
             // 
@@ -250,12 +240,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 414);
+            this.ClientSize = new System.Drawing.Size(565, 201);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtChatPort);
             this.Controls.Add(this.ipAddress);
-            this.Controls.Add(this.txtLog);
             this.Controls.Add(this.lbIp);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnStartServer);
@@ -268,7 +257,6 @@
             this.Controls.SetChildIndex(this.btnStartServer, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.lbIp, 0);
-            this.Controls.SetChildIndex(this.txtLog, 0);
             this.Controls.SetChildIndex(this.ipAddress, 0);
             this.Controls.SetChildIndex(this.txtChatPort, 0);
             this.Controls.SetChildIndex(this.label1, 0);
@@ -292,7 +280,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtChatPort;
         private System.Windows.Forms.TextBox ipAddress;
-        private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.Label lbIp;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripDropDownButton toolStripButton2;

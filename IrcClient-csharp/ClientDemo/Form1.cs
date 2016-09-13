@@ -97,7 +97,7 @@ namespace ClientDemo
             txtPort.Enabled = true;
             txtServer.Enabled = true;
             txtNick.Enabled = true;
-
+            txtPass.Enabled = true;
             lstUsers.Items.Clear();
             txtSend.Enabled = false;
             btnSend.Enabled = false;

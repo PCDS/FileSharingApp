@@ -40,21 +40,22 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCompressed = new System.Windows.Forms.RadioButton();
             this.btnNotCompressed = new System.Windows.Forms.RadioButton();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtChatPort = new System.Windows.Forms.TextBox();
-            this.txtPass = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtUser = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
-            this.btnConnect = new System.Windows.Forms.Button();
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabChat = new System.Windows.Forms.TabPage();
-            this.txtLog = new System.Windows.Forms.TextBox();
-            this.txtMessage = new System.Windows.Forms.TextBox();
+            this.lstUsers = new System.Windows.Forms.ListBox();
             this.btnChatSend = new System.Windows.Forms.Button();
+            this.txtSend = new System.Windows.Forms.TextBox();
+            this.rtbOutput = new System.Windows.Forms.RichTextBox();
+            this.txtPass = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNick = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtChannel = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnConnect = new System.Windows.Forms.Button();
+            this.LabelPort = new System.Windows.Forms.Label();
+            this.LabelServer = new System.Windows.Forms.Label();
+            this.txtPort = new System.Windows.Forms.TextBox();
+            this.txtServer = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            this.tabControl.SuspendLayout();
-            this.tabChat.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGetFile
@@ -156,117 +157,20 @@
             this.btnNotCompressed.UseVisualStyleBackColor = true;
             this.btnNotCompressed.CheckedChanged += new System.EventHandler(this.btnNotCompressed_CheckedChanged);
             // 
-            // label8
+            // lstUsers
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(48, 488);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 13);
-            this.label8.TabIndex = 87;
-            this.label8.Text = "Port:";
-            // 
-            // txtChatPort
-            // 
-            this.txtChatPort.Location = new System.Drawing.Point(88, 485);
-            this.txtChatPort.Name = "txtChatPort";
-            this.txtChatPort.Size = new System.Drawing.Size(62, 20);
-            this.txtChatPort.TabIndex = 83;
-            this.txtChatPort.Text = "1986";
-            // 
-            // txtPass
-            // 
-            this.txtPass.Location = new System.Drawing.Point(451, 485);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.PasswordChar = '●';
-            this.txtPass.Size = new System.Drawing.Size(128, 20);
-            this.txtPass.TabIndex = 81;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(380, 488);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 13);
-            this.label9.TabIndex = 86;
-            this.label9.Text = "Password:";
-            // 
-            // txtUser
-            // 
-            this.txtUser.Location = new System.Drawing.Point(246, 485);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(128, 20);
-            this.txtUser.TabIndex = 80;
-            this.txtUser.Text = "New User";
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(173, 488);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(67, 13);
-            this.lblName.TabIndex = 85;
-            this.lblName.Text = "Username:";
-            // 
-            // btnConnect
-            // 
-            this.btnConnect.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnConnect.Location = new System.Drawing.Point(585, 483);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(73, 23);
-            this.btnConnect.TabIndex = 82;
-            this.btnConnect.Text = "Login";
-            this.btnConnect.UseVisualStyleBackColor = false;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
-            // 
-            // tabControl
-            // 
-            this.tabControl.Controls.Add(this.tabChat);
-            this.tabControl.Location = new System.Drawing.Point(12, 10);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(671, 467);
-            this.tabControl.TabIndex = 88;
-            // 
-            // tabChat
-            // 
-            this.tabChat.Controls.Add(this.txtLog);
-            this.tabChat.Controls.Add(this.txtMessage);
-            this.tabChat.Controls.Add(this.btnChatSend);
-            this.tabChat.Location = new System.Drawing.Point(4, 22);
-            this.tabChat.Name = "tabChat";
-            this.tabChat.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChat.Size = new System.Drawing.Size(663, 441);
-            this.tabChat.TabIndex = 0;
-            this.tabChat.Text = "Chat";
-            this.tabChat.UseVisualStyleBackColor = true;
-            // 
-            // txtLog
-            // 
-            this.txtLog.BackColor = System.Drawing.SystemColors.Window;
-            this.txtLog.Enabled = false;
-            this.txtLog.Location = new System.Drawing.Point(35, 29);
-            this.txtLog.Multiline = true;
-            this.txtLog.Name = "txtLog";
-            this.txtLog.ReadOnly = true;
-            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(607, 351);
-            this.txtLog.TabIndex = 91;
-            // 
-            // txtMessage
-            // 
-            this.txtMessage.Enabled = false;
-            this.txtMessage.Location = new System.Drawing.Point(35, 389);
-            this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(526, 20);
-            this.txtMessage.TabIndex = 89;
-            this.txtMessage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMessage_KeyPress);
+            this.lstUsers.FormattingEnabled = true;
+            this.lstUsers.IntegralHeight = false;
+            this.lstUsers.Location = new System.Drawing.Point(463, 77);
+            this.lstUsers.Name = "lstUsers";
+            this.lstUsers.Size = new System.Drawing.Size(119, 288);
+            this.lstUsers.Sorted = true;
+            this.lstUsers.TabIndex = 91;
             // 
             // btnChatSend
             // 
-            this.btnChatSend.Location = new System.Drawing.Point(567, 389);
+            this.btnChatSend.Enabled = false;
+            this.btnChatSend.Location = new System.Drawing.Point(382, 369);
             this.btnChatSend.Name = "btnChatSend";
             this.btnChatSend.Size = new System.Drawing.Size(75, 23);
             this.btnChatSend.TabIndex = 90;
@@ -274,20 +178,139 @@
             this.btnChatSend.UseVisualStyleBackColor = true;
             this.btnChatSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
+            // txtSend
+            // 
+            this.txtSend.Enabled = false;
+            this.txtSend.Location = new System.Drawing.Point(121, 371);
+            this.txtSend.Name = "txtSend";
+            this.txtSend.Size = new System.Drawing.Size(255, 20);
+            this.txtSend.TabIndex = 89;
+            // 
+            // rtbOutput
+            // 
+            this.rtbOutput.Location = new System.Drawing.Point(121, 77);
+            this.rtbOutput.Name = "rtbOutput";
+            this.rtbOutput.ReadOnly = true;
+            this.rtbOutput.Size = new System.Drawing.Size(336, 288);
+            this.rtbOutput.TabIndex = 88;
+            this.rtbOutput.Text = "";
+            // 
+            // txtPass
+            // 
+            this.txtPass.Location = new System.Drawing.Point(356, 439);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
+            this.txtPass.Size = new System.Drawing.Size(100, 20);
+            this.txtPass.TabIndex = 102;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(296, 442);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 101;
+            this.label3.Text = "Password:";
+            // 
+            // txtNick
+            // 
+            this.txtNick.Location = new System.Drawing.Point(167, 439);
+            this.txtNick.Name = "txtNick";
+            this.txtNick.Size = new System.Drawing.Size(100, 20);
+            this.txtNick.TabIndex = 100;
+            this.txtNick.Text = "Guest";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(129, 442);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.TabIndex = 99;
+            this.label4.Text = "Nick:";
+            // 
+            // txtChannel
+            // 
+            this.txtChannel.Location = new System.Drawing.Point(410, 465);
+            this.txtChannel.Name = "txtChannel";
+            this.txtChannel.Size = new System.Drawing.Size(93, 20);
+            this.txtChannel.TabIndex = 98;
+            this.txtChannel.Text = "#chat";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(355, 468);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 13);
+            this.label5.TabIndex = 97;
+            this.label5.Text = "Channel:";
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.Location = new System.Drawing.Point(509, 463);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(72, 23);
+            this.btnConnect.TabIndex = 96;
+            this.btnConnect.Text = "Connect";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            // 
+            // LabelPort
+            // 
+            this.LabelPort.AutoSize = true;
+            this.LabelPort.Location = new System.Drawing.Point(273, 468);
+            this.LabelPort.Name = "LabelPort";
+            this.LabelPort.Size = new System.Drawing.Size(29, 13);
+            this.LabelPort.TabIndex = 95;
+            this.LabelPort.Text = "Port:";
+            // 
+            // LabelServer
+            // 
+            this.LabelServer.AutoSize = true;
+            this.LabelServer.Location = new System.Drawing.Point(120, 467);
+            this.LabelServer.Name = "LabelServer";
+            this.LabelServer.Size = new System.Drawing.Size(41, 13);
+            this.LabelServer.TabIndex = 94;
+            this.LabelServer.Text = "Server:";
+            // 
+            // txtPort
+            // 
+            this.txtPort.Location = new System.Drawing.Point(308, 465);
+            this.txtPort.Name = "txtPort";
+            this.txtPort.Size = new System.Drawing.Size(44, 20);
+            this.txtPort.TabIndex = 93;
+            this.txtPort.Text = "6667";
+            // 
+            // txtServer
+            // 
+            this.txtServer.Location = new System.Drawing.Point(167, 465);
+            this.txtServer.Name = "txtServer";
+            this.txtServer.Size = new System.Drawing.Size(100, 20);
+            this.txtServer.TabIndex = 92;
+            this.txtServer.Text = "localhost";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(713, 713);
-            this.Controls.Add(this.tabControl);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtChatPort);
             this.Controls.Add(this.txtPass);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtUser);
-            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtNick);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtChannel);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnConnect);
+            this.Controls.Add(this.LabelPort);
+            this.Controls.Add(this.LabelServer);
+            this.Controls.Add(this.txtPort);
+            this.Controls.Add(this.txtServer);
+            this.Controls.Add(this.lstUsers);
+            this.Controls.Add(this.btnChatSend);
+            this.Controls.Add(this.txtSend);
+            this.Controls.Add(this.rtbOutput);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lbDownloading);
             this.Controls.Add(this.lbProgress);
@@ -301,9 +324,6 @@
             this.Load += new System.EventHandler(this.MainForm_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tabControl.ResumeLayout(false);
-            this.tabChat.ResumeLayout(false);
-            this.tabChat.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,18 +343,21 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton btnCompressed;
         private System.Windows.Forms.RadioButton btnNotCompressed;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtChatPort;
-        private System.Windows.Forms.TextBox txtPass;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtUser;
-        private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Button btnConnect;
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabChat;
-        private System.Windows.Forms.TextBox txtLog;
-        private System.Windows.Forms.TextBox txtMessage;
+        private System.Windows.Forms.ListBox lstUsers;
         private System.Windows.Forms.Button btnChatSend;
+        private System.Windows.Forms.TextBox txtSend;
+        private System.Windows.Forms.RichTextBox rtbOutput;
+        private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtNick;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtChannel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.Label LabelPort;
+        private System.Windows.Forms.Label LabelServer;
+        private System.Windows.Forms.TextBox txtPort;
+        private System.Windows.Forms.TextBox txtServer;
     }
 }
 

@@ -14,6 +14,7 @@ using System.Net;
 using System.Net.Sockets;
 using httpMethodsApp;
 using System.Threading;
+using TechLifeForum;
 
 namespace ClientRaw
 {
@@ -23,7 +24,7 @@ namespace ClientRaw
     public partial class MainForm : Form
     {
         private const string RawFormatOutputFileName = "Raw";
-
+        IrcClient client;
         private string RawFormatFileName = "";
         private string fileNameToDownload = "";
         private string serverAddress = "http://localhost:5556/01.txt";
@@ -40,17 +41,10 @@ namespace ClientRaw
 
         // Added for Chat Server
         // Will hold the user name
-        private string UserName = "Unknown";
-        private StreamWriter swSender;
-        private StreamReader srReceiver;
-        private TcpClient tcpServer;
         // Needed to update the form with messages from another thread
         private delegate void UpdateLogCallback(string strMessage);
         // Needed to set the form to a "disconnected" state from another thread
         private delegate void CloseConnectionCallback(string strReason);
-        private Thread thrMessaging;
-        private IPAddress ipAddr;
-        private bool Connected;
 
 
 
@@ -58,6 +52,7 @@ namespace ClientRaw
 
         public MainForm()
         {
+            IrcClient client;
             Application.ApplicationExit += new EventHandler(Exit_Click);
             InitializeComponent();
             this.webClient = new ExtendedWebClient();
@@ -79,43 +74,63 @@ namespace ClientRaw
         /*---------------------------------------CHAT APP--------------------------------------------*/
         private void Exit_Click(object sender, EventArgs e)
         {
-            Disconnect();
+           
             Application.Exit();
         }
 
 
-        private void Disconnect()
+        private void frmMain_Load(object sender, EventArgs e)
         {
-            if (Connected == true)
-            {
-                // Closes the connections, streams, etc.
-                Connected = false;
-                swSender.Close();
-                srReceiver.Close();
-                tcpServer.Close();
-                thrMessaging.Abort();
-            }
+            Random r = new Random();
+
+            for (int i = 0; i < 3; i++)
+                txtNick.AppendText(r.Next(10).ToString());
+        }
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            if (btnConnect.Text == "Connect")
+                DoConnect();
+            else
+                DoDisconnect();
         }
 
-        // Sends the message typed in to the server
-        private void SendMessage()
+        private void DoDisconnect()
         {
-            if (txtMessage.Lines.Length >= 1)
-            {
-                swSender.WriteLine(txtMessage.Text);
-                swSender.Flush();
-                txtMessage.Lines = null;
-            }
-            txtMessage.Text = "";
+            throw new NotImplementedException();
         }
 
-        // We want to send the message when the Send button is clicked
+        private void DoConnect()
+        {
+            //throw new NotImplementedException();
+        }
+
         private void btnSend_Click(object sender, EventArgs e)
         {
-            SendMessage();
+            if (client.Connected && !String.IsNullOrEmpty(txtSend.Text.Trim()))
+            {
+                if (txtChannel.Text.StartsWith("#"))
+                    client.SendMessage(txtChannel.Text.Trim(), txtSend.Text.Trim());
+                else
+                    client.SendMessage("#" + txtChannel.Text.Trim(), txtSend.Text.Trim());
+
+                AddToChatWindow("Me: " + txtSend.Text.Trim());
+                txtSend.Clear();
+                txtSend.Focus();
+            }
         }
 
-        // But we also want to send the message once Enter is pressed
+        private void AddToChatWindow(string message)
+        {
+            rtbOutput.AppendText(message + "\n");
+            rtbOutput.ScrollToCaret();
+        }
+
+
+
+
+
+
+
         private void txtMessage_KeyPress(object sender, KeyPressEventArgs e)
         {
             // If the key is Enter
@@ -129,158 +144,6 @@ namespace ClientRaw
 
 
 
-        private void btnConnect_Click(object sender, EventArgs e)
-        {
-            // If we are not currently connected but awaiting to connect
-            if (Connected == false)
-            {
-                // Initialize the connection
-                InitializeConnection();
-                btnGetFile.Enabled = true;
-            }
-            else // We are connected, thus disconnect
-            {
-                CloseConnection("Disconnected at user's request.");
-                btnGetFile.Enabled = false;
-            }
-
-        }
-        private void InitializeConnection()
-        {
-            // Parse the IP address from the TextBox into an IPAddress object
-            try
-            {
-
-                ipAddr = IPAddress.Parse(txtServerAddress.Text);
-
-            }
-            catch (FormatException)
-            {
-                // Attempting to pull the IP address from the DNS name
-                IPAddress a = Dns.GetHostAddresses(txtServerAddress.Text)[0];
-                IPAddress b = Dns.GetHostAddresses(txtServerAddress.Text)[1];
-                if (IPAddress.Parse(a.ToString()).AddressFamily == AddressFamily.InterNetwork)
-                    ipAddr = Dns.GetHostAddresses(txtServerAddress.Text)[0];
-                if (IPAddress.Parse(b.ToString()).AddressFamily == AddressFamily.InterNetwork)
-                    ipAddr = Dns.GetHostAddresses(txtServerAddress.Text)[1];
-
-                // If the IP is localhost then gets the external IP address
-                if (ipAddr.ToString() == "127.0.0.1")
-                {
-                    string localIP = "";
-                    using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
-                    {
-                        socket.Connect("10.0.2.4", 65530);
-                        IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
-                        localIP = endPoint.Address.ToString();
-                    }
-                    ipAddr = IPAddress.Parse(localIP);
-                }
-            }
-            try
-            {
-                // Start a new TCP connections to the chat server
-                tcpServer = new TcpClient();
-                tcpServer.Connect(ipAddr, int.Parse(txtChatPort.Text));
-
-                // Helps us track whether we're connected or not
-                Connected = true;
-                // Prepare the form
-                UserName = txtUser.Text;
-                // Disable and enable the appropriate fields
-                txtServerAddress.Enabled = false;
-                txtUser.Enabled = false;
-                txtChatPort.Enabled = false;
-                txtLog.Enabled = true;
-                txtMessage.Enabled = true;
-                btnConnect.Text = "logout";
-                txtPass.Enabled = false;
-                btnConnect.BackColor = Color.LightSalmon;
-                // Send the desired username to the server
-                swSender = new StreamWriter(tcpServer.GetStream());
-                swSender.WriteLine(txtUser.Text);
-                swSender.Flush();
-
-                swSender = new StreamWriter(tcpServer.GetStream());
-                swSender.WriteLine(txtPass.Text);
-                swSender.Flush();
-
-                // Start the thread for receiving messages and further communication
-                thrMessaging = new Thread(new ThreadStart(ReceiveMessages));
-                thrMessaging.Start();
-            }
-            catch (SocketException)
-            {
-                MessageBox.Show("Port is in use or unavailable");
-            }
-        }
-        private void ReceiveMessages()
-        {
-            // Receive the response from the server
-            srReceiver = new StreamReader(tcpServer.GetStream());
-            // If the first character of the response is 1, connection was successful
-            string ConResponse = srReceiver.ReadLine();
-            // If the first character is a 1, connection was successful
-
-            if (ConResponse[0] == '1')
-            {
-                // Update the form to tell it we are now connected
-                this.Invoke(new UpdateLogCallback(this.UpdateLog), new object[] { "Connected Successfully!" });
-            }
-            else // If the first character is not a 1 (probably a 0), the connection was unsuccessful
-            {
-                string Reason = "Not Connected: ";
-                // Extract the reason out of the response message. The reason starts at the 3rd character
-                Reason += ConResponse.Substring(2, ConResponse.Length - 2);
-                // Update the form with the reason why we couldn't connect
-                this.Invoke(new CloseConnectionCallback(this.CloseConnection), new object[] { Reason });
-                // Exit the method
-                return;
-            }
-            // While we are successfully connected, read incoming lines from the server
-            while (Connected)
-            {
-                try
-                {
-                    if (!srReceiver.EndOfStream && Connected)
-                    {
-                        ConResponse = srReceiver.ReadLine();
-                        // Show the messages in the log TextBox
-                        this.Invoke(new UpdateLogCallback(this.UpdateLog), new object[] { ConResponse });
-                    }
-                }
-                catch (System.IO.IOException)
-                {
-                    this.Invoke(new CloseConnectionCallback(this.CloseConnection), new object[] { "Lost connection to server" });
-                    btnGetFile.Enabled = false;
-                }
-            }
-        }
-
-        // This method is called from a different thread in order to update the log TextBox
-        private void UpdateLog(string strMessage)
-        {
-            // Append text also scrolls the TextBox to the bottom each time
-            txtLog.AppendText(strMessage + "\r\n");
-        }
-
-        // Closes a current connection
-        private void CloseConnection(string Reason)
-        {
-            // Show the reason why the connection is ending
-            txtLog.AppendText(Reason + "\r\n");
-            // Enable and disable the appropriate controls on the form
-            txtServerAddress.Enabled = true;
-            txtUser.Enabled = true;
-            txtMessage.Enabled = false;
-            txtChatPort.Enabled = true;
-            txtPass.Enabled = true;
-            btnGetFile.Enabled = false;
-            btnConnect.Text = "Login";
-            btnConnect.BackColor = Color.GreenYellow;
-            Disconnect();
-
-        }
 
 
 
@@ -604,6 +467,10 @@ namespace ClientRaw
 
         }
 
+        private void txtChannel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
