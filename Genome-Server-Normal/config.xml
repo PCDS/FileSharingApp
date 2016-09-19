@@ -12,8 +12,8 @@
 
   <!--OLine: you really should change that. Everyone in this list gets OPER privilege-->
   <oper>
-    <user>admin</user>
-    <pass>pass4u</pass>
+    <user>giggles</user>
+    <pass>monkey</pass>
   </oper>
 
   <!--Allow and deny pattern are matched in the order of appearence, the standard is deny all, so there should be at least one allow line to be able to use OPER-->

@@ -52,7 +52,7 @@ namespace ClientRaw
 
         public MainForm()
         {
-            IrcClient client;
+            
             Application.ApplicationExit += new EventHandler(Exit_Click);
             InitializeComponent();
             this.webClient = new ExtendedWebClient();
@@ -93,15 +93,65 @@ namespace ClientRaw
             else
                 DoDisconnect();
         }
-
-        private void DoDisconnect()
-        {
-            throw new NotImplementedException();
-        }
-
         private void DoConnect()
         {
-            //throw new NotImplementedException();
+            if (String.IsNullOrEmpty(txtServerAddress.Text.Trim()))
+            {
+                MessageBox.Show("Please specify a server");
+                return;
+            }
+            if (String.IsNullOrEmpty(txtChannel.Text.Trim()))
+            {
+                MessageBox.Show("Please specify a channel");
+                return;
+            }
+            if (String.IsNullOrEmpty(txtNick.Text.Trim()))
+            {
+                MessageBox.Show("Please specify a nick");
+                return;
+            }
+            if (String.IsNullOrEmpty(txtPass.Text.Trim()))
+            {
+                MessageBox.Show("Please use a password");
+                return;
+            }
+
+            int port;
+            if (Int32.TryParse(txtPort.Text, out port))
+                client = new IrcClient(txtServerAddress.Text.Trim(), port);
+            else
+                client = new IrcClient(txtServerAddress.Text.Trim());
+
+            AddEvents();
+            client.Nick = txtNick.Text.Trim();
+            client.ServerPass = txtPass.Text.Trim();
+            btnConnect.Enabled = false;
+            txtChannel.Enabled = false;
+            txtPort.Enabled = false;
+            txtServerAddress.Enabled = false;
+            txtNick.Enabled = false;
+            txtPass.Enabled = false;
+            rtbOutput.Clear(); // in case they reconnect and have old stuff there
+            btnChatSend.Enabled = true;
+
+            client.Connect();
+        }
+        private void DoDisconnect()
+        {
+            btnChatSend.Enabled = false;
+            btnConnect.Enabled = true;
+            txtChannel.Enabled = true;
+            txtPort.Enabled = true;
+            txtServerAddress.Enabled = true;
+            txtNick.Enabled = true;
+            txtPass.Enabled = true;
+            lstUsers.Items.Clear();
+            txtSend.Enabled = false;
+
+            client.Disconnect();
+            client = null;
+
+            btnConnect.Text = "Connect";
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -143,6 +193,87 @@ namespace ClientRaw
         }
 
 
+
+        private void AddEvents()
+        {
+            client.ChannelMessage += client_ChannelMessage;
+            client.ExceptionThrown += client_ExceptionThrown;
+            client.NoticeMessage += client_NoticeMessage;
+            client.OnConnect += client_OnConnect;
+            client.PrivateMessage += client_PrivateMessage;
+            client.ServerMessage += client_ServerMessage;
+            client.UpdateUsers += client_UpdateUsers;
+            client.UserJoined += client_UserJoined;
+            client.UserLeft += client_UserLeft;
+            client.UserNickChange += client_UserNickChange;
+        }
+
+
+        #region Event Listeners
+
+        void client_OnConnect(object sender, EventArgs e)
+        {
+            txtSend.Enabled = true;
+            txtSend.Focus();
+
+            btnConnect.Text = "Disconnect";
+            btnConnect.Enabled = true;
+
+            if (txtChannel.Text.StartsWith("#"))
+                client.JoinChannel(txtChannel.Text.Trim());
+            else
+                client.JoinChannel("#" + txtChannel.Text.Trim());
+
+        }
+
+        void client_UserNickChange(object sender, UserNickChangedEventArgs e)
+        {
+            lstUsers.Items[lstUsers.Items.IndexOf(e.Old)] = e.New;
+        }
+
+        void client_UserLeft(object sender, UserLeftEventArgs e)
+        {
+            lstUsers.Items.Remove(e.User);
+        }
+
+        void client_UserJoined(object sender, UserJoinedEventArgs e)
+        {
+            lstUsers.Items.Add(e.User);
+        }
+
+        void client_UpdateUsers(object sender, UpdateUsersEventArgs e)
+        {
+            lstUsers.Items.Clear();
+            lstUsers.Items.AddRange(e.UserList);
+
+        }
+
+        void client_ServerMessage(object sender, StringEventArgs e)
+        {
+            Console.WriteLine(e.Result);
+        }
+
+        void client_PrivateMessage(object sender, PrivateMessageEventArgs e)
+        {
+            AddToChatWindow("PM FROM " + e.From + ": " + e.Message);
+        }
+
+        void client_NoticeMessage(object sender, NoticeMessageEventArgs e)
+        {
+            AddToChatWindow("NOTICE FROM " + e.From + ": " + e.Message);
+        }
+
+        void client_ExceptionThrown(object sender, ExceptionEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message);
+        }
+
+        void client_ChannelMessage(object sender, ChannelMessageEventArgs e)
+        {
+            AddToChatWindow(e.From + ": " + e.Message);
+        }
+
+        #endregion
 
 
 

@@ -52,9 +52,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnConnect = new System.Windows.Forms.Button();
             this.LabelPort = new System.Windows.Forms.Label();
-            this.LabelServer = new System.Windows.Forms.Label();
             this.txtPort = new System.Windows.Forms.TextBox();
-            this.txtServer = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,19 +69,19 @@
             // 
             // txtServerAddress
             // 
-            this.txtServerAddress.Location = new System.Drawing.Point(336, 534);
+            this.txtServerAddress.Location = new System.Drawing.Point(158, 465);
             this.txtServerAddress.Name = "txtServerAddress";
-            this.txtServerAddress.Size = new System.Drawing.Size(281, 20);
+            this.txtServerAddress.Size = new System.Drawing.Size(191, 20);
             this.txtServerAddress.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(228, 534);
+            this.label1.Location = new System.Drawing.Point(72, 468);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Server Address";
+            this.label1.Text = "Server Address:";
             // 
             // label2
             // 
@@ -185,6 +183,7 @@
             this.txtSend.Name = "txtSend";
             this.txtSend.Size = new System.Drawing.Size(255, 20);
             this.txtSend.TabIndex = 89;
+            this.txtSend.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMessage_KeyPress);
             // 
             // rtbOutput
             // 
@@ -259,36 +258,19 @@
             // LabelPort
             // 
             this.LabelPort.AutoSize = true;
-            this.LabelPort.Location = new System.Drawing.Point(273, 468);
+            this.LabelPort.Location = new System.Drawing.Point(474, 442);
             this.LabelPort.Name = "LabelPort";
             this.LabelPort.Size = new System.Drawing.Size(29, 13);
             this.LabelPort.TabIndex = 95;
             this.LabelPort.Text = "Port:";
             // 
-            // LabelServer
-            // 
-            this.LabelServer.AutoSize = true;
-            this.LabelServer.Location = new System.Drawing.Point(120, 467);
-            this.LabelServer.Name = "LabelServer";
-            this.LabelServer.Size = new System.Drawing.Size(41, 13);
-            this.LabelServer.TabIndex = 94;
-            this.LabelServer.Text = "Server:";
-            // 
             // txtPort
             // 
-            this.txtPort.Location = new System.Drawing.Point(308, 465);
+            this.txtPort.Location = new System.Drawing.Point(509, 439);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(44, 20);
             this.txtPort.TabIndex = 93;
             this.txtPort.Text = "6667";
-            // 
-            // txtServer
-            // 
-            this.txtServer.Location = new System.Drawing.Point(167, 465);
-            this.txtServer.Name = "txtServer";
-            this.txtServer.Size = new System.Drawing.Size(100, 20);
-            this.txtServer.TabIndex = 92;
-            this.txtServer.Text = "localhost";
             // 
             // MainForm
             // 
@@ -304,9 +286,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.LabelPort);
-            this.Controls.Add(this.LabelServer);
             this.Controls.Add(this.txtPort);
-            this.Controls.Add(this.txtServer);
             this.Controls.Add(this.lstUsers);
             this.Controls.Add(this.btnChatSend);
             this.Controls.Add(this.txtSend);
@@ -355,9 +335,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Label LabelPort;
-        private System.Windows.Forms.Label LabelServer;
         private System.Windows.Forms.TextBox txtPort;
-        private System.Windows.Forms.TextBox txtServer;
     }
 }
 
