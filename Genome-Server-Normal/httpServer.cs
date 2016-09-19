@@ -30,6 +30,7 @@ namespace httpMethodsApp
         public Hashtable httpHeaders = new Hashtable();
 
 
+
         private static int MAX_POST_SIZE = 10 * 1024 * 1024; // 10MB
 
         public HttpProcessor(TcpClient client, Server server)
@@ -51,6 +52,7 @@ namespace httpMethodsApp
                 if (next_char == -1) { Thread.Sleep(1); continue; };
                 data += Convert.ToChar(next_char);
             }
+            Console.WriteLine("readline: " + data);
             return data;
         }
         public void process()
@@ -92,7 +94,9 @@ namespace httpMethodsApp
 
         public void parseRequest()
         {
+
             String request = streamReadLine(inputStream);
+            
             string[] tokens = request.Split(' ');
             if (tokens.Length != 3)
             {
@@ -114,6 +118,10 @@ namespace httpMethodsApp
                     return;
                 }
 
+
+                //Console.WriteLine("readline: " + line);
+
+
                 int separator = line.IndexOf(':');
                 if (separator == -1)
                 {
@@ -128,6 +136,33 @@ namespace httpMethodsApp
 
                 string value = line.Substring(pos, line.Length - pos);
                 httpHeaders[name] = value;
+                if (line.Contains("Host:"))
+                {
+                   // Console.WriteLine("readline: " + value);
+                }
+                string userName = "test";
+                string userPassword = "mypass";
+                var request = WebRequest.Create("http://localhost");
+                string authInfo = userName + ":" + userPassword;
+                authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
+                //
+                ////like this:
+                request.Headers["Authorization"] = "Basic " + authInfo;
+              //  //
+              //  var response = request.GetResponse();
+              //  string authorization = request.Headers["Authorization"];
+              //  string userInfo;
+              //  string username = "test";
+              //  string password = "mypass";
+              //  if (authorization != null)
+              //  {
+              //    byte[] tempConverted = Convert.FromBase64String(authorization.Replace("Basic ", "").Trim());
+              //      userInfo = System.Text.Encoding.UTF8.GetString(tempConverted);
+              //      string[] usernamePassword = userInfo.Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
+              //      username = usernamePassword[0];
+              //      password = usernamePassword[1];
+              //  }
+
             }
         }
 
@@ -145,7 +180,7 @@ namespace httpMethodsApp
             // we hand him needs to let him see the "end of the stream" at this content 
             // length, because otherwise he won't know when he's seen it all! 
 
-            //// Console.WriteLine("get post data start");
+           Console.WriteLine("get post data start");
             int content_len = 0;
             MemoryStream ms = new MemoryStream();
             if (this.httpHeaders.ContainsKey("Content-Length"))
@@ -179,7 +214,7 @@ namespace httpMethodsApp
                 }
                 ms.Seek(0, SeekOrigin.Begin);
             }
-            //// Console.WriteLine("get post data end");
+             Console.WriteLine("get post data end");
             server.handlePOSTRequest(this, new StreamReader(ms));
 
         }
@@ -414,7 +449,7 @@ namespace httpMethodsApp
 
         public override void handleGETRequest(HttpProcessor p)
         {
-
+           
             bool shouldCompressData = false;
             if ((String)p.httpHeaders["Accept-Encoding"] == "gzip")
             {
@@ -614,6 +649,13 @@ namespace httpMethodsApp
             p.outputStream.WriteLine("postbody: <pre>{0}</pre>", data);
 
 
+        }
+
+        public void SetBasicAuthHeader(WebRequest req, String userName, String userPassword)
+        {
+            string authInfo = userName + ":" + userPassword;
+            authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
+            req.Headers["Authorization"] = "Basic " + authInfo;
         }
 
 

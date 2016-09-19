@@ -1,0 +1,4 @@
+/SET user_name sans
+/SET nick giggles
+/SERVER ADD -auto -network myirc 192.168.1.12 6667 password
+/connect 192.168.1.12

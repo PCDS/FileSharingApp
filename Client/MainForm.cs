@@ -133,7 +133,7 @@ namespace ClientRaw
             txtPass.Enabled = false;
             rtbOutput.Clear(); // in case they reconnect and have old stuff there
             btnChatSend.Enabled = true;
-
+            btnGetFile.Enabled = true;
             client.Connect();
         }
         private void DoDisconnect()
@@ -147,16 +147,16 @@ namespace ClientRaw
             txtPass.Enabled = true;
             lstUsers.Items.Clear();
             txtSend.Enabled = false;
-
             client.Disconnect();
             client = null;
+            btnGetFile.Enabled = false;
 
             btnConnect.Text = "Connect";
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            if (client.Connected && !String.IsNullOrEmpty(txtSend.Text.Trim()))
+            if (client.Connected && !String.IsNullOrEmpty(txtSend.Text.Trim()) && lstUsers.Items.Count != 0)
             {
                 if (txtChannel.Text.StartsWith("#"))
                     client.SendMessage(txtChannel.Text.Trim(), txtSend.Text.Trim());
@@ -166,6 +166,10 @@ namespace ClientRaw
                 AddToChatWindow("Me: " + txtSend.Text.Trim());
                 txtSend.Clear();
                 txtSend.Focus();
+            }
+            else
+            {
+                MessageBox.Show("Unable to send to channel, please reconnect");
             }
         }
 
@@ -239,6 +243,7 @@ namespace ClientRaw
         void client_UserJoined(object sender, UserJoinedEventArgs e)
         {
             lstUsers.Items.Add(e.User);
+
         }
 
         void client_UpdateUsers(object sender, UpdateUsersEventArgs e)
@@ -379,7 +384,7 @@ namespace ClientRaw
                 MessageBox.Show("You should write the server address ");
                 return;
             }
-            this.serverAddress = "http://" + txtServerAddress.Text + ":" + port.ToString();
+            this.serverAddress = "http://"+txtNick+":"+txtPass +"@"+ txtServerAddress.Text + ":" + port.ToString();
             this.autoDataSize = this.txtDataSize.LongValue * 1024;
 
                 if (txtFileName.Text == "")

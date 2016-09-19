@@ -18,7 +18,7 @@ using System.Net.Sockets;
 using IrcD.Server;
 using IrcD;
 using System.Threading;
-
+//port 5556 is default
 namespace httpMethodsApp
 {
    
@@ -189,12 +189,6 @@ namespace httpMethodsApp
         }
 
 
-
-        private void UpdateStatus(string strMessage)
-        {
-            // Updates the log with the message
-           // txtLog.AppendText(strMessage + "\r\n");
-        }
 
 
 
