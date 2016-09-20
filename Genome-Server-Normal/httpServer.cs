@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Collections;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using System.IO.Compression;
+using System.Web;
+using System.Security.Principal;
+using FileSharingAppServer;
+
 namespace httpMethodsApp
 {
     public delegate void StartedListening(bool hasStarted, string errorMessage);
@@ -29,8 +31,10 @@ namespace httpMethodsApp
         public String http_protocol_versionstring;
         public Hashtable httpHeaders = new Hashtable();
 
+//------------------------------------------------------------------------------------------
 
 
+//------------------------------------------------------------------------------------------
         private static int MAX_POST_SIZE = 10 * 1024 * 1024; // 10MB
 
         public HttpProcessor(TcpClient client, Server server)
@@ -39,7 +43,12 @@ namespace httpMethodsApp
             this.server = server;
         }
 
+        static string username = null;
+        static string userpass = null;
+        static int counter = 0;
+        static bool reset = false;
 
+        static bool auth = false;
         private string streamReadLine(Stream inputStream)
         {
             int next_char;
@@ -52,7 +61,7 @@ namespace httpMethodsApp
                 if (next_char == -1) { Thread.Sleep(1); continue; };
                 data += Convert.ToChar(next_char);
             }
-            Console.WriteLine("readline: " + data);
+
             return data;
         }
         public void process()
@@ -69,13 +78,33 @@ namespace httpMethodsApp
             {
                 parseRequest();
                 readHeaders();
-                if (http_method.Equals("GET"))
+
+                auth = ValidPass(username, userpass);
+                
+                if (auth == true)
                 {
-                    handleGETRequest();
+                    counter = counter + 1;
+
+                    if (http_method.Equals("GET"))
+                    {
+                        handleGETRequest();
+
+                    }
+                    else if (http_method.Equals("POST"))
+                    {
+                        handlePOSTRequest();
+                    }
                 }
-                else if (http_method.Equals("POST"))
+                else
                 {
-                    handlePOSTRequest();
+                    writeFailure();
+                }
+                if (reset == true)
+                {
+                     auth = false;
+                     username = null;
+                     userpass = null;
+                     reset = false;
                 }
                 outputStream.Flush();
 
@@ -86,11 +115,49 @@ namespace httpMethodsApp
                 writeFailure();
             }
             //flush any remaining output
-            outputStream.BaseStream.Flush();
-            inputStream = null;
+            try
+            {
+                outputStream.BaseStream.Flush();
+            }
+            catch (IOException) {
+            }
+                inputStream = null;
             outputStream = null;
             clientSocket.Close();
         }
+
+
+
+
+        public bool ValidPass(string nick, string pass)
+        {
+            DatabaseCon UserDB = new DatabaseCon();
+            if (nick != "")
+            {
+                bool myPass = false;
+                string currPass = pass;
+                if (currPass != "")
+                {
+
+                    myPass = UserDB.CheckPass(nick, currPass);
+                }
+                else
+                {
+                    // 0 means not connected
+                    Console.WriteLine("Please enter a password.");
+                    return false;
+                }
+                if (myPass == false)
+                {
+
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
 
         public void parseRequest()
         {
@@ -105,7 +172,10 @@ namespace httpMethodsApp
             http_method = tokens[0].ToUpper();
             http_url = tokens[1];
             http_protocol_versionstring = tokens[2];
-
+            if (http_url.Length > 1)
+            {
+                reset = true;
+            }
         }
 
         public void readHeaders()
@@ -117,9 +187,6 @@ namespace httpMethodsApp
                 {
                     return;
                 }
-
-
-                //Console.WriteLine("readline: " + line);
 
 
                 int separator = line.IndexOf(':');
@@ -136,35 +203,25 @@ namespace httpMethodsApp
 
                 string value = line.Substring(pos, line.Length - pos);
                 httpHeaders[name] = value;
-                if (line.Contains("Host:"))
+                //Console.WriteLine(counter);
+                //Console.WriteLine(value);
+                if (line.Contains("User:"))
                 {
-                   // Console.WriteLine("readline: " + value);
+                    username = value;
                 }
-                string userName = "test";
-                string userPassword = "mypass";
-                var request = WebRequest.Create("http://localhost");
-                string authInfo = userName + ":" + userPassword;
-                authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
-                //
-                ////like this:
-                request.Headers["Authorization"] = "Basic " + authInfo;
-              //  //
-              //  var response = request.GetResponse();
-              //  string authorization = request.Headers["Authorization"];
-              //  string userInfo;
-              //  string username = "test";
-              //  string password = "mypass";
-              //  if (authorization != null)
-              //  {
-              //    byte[] tempConverted = Convert.FromBase64String(authorization.Replace("Basic ", "").Trim());
-              //      userInfo = System.Text.Encoding.UTF8.GetString(tempConverted);
-              //      string[] usernamePassword = userInfo.Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
-              //      username = usernamePassword[0];
-              //      password = usernamePassword[1];
-              //  }
+                if (line.Contains("Pass:"))
+                {
+                    userpass = value;
+                }
+                if (HttpContext.Current != null)
+                {
+
+                }
+
 
             }
         }
+        
 
         public void handleGETRequest()
         {

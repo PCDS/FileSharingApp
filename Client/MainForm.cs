@@ -15,6 +15,10 @@ using System.Net.Sockets;
 using httpMethodsApp;
 using System.Threading;
 using TechLifeForum;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Json;
+using System.Threading.Tasks;
 
 namespace ClientRaw
 {
@@ -339,34 +343,108 @@ namespace ClientRaw
 
 
         }
+
         private void getRawFormatFile()
         {
             // decoding char to 2bits
             string getFileName = RawFormatFileName;
 
-         //   chart1.Series["downloadingdataTime"].LegendText = "Time for downloading Raw File";
-         //   chart1.Series["totaldataTime"].LegendText = "Time for downloading , (decompressing) Raw File";
-         //
-         //
-         //   if (timingType == Timing.transferTimeOnly)
-         //   {
-         //       if (!getFileName.Contains("Auto"))
-         //           getFileName = "Preconfig" + getFileName;
-         //       chart1.Series["dataTime"].LegendText = "Time for downloading Raw File";
-         //
-         //
-         //   }
-         //
-         //   if (getFileName.Contains("Auto"))
-         //   {
-         //       chart1.Series["downloadingdataTime"].LegendText = "Time for downloading Raw Data";
-         //       chart1.Series["totaldataTime"].LegendText = "Time for downloading and decompressing Raw Data";
-         //   }
+            //   chart1.Series["downloadingdataTime"].LegendText = "Time for downloading Raw File";
+            //   chart1.Series["totaldataTime"].LegendText = "Time for downloading , (decompressing) Raw File";
+            //
+            //
+            //   if (timingType == Timing.transferTimeOnly)
+            //   {
+            //       if (!getFileName.Contains("Auto"))
+            //           getFileName = "Preconfig" + getFileName;
+            //       chart1.Series["dataTime"].LegendText = "Time for downloading Raw File";
+            //
+            //
+            //   }
+            //
+            //   if (getFileName.Contains("Auto"))
+            //   {
+            //       chart1.Series["downloadingdataTime"].LegendText = "Time for downloading Raw Data";
+            //       chart1.Series["totaldataTime"].LegendText = "Time for downloading and decompressing Raw Data";
+            //   }
 
-            this.stopwatch = Stopwatch.StartNew();
-            this.webClient.startDownloadingFile(serverAddress + "/" + getFileName);
 
+
+            //var client = new HttpClient();
+            //var request = new HttpRequestMessage()
+            //{
+            //    RequestUri = new Uri(serverAddress),
+            //    Method = HttpMethod.Get,
+            //};
+            //request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
+            //var task = client.SendAsync(request)
+            //    .ContinueWith((taskwithmsg) =>
+            //    {
+            //        var response = taskwithmsg.Result();
+            //
+            //        var jsonTask = response.Content.ReadAsAsync<JsonObject>();
+            //        jsonTask.Wait();
+            //        var jsonObject = jsonTask.Result;
+            //    });
+            //task.Wait();
+            //public static async Task<T> Get<T>
+            //var TARGETURL = serverAddress;
+            //
+            //HttpClient client = new HttpClient();
+            //
+            //var byteArray = Encoding.ASCII.GetBytes("username:password1234");
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
+            //
+            //HttpResponseMessage response = await client.GetAsync(TARGETURL);
+            //
+            //HttpContent content = response.Content;
+
+
+
+
+
+
+
+
+            stopwatch = Stopwatch.StartNew();
+            WebRequest(serverAddress, txtNick.Text, txtPass.Text);
+            HttpClient httpClient = new HttpClient();
+            webClient.startDownloadingFile(serverAddress + "/" + getFileName);
+            
+          
         }
+
+        private static void WebRequest( string serverAddress, string Nick, string Pass)
+        {
+             string WEBSERVICE_URL = serverAddress;
+            try
+            {
+                var webRequest = System.Net.WebRequest.Create(WEBSERVICE_URL);
+                if (webRequest != null)
+                {
+                    webRequest.Method = "GET";
+                    webRequest.Timeout = 1200;
+                    webRequest.ContentType = "application/json";
+                    webRequest.Headers.Add("User", Nick);
+                    webRequest.Headers.Add("Pass", Pass);
+                    using (Stream s = webRequest.GetResponse().GetResponseStream())
+                    {
+                        using (System.IO.StreamReader sr = new System.IO.StreamReader(s))
+                        {
+                            var jsonResponse = sr.ReadToEnd();
+                            Console.WriteLine(String.Format("Response: {0}", jsonResponse));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+
+
 
         private void btnGetData_Click(object sender, EventArgs e)
         {
@@ -384,7 +462,8 @@ namespace ClientRaw
                 MessageBox.Show("You should write the server address ");
                 return;
             }
-            this.serverAddress = "http://"+txtNick+":"+txtPass +"@"+ txtServerAddress.Text + ":" + port.ToString();
+            //this.serverAddress = "http://"+txtNick+":"+txtPass +"@"+ txtServerAddress.Text + ":" + port.ToString();
+            serverAddress = "http://" + txtServerAddress.Text + ":" + port.ToString();
             this.autoDataSize = this.txtDataSize.LongValue * 1024;
 
                 if (txtFileName.Text == "")
