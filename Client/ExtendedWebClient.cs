@@ -87,8 +87,7 @@ namespace ClientRaw
        public void startDownloadingFile(string fileURI)
        {
            string saveFileName = "";
-
-           saveFileName = this.getFileName(fileURI);
+            saveFileName = this.getFileName(fileURI);
            downloadFile(fileURI, saveFileName);
 
        }

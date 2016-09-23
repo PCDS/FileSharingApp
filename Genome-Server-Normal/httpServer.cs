@@ -42,13 +42,6 @@ namespace httpMethodsApp
             this.clientSocket = client;
             this.server = server;
         }
-
-        static string username = null;
-        static string userpass = null;
-        static int counter = 0;
-        static bool reset = false;
-
-        static bool auth = false;
         private string streamReadLine(Stream inputStream)
         {
             int next_char;
@@ -61,11 +54,13 @@ namespace httpMethodsApp
                 if (next_char == -1) { Thread.Sleep(1); continue; };
                 data += Convert.ToChar(next_char);
             }
+            Console.WriteLine(data);
 
             return data;
         }
         public void process()
         {
+            bool auth = false;
             // we can't use a StreamReader for input, because it buffers up extra data on us inside it's
             // "processed" view of the world, and we want the data raw after the headers
             inputStream = new BufferedStream(clientSocket.GetStream());
@@ -77,13 +72,9 @@ namespace httpMethodsApp
             try
             {
                 parseRequest();
-                readHeaders();
-
-                auth = ValidPass(username, userpass);
-                
+                auth = readHeaders();
                 if (auth == true)
                 {
-                    counter = counter + 1;
 
                     if (http_method.Equals("GET"))
                     {
@@ -98,13 +89,6 @@ namespace httpMethodsApp
                 else
                 {
                     writeFailure();
-                }
-                if (reset == true)
-                {
-                     auth = false;
-                     username = null;
-                     userpass = null;
-                     reset = false;
                 }
                 outputStream.Flush();
 
@@ -172,54 +156,57 @@ namespace httpMethodsApp
             http_method = tokens[0].ToUpper();
             http_url = tokens[1];
             http_protocol_versionstring = tokens[2];
-            if (http_url.Length > 1)
-            {
-                reset = true;
-            }
         }
 
-        public void readHeaders()
+        public bool readHeaders()
         {
             String line;
+            string username = null;
+            string userpass = null;
+
             while ((line = streamReadLine(inputStream)) != null)
             {
                 if (line.Equals(""))
                 {
-                    return;
+                 return ValidPass(username, userpass);
                 }
-
-
-                int separator = line.IndexOf(':');
-                if (separator == -1)
-                {
-                    throw new Exception("invalid http header line: " + line);
-                }
-                String name = line.Substring(0, separator);
-                int pos = separator + 1;
-                while ((pos < line.Length) && (line[pos] == ' '))
-                {
-                    pos++; // strip any spaces
-                }
-
-                string value = line.Substring(pos, line.Length - pos);
-                httpHeaders[name] = value;
-                //Console.WriteLine(counter);
-                //Console.WriteLine(value);
-                if (line.Contains("User:"))
-                {
-                    username = value;
-                }
-                if (line.Contains("Pass:"))
-                {
-                    userpass = value;
-                }
-                if (HttpContext.Current != null)
+                else
                 {
 
+
+                    int separator = line.IndexOf(':');
+                    if (separator == -1)
+                    {
+                        throw new Exception("invalid http header line: " + line);
+                    }
+                    String name = line.Substring(0, separator);
+                    int pos = separator + 1;
+                    while ((pos < line.Length) && (line[pos] == ' '))
+                    {
+                        pos++; // strip any spaces
+                    }
+
+                    string value = line.Substring(pos, line.Length - pos);
+                    httpHeaders[name] = value;
+                    //Console.WriteLine(counter);
+                    //Console.WriteLine(value);
+                    if (line.Contains("User:"))
+                    {
+                        username = value;
+                    }
+                    if (line.Contains("Pass:"))
+                    {
+                        userpass = value;
+                    }
+                    if (HttpContext.Current != null)
+                    {
+
+                    }
                 }
-
-
             }
+
+            return ValidPass(username, userpass);
+
         }
         
 

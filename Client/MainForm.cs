@@ -399,52 +399,12 @@ namespace ClientRaw
             //
             //HttpContent content = response.Content;
 
-
-
-
-
-
-
-
             stopwatch = Stopwatch.StartNew();
-            WebRequest(serverAddress, txtNick.Text, txtPass.Text);
             HttpClient httpClient = new HttpClient();
             webClient.startDownloadingFile(serverAddress + "/" + getFileName);
             
           
         }
-
-        private static void WebRequest( string serverAddress, string Nick, string Pass)
-        {
-             string WEBSERVICE_URL = serverAddress;
-            try
-            {
-                var webRequest = System.Net.WebRequest.Create(WEBSERVICE_URL);
-                if (webRequest != null)
-                {
-                    webRequest.Method = "GET";
-                    webRequest.Timeout = 1200;
-                    webRequest.ContentType = "application/json";
-                    webRequest.Headers.Add("User", Nick);
-                    webRequest.Headers.Add("Pass", Pass);
-                    using (Stream s = webRequest.GetResponse().GetResponseStream())
-                    {
-                        using (System.IO.StreamReader sr = new System.IO.StreamReader(s))
-                        {
-                            var jsonResponse = sr.ReadToEnd();
-                            Console.WriteLine(String.Format("Response: {0}", jsonResponse));
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-        }
-
-
-
 
         private void btnGetData_Click(object sender, EventArgs e)
         {
@@ -613,6 +573,8 @@ namespace ClientRaw
         private void formatHeader(long dataSize)
         {
             webClient.Headers.Clear();
+
+
             if (compressData)
                 webClient.Headers.Add("Accept-Encoding", "gzip");
 
@@ -632,7 +594,8 @@ namespace ClientRaw
 
 
             }
-
+            webClient.Headers.Add("User", txtNick.Text);
+            webClient.Headers.Add("Pass", txtPass.Text);
             webClient.Headers.Add("DataSize", dataSize.ToString());
 
 

@@ -98,6 +98,7 @@
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(281, 20);
             this.txtFileName.TabIndex = 6;
+            this.txtFileName.Text = "hello.txt";
             this.toolTip1.SetToolTip(this.txtFileName, "Enter text file name like mydata.txt");
             // 
             // toolTip1
@@ -201,6 +202,7 @@
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(100, 20);
             this.txtPass.TabIndex = 102;
+            this.txtPass.Text = "monkey";
             // 
             // label3
             // 
@@ -217,7 +219,7 @@
             this.txtNick.Name = "txtNick";
             this.txtNick.Size = new System.Drawing.Size(100, 20);
             this.txtNick.TabIndex = 100;
-            this.txtNick.Text = "Guest";
+            this.txtNick.Text = "giggles";
             // 
             // label4
             // 
