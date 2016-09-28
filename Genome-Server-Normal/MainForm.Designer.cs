@@ -48,13 +48,15 @@
             this.showUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtFilePort = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSelectFile
             // 
-            this.btnSelectFile.Location = new System.Drawing.Point(64, 103);
+            this.btnSelectFile.Location = new System.Drawing.Point(62, 114);
             this.btnSelectFile.Name = "btnSelectFile";
             this.btnSelectFile.Size = new System.Drawing.Size(239, 27);
             this.btnSelectFile.TabIndex = 2;
@@ -64,7 +66,7 @@
             // 
             // btnStartServer
             // 
-            this.btnStartServer.Location = new System.Drawing.Point(64, 136);
+            this.btnStartServer.Location = new System.Drawing.Point(62, 147);
             this.btnStartServer.Name = "btnStartServer";
             this.btnStartServer.Size = new System.Drawing.Size(239, 27);
             this.btnStartServer.TabIndex = 4;
@@ -111,27 +113,29 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(61, 70);
+            this.label1.Location = new System.Drawing.Point(64, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 13);
+            this.label1.Size = new System.Drawing.Size(99, 13);
             this.label1.TabIndex = 36;
-            this.label1.Text = "Chat Listening Port";
+            this.label1.Text = "Chat Listening Port:";
             // 
             // txtChatPort
             // 
+            this.txtChatPort.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtChatPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtChatPort.Location = new System.Drawing.Point(162, 67);
+            this.txtChatPort.Location = new System.Drawing.Point(169, 60);
             this.txtChatPort.Name = "txtChatPort";
-            this.txtChatPort.Size = new System.Drawing.Size(100, 20);
+            this.txtChatPort.ReadOnly = true;
+            this.txtChatPort.Size = new System.Drawing.Size(100, 13);
             this.txtChatPort.TabIndex = 35;
-            this.txtChatPort.Text = "1986";
+            this.txtChatPort.Text = "0";
             this.txtChatPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ipAddress
             // 
             this.ipAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ipAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ipAddress.Location = new System.Drawing.Point(162, 48);
+            this.ipAddress.Location = new System.Drawing.Point(169, 38);
             this.ipAddress.Name = "ipAddress";
             this.ipAddress.ReadOnly = true;
             this.ipAddress.Size = new System.Drawing.Size(100, 13);
@@ -143,7 +147,7 @@
             // 
             this.lbIp.AutoSize = true;
             this.lbIp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbIp.Location = new System.Drawing.Point(61, 48);
+            this.lbIp.Location = new System.Drawing.Point(68, 38);
             this.lbIp.Name = "lbIp";
             this.lbIp.Size = new System.Drawing.Size(95, 13);
             this.lbIp.TabIndex = 32;
@@ -236,11 +240,35 @@
             this.deleteUserToolStripMenuItem.Text = "Delete User";
             this.deleteUserToolStripMenuItem.Click += new System.EventHandler(this.Delete_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(70, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 13);
+            this.label2.TabIndex = 78;
+            this.label2.Text = "File Listening Port:";
+            // 
+            // txtFilePort
+            // 
+            this.txtFilePort.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtFilePort.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFilePort.Location = new System.Drawing.Point(169, 86);
+            this.txtFilePort.Name = "txtFilePort";
+            this.txtFilePort.ReadOnly = true;
+            this.txtFilePort.Size = new System.Drawing.Size(100, 13);
+            this.txtFilePort.TabIndex = 77;
+            this.txtFilePort.Text = "0";
+            this.txtFilePort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 201);
+            this.ClientSize = new System.Drawing.Size(565, 183);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtFilePort);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtChatPort);
@@ -261,6 +289,8 @@
             this.Controls.SetChildIndex(this.txtChatPort, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.toolStrip2, 0);
+            this.Controls.SetChildIndex(this.txtFilePort, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
@@ -291,6 +321,8 @@
         private System.Windows.Forms.ToolStripMenuItem deleteUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem showUsersToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtFilePort;
     }
 }
 

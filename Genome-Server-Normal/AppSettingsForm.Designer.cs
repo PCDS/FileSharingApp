@@ -31,21 +31,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.PortNumbertxt = new httpMethodsApp.NumericTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtChatPort = new httpMethodsApp.NumericTextBox();
+            this.txtFilePort = new httpMethodsApp.NumericTextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 35);
+            this.label1.Location = new System.Drawing.Point(35, 82);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 16);
+            this.label1.Size = new System.Drawing.Size(109, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Port Number";
+            this.label1.Text = "File Port Number:";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(84, 142);
+            this.btnSave.Location = new System.Drawing.Point(76, 125);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(87, 29);
             this.btnSave.TabIndex = 2;
@@ -56,29 +58,48 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(196, 142);
+            this.btnCancel.Location = new System.Drawing.Point(193, 125);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(87, 29);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // PortNumbertxt
+            // label2
             // 
-            this.PortNumbertxt.AllowSpace = false;
-            this.PortNumbertxt.Location = new System.Drawing.Point(102, 35);
-            this.PortNumbertxt.Name = "PortNumbertxt";
-            this.PortNumbertxt.Size = new System.Drawing.Size(192, 23);
-            this.PortNumbertxt.TabIndex = 1;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 16);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Chat Port Number:";
+            // 
+            // txtChatPort
+            // 
+            this.txtChatPort.AllowSpace = false;
+            this.txtChatPort.Location = new System.Drawing.Point(145, 42);
+            this.txtChatPort.Name = "txtChatPort";
+            this.txtChatPort.Size = new System.Drawing.Size(192, 23);
+            this.txtChatPort.TabIndex = 5;
+            // 
+            // txtFilePort
+            // 
+            this.txtFilePort.AllowSpace = false;
+            this.txtFilePort.Location = new System.Drawing.Point(145, 79);
+            this.txtFilePort.Name = "txtFilePort";
+            this.txtFilePort.Size = new System.Drawing.Size(192, 23);
+            this.txtFilePort.TabIndex = 1;
             // 
             // AppSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 215);
+            this.ClientSize = new System.Drawing.Size(383, 177);
+            this.Controls.Add(this.txtChatPort);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.PortNumbertxt);
+            this.Controls.Add(this.txtFilePort);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -94,8 +115,10 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private httpMethodsApp.NumericTextBox PortNumbertxt;
+        private httpMethodsApp.NumericTextBox txtFilePort;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
+        private httpMethodsApp.NumericTextBox txtChatPort;
+        private System.Windows.Forms.Label label2;
     }
 }

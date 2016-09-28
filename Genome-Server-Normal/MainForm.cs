@@ -18,6 +18,8 @@ using System.Net.Sockets;
 using IrcD.Server;
 using IrcD;
 using System.Threading;
+using System.Xml;
+using System.Xml.Linq;
 //port 5556 is default
 namespace httpMethodsApp
 {
@@ -64,8 +66,23 @@ namespace httpMethodsApp
         }
 
         /*---------------------------------------CHAT APP--------------------------------------------*/
+        public void LoadConfig()
+        {
 
-        public static void Start()
+            var xml = XDocument.Load(@"config.xml");
+
+            var query = from c in xml.Root.Descendants("interface")
+                        select c.Element("port").Value;
+            txtChatPort.Text = string.Join("",query);
+            query = from c in xml.Root.Descendants("interface")
+                        select c.Element("fileport").Value;
+            txtFilePort.Text = string.Join("", query);
+
+
+        }
+
+
+public static void Start()
         {
             var settings = new Settings();
             var ircDaemon = new IrcDaemon(settings.GetIrcMode());
@@ -192,13 +209,12 @@ namespace httpMethodsApp
 
 
 
-
         /*---------------------------------------GTTP CODE--------------------------------------------*/
 
         private void setUPServer()
         {
-            
-            httpServerController = new HttpServerController(AppSettings.Port);
+            LoadConfig();
+            httpServerController = new HttpServerController(int.Parse(txtFilePort.Text));
             httpServerController._httpServer.useStandardHeaders = this.useStandardHeaders;
 
             if (filesDirectory != "")
@@ -285,7 +301,7 @@ namespace httpMethodsApp
             AppSettingsForm appSettingForm = new AppSettingsForm();
             if (appSettingForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                httpServerController._httpServer.PortNumber = AppSettings.Port;
+                httpServerController._httpServer.PortNumber = int.Parse(txtFilePort.Text);
             }
         }
     }

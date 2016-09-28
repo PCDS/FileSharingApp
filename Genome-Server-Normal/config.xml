@@ -3,12 +3,10 @@
   <!--The same server can listen on multiple interfaces, only port is currently used-->
   <interface>
     <ip>127.0.0.1</ip>
-    <port>6666</port>
-  </interface>
-  <interface>
-    <ip>127.0.0.1</ip>
     <port>6667</port>
+    <fileport>5556</fileport>
   </interface>
+
 
   <!--OLine: you really should change that. Everyone in this list gets OPER privilege-->
   <oper>

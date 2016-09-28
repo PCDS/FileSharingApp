@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using IrcD.Utils;
+using FileSharingApp;
 
 namespace IrcD.Server
 {
@@ -84,6 +85,7 @@ namespace IrcD.Server
 
         private List<int> GetPorts()
         {
+            
             List<int> result = new List<int>();
             foreach (var iface in _configFile.Descendants("interface"))
             {
@@ -100,8 +102,8 @@ namespace IrcD.Server
             if (!result.Any())
             {
                 result.Add(6667);
-            }
 
+            }
             return result;
         }
 
