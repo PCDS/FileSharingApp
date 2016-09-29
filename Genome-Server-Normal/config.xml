@@ -22,15 +22,15 @@
 
   <admin>
     <location1>If you need an OP go to #admin</location1>
-    <location2>Visit: http://www.apophis.ch</location2>
-    <email>apophis@apophis.ch</email>
+    <location2>Visit: https://github.com/PCDS </location2>
+    <email>blakewrege1@gmail.com</email>
   </admin>
 
   <!--IRC Network name-->
-  <network_name>pirate-net</network_name>
+  <network_name>Gnome Chat</network_name>
 
   <!--IRC Server name-->
-  <server_name>apophis.ch</server_name>
+  <server_name>gttp.com</server_name>
 
   <!--Password to the server, empty or missing means no password-->
   <server_pass></server_pass>

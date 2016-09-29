@@ -166,6 +166,60 @@ namespace DatabaseConnector
 
         }
 
+          public bool CheckChannel(string currUser, string currChannel)
+        {
+            UserData userInfo = GetUserInfo(currUser);
+            if (userInfo.Exists == true)
+            {
+                using (var cn = new SQLiteConnection("Data Source=Users.sqlite;Version=3;"))
+                using (var cmd = new SQLiteCommand())
+                    try
+                    {
+                        cn.Open();
+                        cmd.Connection = cn;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "select * from Permissions WHERE name=@username";
+                        cmd.Parameters.Add(new SQLiteParameter("@username", currUser));
+                        SQLiteDataReader reader = cmd.ExecuteReader();
+                        while (reader.HasRows) {
+                            if (!reader.Read())
+                            {
+                                userInfo.Exists = false;
+                                return false;
+                            }
+                            else
+                            {
+
+                                int ordUser = reader.GetOrdinal("name");
+                                int ordChan = reader.GetOrdinal("cname");
+                                string uname = reader.GetString(ordUser);
+                                string cname = reader.GetString(ordChan);
+                                if (uname == currUser && currChannel == cname)
+                                {
+                                    return true;
+                                }
+                            }
+
+
+                        }
+                        reader.Close();
+                        cn.Close();
+
+
+                        return false;
+                    }
+                    catch { }
+
+            }
+            else
+            {
+                return false;
+            }
+
+            return false;
+        }
+      
+
         public string ListUsers()
         {
             string names = "";

@@ -61,6 +61,11 @@ namespace IrcD.Commands
                 {
                     if (IrcDaemon.ValidChannel(channel))
                     {
+                        if (!IrcDaemon.ChannelPerm(channel, info.User))
+                        {
+                            IrcDaemon.Replies.SendPasswordMismatch(info);
+                            return;
+                        }
                         chan = new ChannelInfo(channel, IrcDaemon);
                         IrcDaemon.Channels.Add(chan.Name, chan);
                     }

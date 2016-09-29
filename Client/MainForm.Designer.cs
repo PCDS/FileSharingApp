@@ -303,7 +303,6 @@
             this.Controls.Add(this.btnGetFile);
             this.Name = "MainForm";
             this.Text = "HTTP Client (Raw)";
-            this.Load += new System.EventHandler(this.MainForm_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

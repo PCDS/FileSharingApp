@@ -533,7 +533,14 @@ namespace IrcD
         /// <returns></returns>
         public bool ValidChannel(string channel)
         {
+
             return SupportedChannelTypes.Any(t => t.Value.Prefix == channel[0]) && (!channel.Any(c => c == ' ' || c == ',' || c == '\x7' || c == ':'));
+        }
+        public bool ChannelPerm(string channel, string nick)
+        {
+            DatabaseCon UserDB = new DatabaseCon();
+            Console.WriteLine("chantest: "+channel+"  "+nick);
+            return UserDB.CheckChannel(nick, channel);
         }
     }
 }

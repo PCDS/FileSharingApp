@@ -303,6 +303,7 @@ public static void Start()
             {
                 httpServerController._httpServer.PortNumber = int.Parse(txtFilePort.Text);
             }
+            LoadConfig();
         }
     }
 }

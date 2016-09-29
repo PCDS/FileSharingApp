@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using FileSharingApp;
+using System.Xml.Linq;
+using System.Linq;
+
 namespace ServerClient
 {
     public partial class AppSettingsForm : Form
@@ -8,23 +10,45 @@ namespace ServerClient
         public AppSettingsForm()
         {
             InitializeComponent();
-            //txtFilePort.Text = AppSettings.Port.ToString();
-            var myIni = new IniFile("Server.ini");
-            txtChatPort.Text = myIni.Read("ChatPort");
-            txtFilePort.Text = myIni.Read("FilePort");
+            LoadConfig();
 
         }
 
 
+        public void LoadConfig()
+        {
+
+            var xml = XDocument.Load(@"config.xml");
+
+            var query = from c in xml.Root.Descendants("interface")
+                        select c.Element("port").Value;
+            txtChatPort.Text = string.Join("", query);
+            query = from c in xml.Root.Descendants("interface")
+                    select c.Element("fileport").Value;
+            txtFilePort.Text = string.Join("", query);
+        }
+
+
+        public void SaveConfig()
+        {
+            string xmlFile = "config.xml";
+            System.Xml.XmlDocument xmlDoc = new System.Xml.XmlDocument();
+            xmlDoc.Load(xmlFile);
+            xmlDoc.SelectSingleNode("config/interface/port").InnerText = txtChatPort.Text;
+            xmlDoc.SelectSingleNode("config/interface/fileport").InnerText = txtFilePort.Text;
+            xmlDoc.Save(xmlFile);
+            MessageBox.Show("Configuration Saved");
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            txtChatPort.Text= int.Parse(txtChatPort.Text).ToString();
+            txtFilePort.Text = int.Parse(txtFilePort.Text).ToString();
             if (txtFilePort.IntValue > 0 && txtFilePort.IntValue < ushort.MaxValue && txtChatPort.IntValue > 0 && txtChatPort.IntValue < ushort.MaxValue )
             {
-                var myIni = new IniFile("Server.ini");
-                myIni.Write("Chatport", txtChatPort.Text);
-                myIni.Write("FilePort", txtFilePort.Text);
-                MessageBox.Show("Configuration Saved");
+
+
+                SaveConfig();
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
 
             }
