@@ -196,6 +196,33 @@ namespace FileSharingAppServer
         }
 
 
+        public string ListChannels()
+        {
+            string names = "";
+            int count = 0;
+            SQLiteConnection sqConnection = new SQLiteConnection("Data Source=Users.sqlite;Version=3;");
+            SQLiteCommand sqCommand = new SQLiteCommand("select cname from Channels", sqConnection);
+            sqConnection.Open();
+            try
+            {
+
+                SQLiteDataReader sqReader = sqCommand.ExecuteReader();
+                while (sqReader.Read())
+                {
+                    names = names + sqReader.GetString(sqReader.GetOrdinal("cname")) + "\n";
+                    count = count + 1;
+                }
+                sqReader.Close();
+            }
+            finally
+            {
+                sqConnection.Close();
+            }
+
+            return names;
+        }
+
+
         public UserData GetUserInfo(string currUser)
         {
             UserData userInfo = new UserData();

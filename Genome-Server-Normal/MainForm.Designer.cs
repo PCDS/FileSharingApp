@@ -48,6 +48,10 @@
             this.showUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.showRoomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createRoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteRoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFilePort = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
@@ -158,7 +162,8 @@
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton2,
-            this.toolStripDropDownButton1});
+            this.toolStripDropDownButton1,
+            this.toolStripDropDownButton2});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -216,8 +221,8 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(48, 22);
-            this.toolStripDropDownButton1.Text = "Tools";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(74, 22);
+            this.toolStripDropDownButton1.Text = "User Tools";
             // 
             // showUsersToolStripMenuItem
             // 
@@ -239,6 +244,38 @@
             this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.deleteUserToolStripMenuItem.Text = "Delete User";
             this.deleteUserToolStripMenuItem.Click += new System.EventHandler(this.Delete_Click);
+            // 
+            // toolStripDropDownButton2
+            // 
+            this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showRoomsToolStripMenuItem,
+            this.createRoomToolStripMenuItem,
+            this.deleteRoomToolStripMenuItem});
+            this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
+            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(111, 22);
+            this.toolStripDropDownButton2.Text = "Chat Room Tools";
+            // 
+            // showRoomsToolStripMenuItem
+            // 
+            this.showRoomsToolStripMenuItem.Name = "showRoomsToolStripMenuItem";
+            this.showRoomsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showRoomsToolStripMenuItem.Text = "Show Rooms";
+            this.showRoomsToolStripMenuItem.Click += new System.EventHandler(this.ShowChannels_Click);
+            // 
+            // createRoomToolStripMenuItem
+            // 
+            this.createRoomToolStripMenuItem.Name = "createRoomToolStripMenuItem";
+            this.createRoomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createRoomToolStripMenuItem.Text = "Create Room";
+            // 
+            // deleteRoomToolStripMenuItem
+            // 
+            this.deleteRoomToolStripMenuItem.Name = "deleteRoomToolStripMenuItem";
+            this.deleteRoomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteRoomToolStripMenuItem.Text = "Delete Room";
             // 
             // label2
             // 
@@ -323,6 +360,10 @@
         private System.Windows.Forms.ToolStripMenuItem showUsersToolStripMenuItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtFilePort;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
+        private System.Windows.Forms.ToolStripMenuItem showRoomsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createRoomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteRoomToolStripMenuItem;
     }
 }
 

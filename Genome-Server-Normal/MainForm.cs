@@ -139,6 +139,12 @@ public static void Start()
             MessageBox.Show(names);
         }
 
+        public void ShowChannels_Click(object sender, EventArgs e)
+        {
+            string names = UserDB.ListChannels();
+            MessageBox.Show(names);
+        }
+
         private void Create_Click(object sender, EventArgs e)
         {
             Form CreateUser = new Form();
@@ -188,6 +194,32 @@ public static void Start()
             CreateUser.Controls.Add(userLabel);
             CreateUser.ShowDialog();
         }
+
+
+       // private void Delete_Channel(object sender, EventArgs e)
+       // {
+       //     Form CreateUser = new Form();
+       //     CreateUser.StartPosition = FormStartPosition.CenterScreen;
+       //     CreateUser.FormBorderStyle = FormBorderStyle.FixedDialog;
+       //     CreateUser.Width = 400;
+       //     CreateUser.Height = 150;
+       //     CreateUser.Text = "Delete User";
+       //     Label userLabel = new Label() { Left = 50, Top = 15, Text = "Username:" };
+       //
+       //     TextBox username = new TextBox { Left = 50, Top = 40, Width = 300 };
+       //     Button confirmation = new Button() { Text = "Ok", Left = 250, Width = 100, Top = 70 };
+       //     confirmation.Click += (sender2, d) => {
+       //         UserDB.DeleteUser(username.Text);
+       //         CreateUser.Close();
+       //     };
+       //     CreateUser.Controls.Add(username);
+       //     CreateUser.Controls.Add(confirmation);
+       //     CreateUser.Controls.Add(userLabel);
+       //     CreateUser.ShowDialog();
+       // }
+
+
+
 
 
         private void btnListen_Click()
