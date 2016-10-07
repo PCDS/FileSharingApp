@@ -19,6 +19,7 @@ namespace DatabaseConnector
             public bool Exists;
             public string Username;
             public string Password;
+            public int IsAdmin;
         }
 
         public DatabaseCon()
@@ -171,6 +172,10 @@ namespace DatabaseConnector
             UserData userInfo = GetUserInfo(currUser);
             if (userInfo.Exists == true)
             {
+                if(userInfo.IsAdmin == 1)
+                {
+                    return true;
+                }
                 using (var cn = new SQLiteConnection("Data Source=Users.sqlite;Version=3;"))
                 using (var cmd = new SQLiteCommand())
                     try
@@ -268,8 +273,10 @@ namespace DatabaseConnector
                     userInfo.Exists = true;
                     int ordUser = reader.GetOrdinal("name");
                     int ordPass = reader.GetOrdinal("password");
+                    int ordAdmin = reader.GetOrdinal("admin");
                     userInfo.Username = reader.GetString(ordUser);
                     userInfo.Password = reader.GetString(ordPass);
+                    userInfo.IsAdmin = reader.GetInt32(ordPass);
                 }
                 reader.Close();
                 cn.Close();

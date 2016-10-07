@@ -130,6 +130,12 @@
     <Compile Include="AppSettingsForm.Designer.cs">
       <DependentUpon>AppSettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChanTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChanTools.Designer.cs">
+      <DependentUpon>ChanTools.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseCon.cs" />
     <Compile Include="FormatData.cs" />
     <Compile Include="httpServer.cs" />
@@ -145,6 +151,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Tools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools.Designer.cs">
+      <DependentUpon>Tools.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="..\SharedClasses\About.resx">
       <Link>About.resx</Link>
       <DependentUpon>About.cs</DependentUpon>
@@ -155,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AppSettingsForm.resx">
       <DependentUpon>AppSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChanTools.resx">
+      <DependentUpon>ChanTools.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -169,6 +184,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Tools.resx">
+      <DependentUpon>Tools.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

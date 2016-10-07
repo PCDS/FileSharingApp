@@ -41,17 +41,9 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.showUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.showRoomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createRoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteRoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripButton();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFilePort = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
@@ -176,8 +168,6 @@
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem1,
-            this.saveConfigurationToolStripMenuItem,
-            this.loadConfigurationToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -188,94 +178,36 @@
             // settingsToolStripMenuItem1
             // 
             this.settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
-            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(177, 22);
+            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.settingsToolStripMenuItem1.Text = "Settings";
             this.settingsToolStripMenuItem1.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
-            // 
-            // saveConfigurationToolStripMenuItem
-            // 
-            this.saveConfigurationToolStripMenuItem.Name = "saveConfigurationToolStripMenuItem";
-            this.saveConfigurationToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.saveConfigurationToolStripMenuItem.Text = "Save Configuration";
-            // 
-            // loadConfigurationToolStripMenuItem
-            // 
-            this.loadConfigurationToolStripMenuItem.Name = "loadConfigurationToolStripMenuItem";
-            this.loadConfigurationToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.loadConfigurationToolStripMenuItem.Text = "Load Configuration";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.Exit_Click);
             // 
             // toolStripDropDownButton1
             // 
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showUsersToolStripMenuItem,
-            this.createUserToolStripMenuItem,
-            this.deleteUserToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(74, 22);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(65, 22);
             this.toolStripDropDownButton1.Text = "User Tools";
-            // 
-            // showUsersToolStripMenuItem
-            // 
-            this.showUsersToolStripMenuItem.Name = "showUsersToolStripMenuItem";
-            this.showUsersToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
-            this.showUsersToolStripMenuItem.Text = "Show Users";
-            this.showUsersToolStripMenuItem.Click += new System.EventHandler(this.Show_Click);
-            // 
-            // createUserToolStripMenuItem
-            // 
-            this.createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
-            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
-            this.createUserToolStripMenuItem.Text = "Create User";
-            this.createUserToolStripMenuItem.Click += new System.EventHandler(this.Create_Click);
-            // 
-            // deleteUserToolStripMenuItem
-            // 
-            this.deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
-            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
-            this.deleteUserToolStripMenuItem.Text = "Delete User";
-            this.deleteUserToolStripMenuItem.Click += new System.EventHandler(this.Delete_Click);
+            this.toolStripDropDownButton1.Click += new System.EventHandler(this.Show_Click);
             // 
             // toolStripDropDownButton2
             // 
             this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showRoomsToolStripMenuItem,
-            this.createRoomToolStripMenuItem,
-            this.deleteRoomToolStripMenuItem});
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(111, 22);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(102, 22);
             this.toolStripDropDownButton2.Text = "Chat Room Tools";
-            // 
-            // showRoomsToolStripMenuItem
-            // 
-            this.showRoomsToolStripMenuItem.Name = "showRoomsToolStripMenuItem";
-            this.showRoomsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.showRoomsToolStripMenuItem.Text = "Show Rooms";
-            this.showRoomsToolStripMenuItem.Click += new System.EventHandler(this.ShowChannels_Click);
-            // 
-            // createRoomToolStripMenuItem
-            // 
-            this.createRoomToolStripMenuItem.Name = "createRoomToolStripMenuItem";
-            this.createRoomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.createRoomToolStripMenuItem.Text = "Create Room";
-            // 
-            // deleteRoomToolStripMenuItem
-            // 
-            this.deleteRoomToolStripMenuItem.Name = "deleteRoomToolStripMenuItem";
-            this.deleteRoomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deleteRoomToolStripMenuItem.Text = "Delete Room";
+            this.toolStripDropDownButton2.Click += new System.EventHandler(this.ShowChannels_Click);
             // 
             // label2
             // 
@@ -350,20 +282,12 @@
         private System.Windows.Forms.Label lbIp;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripDropDownButton toolStripButton2;
-        private System.Windows.Forms.ToolStripMenuItem saveConfigurationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadConfigurationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem createUserToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem showUsersToolStripMenuItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtFilePort;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
-        private System.Windows.Forms.ToolStripMenuItem showRoomsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createRoomToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteRoomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripButton toolStripDropDownButton2;
     }
 }
 

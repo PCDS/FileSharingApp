@@ -123,6 +123,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -140,16 +141,26 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Genome-Server-Normal\DatabaseCon.cs">
+      <Link>Core\Utils\DatabaseCon.cs</Link>
+    </Compile>
     <Compile Include="Channel\*.cs" />
     <Compile Include="Commands\*.cs" />
     <Compile Include="Commands\Arguments\*.cs" />
-    <Compile Include="Core\*.cs" />
+    <Compile Include="Core\DatabaseCon.cs" />
+    <Compile Include="Core\InfoBase.cs" />
+    <Compile Include="Core\IrcDaemon.cs" />
+    <Compile Include="Core\ServerInfo.cs" />
+    <Compile Include="Core\ServerOptions.cs" />
+    <Compile Include="Core\ServerStats.cs" />
+    <Compile Include="Core\UserInfo.cs" />
     <Compile Include="Core\Utils\*.cs" />
     <Compile Include="Modes\*.cs" />
     <Compile Include="Modes\ChannelModes\*.cs" />

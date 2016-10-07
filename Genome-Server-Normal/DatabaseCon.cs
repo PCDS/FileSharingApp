@@ -20,6 +20,7 @@ namespace FileSharingAppServer
         public struct UserData
         {
             public bool Exists;
+            public int IsAdmin;
             public string Username;
             public string Password;
         }
@@ -79,16 +80,75 @@ namespace FileSharingAppServer
 
                 m_dbConnection.Close();
             }
-
-
         }
 
-        public void CreateUser(string user, string pass)
+
+        public bool CheckChannel(string currUser, string currChannel)
+        {
+            UserData userInfo = GetUserInfo(currUser);
+            if (userInfo.Exists == true)
+            {
+                using (var cn = new SQLiteConnection("Data Source=Users.sqlite;Version=3;"))
+                using (var cmd = new SQLiteCommand())
+                    try
+                    {
+                        cn.Open();
+                        cmd.Connection = cn;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "select * from Permissions WHERE name=@username";
+                        cmd.Parameters.Add(new SQLiteParameter("@username", currUser));
+                        SQLiteDataReader reader = cmd.ExecuteReader();
+                        while (reader.HasRows)
+                        {
+                            if (!reader.Read())
+                            {
+                                userInfo.Exists = false;
+                                return false;
+                            }
+                            else
+                            {
+
+                                int ordUser = reader.GetOrdinal("name");
+                                int ordChan = reader.GetOrdinal("cname");
+                                string uname = reader.GetString(ordUser);
+                                string cname = reader.GetString(ordChan);
+                                if (uname == currUser && currChannel == cname)
+                                {
+                                    return true;
+                                }
+                            }
+
+
+                        }
+                        reader.Close();
+                        cn.Close();
+
+
+                        return false;
+                    }
+                    catch { }
+
+            }
+            else
+            {
+                return false;
+            }
+
+            return false;
+        }
+
+
+
+
+
+
+
+        public bool CreateUser(string user, string pass, int admin, string[] chans)
         {
 
             UserData userInfo = GetUserInfo(user);
             Regex r = new Regex("^[a-zA-Z0-9]*$");
-
+            bool created = false;
             if (userInfo.Exists == true)
             {
                 MessageBox.Show("That username already exists");
@@ -97,7 +157,8 @@ namespace FileSharingAppServer
             {
                 MessageBox.Show("Please input a username");
             }
-            else if (!r.IsMatch(user)){
+            else if (!r.IsMatch(user))
+            {
                 MessageBox.Show("Please only user letters and numbers for username");
             }
             else
@@ -109,16 +170,137 @@ namespace FileSharingAppServer
                     cn.Open();
                     cmd.Connection = cn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "insert into Users (name, password) values (@username , @password)";
+                    cmd.CommandText = "insert into Users (name, password, admin) values (@username , @password, @admin)";
                     cmd.Parameters.Add(new SQLiteParameter("@username", user));
                     cmd.Parameters.Add(new SQLiteParameter("@password", hashPass));
+                    cmd.Parameters.Add(new SQLiteParameter("@admin", admin));
                     cmd.ExecuteNonQuery();
+
+                    for (int i = 0; i < chans.Length; i++)
+                    {
+                        if (chans[i] != null)
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.CommandText = "insert into Permissions (name, cname) values (@username , @channel)";
+                            cmd.Parameters.Add(new SQLiteParameter("@username", user));
+                            cmd.Parameters.Add(new SQLiteParameter("@channel", chans[i]));
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
                     cn.Close();
                     MessageBox.Show("Successfully added the user");
-
+                    created = true;
                 }
             }
+            return created;
         }
+
+
+
+       public bool CreateChannel(string chan, string[] users)
+       {
+       
+            bool exists = GetChanInfo(chan);
+           Regex r = new Regex("^[a-zA-Z0-9]*$");
+            bool created = false;
+       
+           if (exists == true)
+           {
+               MessageBox.Show("That chat room already exists");
+           }
+           else if (chan == "")
+           {
+               MessageBox.Show("Please input a chat room");
+           }
+            else if (chan[0] != '#')
+            {
+                MessageBox.Show("Please use a # before naming a chat room");
+            }
+            else if (!r.IsMatch(chan.Substring(1)))
+           {
+               MessageBox.Show("Please only user letters and numbers after # for chat room");
+           }
+           else
+           {
+               using (var cn = new SQLiteConnection("Data Source=Users.sqlite;Version=3;"))
+               using (var cmd = new SQLiteCommand())
+               {
+                   cn.Open();
+                   cmd.Connection = cn;
+                   cmd.CommandType = CommandType.Text;
+                   cmd.CommandText = "insert into Channels (cname) values (@channel)";
+                   cmd.Parameters.Add(new SQLiteParameter("@channel", chan));
+                   cmd.ExecuteNonQuery();
+       
+                   for (int i = 0; i < users.Length; i++)
+                   {
+                       if (users[i] != null)
+                       {
+                           cmd.Parameters.Clear();
+                           cmd.CommandText = "insert into Permissions (name, cname) values (@username , @channel)";
+                           cmd.Parameters.Add(new SQLiteParameter("@username", users[i]));
+                           cmd.Parameters.Add(new SQLiteParameter("@channel", chan));
+                           cmd.ExecuteNonQuery();
+                       }
+                   }
+                   cn.Close();
+                   MessageBox.Show("Successfully added the chat room");
+                   created = true;
+               }
+           }
+            return created;
+       }
+
+
+
+
+
+
+
+
+
+        //public void ModifyUser(string user, string pass, int admin, object chans)
+        //{
+        //
+        //    UserData userInfo = GetUserInfo(user);
+        //    Regex r = new Regex("^[a-zA-Z0-9]*$");
+        //
+        //    if (userInfo.Exists == true)
+        //    {
+        //        MessageBox.Show("That username already exists");
+        //    }
+        //    else if (user == "")
+        //    {
+        //        MessageBox.Show("Please input a username");
+        //    }
+        //    else if (!r.IsMatch(user))
+        //    {
+        //        MessageBox.Show("Please only user letters and numbers for username");
+        //    }
+        //    else
+        //    {
+        //        string hashPass = HashPassword(pass);
+        //        using (var cn = new SQLiteConnection("Data Source=Users.sqlite;Version=3;"))
+        //        using (var cmd = new SQLiteCommand())
+        //        {
+        //            cn.Open();
+        //            cmd.Connection = cn;
+        //            cmd.CommandType = CommandType.Text;
+        //            cmd.CommandText = "insert into Users (name, password, admin) values (@username , @password, @admin)";
+        //            cmd.Parameters.Add(new SQLiteParameter("@username", user));
+        //            cmd.Parameters.Add(new SQLiteParameter("@password", hashPass));
+        //            cmd.Parameters.Add(new SQLiteParameter("@admin", admin));
+        //            cmd.ExecuteNonQuery();
+        //            cn.Close();
+        //            MessageBox.Show("Successfully added the user");
+        //
+        //        }
+        //    }
+        //}
+
+
+
+
 
         public void DeleteUser(string user)
         {
@@ -137,6 +319,11 @@ namespace FileSharingAppServer
                     cn.Open();
                     cmd.Connection = cn;
                     cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "DELETE from Permissions WHERE name=@username";
+                    cmd.Parameters.Add(new SQLiteParameter("@username", user));
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection = cn;
+                    cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "DELETE from Users WHERE name=@username";
                     cmd.Parameters.Add(new SQLiteParameter("@username", user));
                     cmd.ExecuteNonQuery();
@@ -146,6 +333,56 @@ namespace FileSharingAppServer
                 }
             }
         }
+
+
+
+        public void DeleteChannel(string chan)
+        {
+
+            bool exists = GetChanInfo(chan);
+
+            if (exists == false)
+            {
+                MessageBox.Show("That chat room doesn't exists");
+            }
+            else
+            {
+                using (var cn = new SQLiteConnection("Data Source=Users.sqlite;Version=3;"))
+                using (var cmd = new SQLiteCommand())
+                {
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "DELETE from Permissions WHERE cname=@channel";
+                    cmd.Parameters.Add(new SQLiteParameter("@channel", chan));
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection = cn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "DELETE from Channels WHERE cname=@channel";
+                    cmd.Parameters.Add(new SQLiteParameter("@channel", chan));
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+                    MessageBox.Show("Successfully deleted the chat room");
+
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public bool CheckPass(string currUser, string currPass)
         {
@@ -178,7 +415,7 @@ namespace FileSharingAppServer
             sqConnection.Open();
             try
             {
-                
+
                 SQLiteDataReader sqReader = sqCommand.ExecuteReader();
                 while (sqReader.Read())
                 {
@@ -194,7 +431,6 @@ namespace FileSharingAppServer
 
             return names;
         }
-
 
         public string ListChannels()
         {
@@ -239,7 +475,8 @@ namespace FileSharingAppServer
                 if (!reader.Read())
                 {
                     userInfo.Exists = false;
-                }else
+                }
+                else
                 {
                     userInfo.Exists = true;
                     int ordUser = reader.GetOrdinal("name");
@@ -256,9 +493,8 @@ namespace FileSharingAppServer
         public static string HashPassword(string password)
         {
 
-                byte[] salt;
+            byte[] salt;
             new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
-
             var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000);
             byte[] hash = pbkdf2.GetBytes(20);
             byte[] hashBytes = new byte[36];
@@ -267,7 +503,35 @@ namespace FileSharingAppServer
             return Convert.ToBase64String(hashBytes);
         }
 
-    
+
+        public bool GetChanInfo(string currChannel)
+        {
+            bool exists;
+
+            using (var cn = new SQLiteConnection("Data Source=Users.sqlite;Version=3;"))
+            using (var cmd = new SQLiteCommand())
+            {
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select * from Channels WHERE cname=@channel";
+                cmd.Parameters.Add(new SQLiteParameter("@channel", currChannel));
+                SQLiteDataReader reader = cmd.ExecuteReader();
+                if (!reader.Read())
+                {
+                    exists = false;
+                }
+                else
+                {
+                    exists = true;
+                }
+                reader.Close();
+                cn.Close();
+                return exists;
+            }
+        }
+
+
     }
 
 

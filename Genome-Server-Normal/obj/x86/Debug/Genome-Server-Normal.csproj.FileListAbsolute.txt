@@ -1,3 +1,31 @@
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\Genome-Server-Normal.exe.config
+G:\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\Genome-Server-Normal.exe
+G:\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\Genome-Server-Normal.pdb
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\config.xml
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\Genome-Server-Normal.exe
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\Genome-Server-Normal.pdb
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\EntityFramework.dll
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\EntityFramework.SqlServer.dll
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\IrcD.Net.dll
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\Newtonsoft.Json.dll
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\System.Data.SQLite.dll
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\System.Data.SQLite.EF6.dll
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\System.Data.SQLite.Linq.dll
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\System.Json.dll
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\IrcD.Net.pdb
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\EntityFramework.xml
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\EntityFramework.SqlServer.xml
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\Newtonsoft.Json.xml
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\System.Data.SQLite.xml
+G:\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\System.Json.xml
+G:\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\Genome-Server-Normal.csprojResolveAssemblyReference.cache
+G:\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\FileSharingApp.About.resources
+G:\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\FileSharingApp.Base.resources
+G:\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\ServerClient.AppSettingsForm.resources
+G:\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\httpMethodsApp.MainForm.resources
+G:\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\GenomeServerNormal.Properties.Resources.resources
+G:\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\GenomeServerNormal.Tools.resources
+G:\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\Genome-Server-Normal.csproj.GenerateResource.Cache
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\config.xml
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\Genome-Server-Normal.exe.config
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\bin\x86\Debug\Genome-Server-Normal.exe
@@ -20,8 +48,10 @@ C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Serve
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\FileSharingApp.About.resources
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\FileSharingApp.Base.resources
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\ServerClient.AppSettingsForm.resources
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\GenomeServerNormal.ChanTools.resources
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\httpMethodsApp.MainForm.resources
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\GenomeServerNormal.Properties.Resources.resources
+C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\GenomeServerNormal.Tools.resources
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\Genome-Server-Normal.csproj.GenerateResource.Cache
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\Genome-Server-Normal.exe
 C:\Users\giggl\Documents\Visual Studio 2015\Projects\FileSharingApp\Genome-Server-Normal\obj\x86\Debug\Genome-Server-Normal.pdb
