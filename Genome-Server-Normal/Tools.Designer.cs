@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.userListBox = new System.Windows.Forms.CheckedListBox();
-            this.btnCreateUser = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnCreateUser = new System.Windows.Forms.Button();
+            this.userListBox = new System.Windows.Forms.CheckedListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -52,14 +52,25 @@
             this.tabPage1.Text = "User List";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // userListBox
+            // button2
             // 
-            this.userListBox.FormattingEnabled = true;
-            this.userListBox.Location = new System.Drawing.Point(6, 33);
-            this.userListBox.Name = "userListBox";
-            this.userListBox.Size = new System.Drawing.Size(187, 229);
-            this.userListBox.TabIndex = 0;
-            this.userListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.userListBox_ItemCheck);
+            this.button2.Location = new System.Drawing.Point(225, 190);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Delete User";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Delete_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(225, 125);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Modify User";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Modify_Click);
             // 
             // btnCreateUser
             // 
@@ -71,24 +82,14 @@
             this.btnCreateUser.UseVisualStyleBackColor = true;
             this.btnCreateUser.Click += new System.EventHandler(this.Create_Click);
             // 
-            // button1
+            // userListBox
             // 
-            this.button1.Location = new System.Drawing.Point(225, 125);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Modify User";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(225, 190);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Delete User";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Delete_Click);
+            this.userListBox.FormattingEnabled = true;
+            this.userListBox.Location = new System.Drawing.Point(6, 33);
+            this.userListBox.Name = "userListBox";
+            this.userListBox.Size = new System.Drawing.Size(187, 229);
+            this.userListBox.TabIndex = 0;
+            this.userListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.userListBox_ItemCheck);
             // 
             // tabControl1
             // 

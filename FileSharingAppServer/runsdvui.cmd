@@ -1,2 +1,0 @@
-cd /d "C:\Users\bjw\Documents\Visual Studio 2015\Projects\FileSharingApp\FileSharingAppServer" &msbuild "FileSharingAppServer.csproj" /t:sdvViewer /p:configuration="Debug" /p:platform=x86
-exit %errorlevel% 

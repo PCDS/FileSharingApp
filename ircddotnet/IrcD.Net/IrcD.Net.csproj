@@ -148,13 +148,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Genome-Server-Normal\DatabaseCon.cs">
-      <Link>Core\Utils\DatabaseCon.cs</Link>
+    <Compile Include="..\..\SharedClasses\DatabaseCon.cs">
+      <Link>Core\DatabaseCon.cs</Link>
     </Compile>
     <Compile Include="Channel\*.cs" />
     <Compile Include="Commands\*.cs" />
     <Compile Include="Commands\Arguments\*.cs" />
-    <Compile Include="Core\DatabaseCon.cs" />
     <Compile Include="Core\InfoBase.cs" />
     <Compile Include="Core\IrcDaemon.cs" />
     <Compile Include="Core\ServerInfo.cs" />
@@ -174,7 +173,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>

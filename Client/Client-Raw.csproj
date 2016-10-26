@@ -135,12 +135,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IrcClient-csharp\IrcClient-csharp\IrcClient-csharp.csproj">
-      <Project>{b01150db-641e-4f3a-8d14-c094deded1e8}</Project>
-      <Name>IrcClient-csharp</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

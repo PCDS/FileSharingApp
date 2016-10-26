@@ -35,7 +35,7 @@ using IrcD.Utils;
 using Mode = IrcD.Commands.Mode;
 using Version = IrcD.Commands.Version;
 using IrcD.Commands.Arguments;
-using DatabaseConnector;
+using FileSharingAppServer;
 
 namespace IrcD
 {
@@ -406,7 +406,7 @@ namespace IrcD
 
                 int commandStart = i;
                 /*command might be numeric (xxx) or command */
-                if (char.IsDigit(line[i + 1]) && char.IsDigit(line[i + 2]) && char.IsDigit(line[i + 3]))
+                if (char.IsDigit(line[i + 1]) && char.IsDigit(line[i + 2]) && char.IsDigit(line [i + 3]))
                 {
                     replyCode = (ReplyCode)int.Parse(line.Substring(i + 1, 3));
                     i += 4;
@@ -498,7 +498,7 @@ namespace IrcD
         }
         public bool ValidPass(string nick, string pass)
         {
-            DatabaseCon UserDB = new DatabaseCon();
+            DatabaseCon UserDB = new FileSharingAppServer.DatabaseCon();
             if (nick != "")
             {
                 bool myPass = false;

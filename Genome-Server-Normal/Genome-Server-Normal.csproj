@@ -123,6 +123,9 @@
       <Link>Base.designer.cs</Link>
       <DependentUpon>Base.cs</DependentUpon>
     </Compile>
+    <Compile Include="..\SharedClasses\DatabaseCon.cs">
+      <Link>DatabaseCon.cs</Link>
+    </Compile>
     <Compile Include="AppSettings.cs" />
     <Compile Include="AppSettingsForm.cs">
       <SubType>Form</SubType>
@@ -136,7 +139,6 @@
     <Compile Include="ChanTools.Designer.cs">
       <DependentUpon>ChanTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseCon.cs" />
     <Compile Include="FormatData.cs" />
     <Compile Include="httpServer.cs" />
     <Compile Include="MainForm.cs">
